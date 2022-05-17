@@ -21,7 +21,8 @@ export const dark = extendTheme({
       "sidebarCellphone": "#181823",
       "input": "#181823",
       "inputHover": "#181823",
-      "signIn": "#1F2829"
+      "signIn": "#1F2829",
+      "buttonSignIn": "#171f35"
     },
   },
   fonts: {

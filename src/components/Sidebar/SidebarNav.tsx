@@ -10,16 +10,12 @@ export function SidebarNav() {
       align="flex-start"
     >
       <NavSection title="GERAL">
-        <NavLink icon={RiDashboardLine} href="/dashboard">Dashboard</NavLink>
+        <NavLink icon={RiDashboardLine} href="/dashboard">Instância</NavLink>
         <NavLink icon={RiContactsLine} href="/users">Usuários</NavLink>
       </NavSection>
       
       <NavSection title="NAVEGAÇÃO">
-        <NavLink icon={RiInputMethodLine} href="/products">Produtos</NavLink>
-        <NavLink icon={RiParentLine} href="/clients">Clientes</NavLink>
-        <NavLink icon={RiGitMergeLine} href="/sales">Vendas</NavLink>
-        <NavLink icon={RiTruckLine} href="/providers">Fornecedores</NavLink>
-        <NavLink icon={RiBankCard2Line} href="/payments">Pagamentos</NavLink>
+        <NavLink icon={RiInputMethodLine} href="/tabulation">Tabulações</NavLink>
       </NavSection>
     </Stack>
   );

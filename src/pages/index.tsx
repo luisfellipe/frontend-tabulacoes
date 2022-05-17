@@ -85,7 +85,7 @@ export default function SignIn() {
           <Button 
             type="submit" 
             mt="6" 
-            colorScheme="pink" 
+            colorScheme="cyan"
             size="lg"
             isLoading={formState.isSubmitting}
           >

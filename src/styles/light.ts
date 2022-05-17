@@ -22,10 +22,11 @@ export const light = extendTheme({
     colorBackground: {
       "searchbar": "#171f35",
       "graphics": "#171f35",
-      "sidebarCellphone": "#EEEEF2",
+      "sidebarCellphone": "#EEEEEE",
       "input": "#4B0082",
       "inputHover": "#4B0082",
-      "signIn": "#1F2829"
+      "signIn": "#1F2829",
+      "buttonSignIn": "#171f35"
     },
     white: {
       "900": "#E6E6FA"
