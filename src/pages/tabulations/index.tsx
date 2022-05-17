@@ -12,10 +12,10 @@ import { useTabulations } from "../../services/hooks/useTabulations";
 import { queryClient } from "../../services/queryClient";
 import { StyleHook } from "../../hooks/StyleHook";
 
-export default function Instance() {
+export default function Tabulations() {
   const theme = StyleHook();
   const [page, setPage] = useState(1);
-  // data vai receber o users
+  // data vai receber o tabulations
   const { data, isLoading, isFetching, error } = useTabulations(page);
 
   const isWideVersion = useBreakpointValue({
@@ -179,7 +179,7 @@ export default function Instance() {
                     </Tr>
                   </Thead>
                   <Tbody>
-                    {data.tabulations.map((tabulation) => {
+                    {data?.tabulations.map((tabulation) => {
                       return (
                         <Tr key = {tabulation.id}>
                           <Td px={["4", "4", "6"]}>
@@ -222,7 +222,7 @@ export default function Instance() {
                 </Table>
 
                 <Pagination 
-                  totalCountOfRegisters={data.totalCount}
+                  totalCountOfRegisters={data?.totalCount}
                   currentPage={page}
                   onPageChange={setPage}
                 />

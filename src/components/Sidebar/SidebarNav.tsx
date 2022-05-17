@@ -15,7 +15,7 @@ export function SidebarNav() {
       </NavSection>
       
       <NavSection title="NAVEGAÇÃO">
-        <NavLink icon={RiInputMethodLine} href="/tabulation">Tabulações</NavLink>
+        <NavLink icon={RiInputMethodLine} href="/tabulations">Tabulações</NavLink>
       </NavSection>
     </Stack>
   );
