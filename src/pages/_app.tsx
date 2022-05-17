@@ -3,16 +3,20 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { SidebarDrawerProvider } from '../contexts/SidebarDrawerContext';
 import { DarkmodeProvider, useDarkmodeContext } from '../contexts/DarkmodeContext';
 import { dark } from '../styles';
-
-// import { QueryClientProvider } from 'react-query';
+import { makeServer } from '../services/mirage';
+import { QueryClientProvider } from 'react-query';
 // import { ReactQueryDevtools } from 'react-query/devtools';
-// import { queryClient } from '../services/queryClient';
+import { queryClient } from '../services/queryClient';
 // import { AuthProvider } from '../contexts/AuthContext';
+
+if (process.env.NODE_ENV === 'development') {
+  makeServer();
+}
 
 function MyApp({ Component, pageProps }: AppProps)  {
   return (
     // <AuthProvider> 
-    // <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
     <DarkmodeProvider>
     <ChakraProvider theme={dark}>
     <SidebarDrawerProvider>
@@ -20,7 +24,7 @@ function MyApp({ Component, pageProps }: AppProps)  {
     </SidebarDrawerProvider> 
     </ChakraProvider>
     </DarkmodeProvider>
-    // </QueryClientProvider>
+    </QueryClientProvider>
     // </AuthProvider> 
   );
 }

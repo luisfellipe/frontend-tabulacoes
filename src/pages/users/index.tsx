@@ -1,10 +1,10 @@
 import { ChakraProvider, Flex } from "@chakra-ui/react";
 
-import { Header } from "../components/Header";
-import { Sidebar } from "../components/Sidebar";
-import { StyleHook } from "../hooks/StyleHook";
+import { Header } from "../../components/Header";
+import { Sidebar } from "../../components/Sidebar";
+import { StyleHook } from "../../hooks/StyleHook";
 
-export default function Instance() {
+export default function Users() {
   const theme = StyleHook();
 
   return (
@@ -15,7 +15,7 @@ export default function Instance() {
         <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
           <Sidebar />
 
-
+          <h1>Usuários</h1>
           
         </Flex>
       </Flex> 

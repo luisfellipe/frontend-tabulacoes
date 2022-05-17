@@ -17,7 +17,8 @@ export const light = extendTheme({
       "email": "#346cb7",
       "link": "#171f35",
       "linkActive": "#92b4cd",
-      "section": "#346cb7"
+      "section": "#346cb7",
+      "option": "#171f35"
     },
     colorBackground: {
       "searchbar": "#171f35",
