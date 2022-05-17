@@ -1,7 +1,7 @@
 import { AppProps } from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
 import { SidebarDrawerProvider } from '../contexts/SidebarDrawerContext';
-import { DarkmodeProvider, useDarkmodeContext } from '../contexts/DarkmodeContext';
+import { DarkmodeProvider } from '../contexts/DarkmodeContext';
 import { dark } from '../styles';
 import { makeServer } from '../services/mirage';
 import { QueryClientProvider } from 'react-query';
@@ -18,11 +18,11 @@ function MyApp({ Component, pageProps }: AppProps)  {
     // <AuthProvider> 
     <QueryClientProvider client={queryClient}>
     <DarkmodeProvider>
-    <ChakraProvider theme={dark}>
-    <SidebarDrawerProvider>
-      <Component {...pageProps} />
-    </SidebarDrawerProvider> 
-    </ChakraProvider>
+      <ChakraProvider theme={dark}>
+        <SidebarDrawerProvider>
+          <Component {...pageProps} />
+        </SidebarDrawerProvider> 
+      </ChakraProvider>
     </DarkmodeProvider>
     </QueryClientProvider>
     // </AuthProvider> 

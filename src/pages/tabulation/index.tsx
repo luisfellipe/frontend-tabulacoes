@@ -8,7 +8,7 @@ import { Header } from "../../components/Header";
 import { Pagination } from "../../components/Pagination";
 import { Sidebar } from "../../components/Sidebar";
 import { api } from "../../services/api";
-import { getTabulations, useTabulations } from "../../services/hooks/useTabulations";
+import { useTabulations } from "../../services/hooks/useTabulations";
 import { queryClient } from "../../services/queryClient";
 import { StyleHook } from "../../hooks/StyleHook";
 
@@ -35,7 +35,7 @@ export default function Instance() {
 
   return (
     <ChakraProvider theme={theme}>
-      <Flex direction="column" h="100vh">
+      <Box>
         <Header />
 
         <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
@@ -230,7 +230,7 @@ export default function Instance() {
             )}
           </Box>
         </Flex>
-      </Flex> 
+      </Box> 
     </ChakraProvider>
   );
 }

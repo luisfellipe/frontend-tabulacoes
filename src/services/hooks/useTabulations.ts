@@ -23,7 +23,7 @@ export async function getTabulations(page: number): Promise<GetTabulationsRespon
 
   let totalCount = Number(headers['x-total-count'])
 
-  const tabulations = data.tabulations.map((tabulation: Tabulation) => {
+  const tabulations = data.tabulations.map(tabulation => {
     return {
       id: tabulation.id,
       name: tabulation.name,

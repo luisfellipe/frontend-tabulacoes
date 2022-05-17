@@ -44,7 +44,7 @@ export function makeServer() {
       this.timing = 750; // faz com que as rotas demorem 750 milesegundos
 
       // GET TABULATIONS
-      this.get('/tabulations',  function ({ schema, request }: any) { 
+      this.get('/tabulations',  function (schema, request) { 
         const { page = 1, per_page = 10 } = request.queryParams;
         
         const total = schema.all('tabulation').length;
@@ -53,7 +53,7 @@ export function makeServer() {
         const pageEnd = pageStart + Number(per_page);
 
         // corto a listagem do inicio ate o fim 
-        const tabulations: any = this.serialize(schema.all('tabulation'))     
+        const tabulations = this.serialize(schema.all('tabulation'))     
           .tabulations
           .slice(pageStart, pageEnd);
 
