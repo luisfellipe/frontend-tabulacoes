@@ -23,18 +23,18 @@ export function SearchBox() {
       ml="6"
       maxWidth={400}
       alignSelf="center"
-      color="gray.200"
+      color="colorIcon.searchbar"
       position="relative"
-      bg="gray.800"
+      bg="colorBackground.searchbar"
       borderRadius="full"
     >
       <Input
-        color="gray.50"
+        color="colorInput.searchbar"
         variant="unstyled"
         px="4"
         mr="4"
         placeholder="Buscar na plataforma"
-        _placeholder={{ color: 'gray.400' }}
+        _placeholder={{ color: 'colorInput.searchbarHover' }}
         ref={searchInputRef}
       />
 

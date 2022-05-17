@@ -11,7 +11,7 @@ export function NavSection({ title, children }: NavSectionProps) {
     <Box>
       <Text 
         fontWeight="bold" 
-        color="gray.400"
+        color="colorText.section"
         fontSize="small"
       >
         {title}

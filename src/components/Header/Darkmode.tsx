@@ -15,9 +15,9 @@ export function Darkmode() {
       mx={["6", "8"]}
       pr={["6", "8"]}
       py="1"
-      color="gray.300"
+      color="colorIcon.moon"
       borderRightWidth={1}
-      borderColor="gray.700"
+      borderColor="#353646"
     >
       {/* <Icon as={RiNotificationLine} fontSize="20" /> */}
       <Button 

@@ -54,7 +54,7 @@ export default function SignIn() {
           as="form"
           width="100%"
           maxWidth={320}
-          bg="gray.800"
+          bg="colorBackground.signIn"
           p="8" 
           borderRadius={8}
           flexDir="column"

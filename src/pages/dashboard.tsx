@@ -79,13 +79,14 @@ export default function Dashboard() {
           >
             <Box
               p={["6", "8"]}
-              bg="gray.800"
+              bg="colorBackground.graphics"
               borderRadius={8}
               pb="4"
             >
               <Text
                 fontSize="lg"
                 mb="4"
+                color="colorText.dashboard"
               >
                 Inscritos da semana              
               </Text>
@@ -99,13 +100,14 @@ export default function Dashboard() {
 
             <Box
               p={["6", "8"]}
-              bg="gray.800"
+              bg="colorBackground.graphics"
               borderRadius={8}
               pb="4"
             >
               <Text
                 fontSize="lg"
                 mb="4"
+                color="colorText.dashboard"
               >
                 Taxa de abertura              
               </Text>

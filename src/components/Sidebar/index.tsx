@@ -16,7 +16,7 @@ export function Sidebar() {
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay>
           <DrawerContent 
-            bg="gray.800"
+            bg="colorBackground.sidebarCellphone"
             p="8"
           >
             <DrawerCloseButton 
