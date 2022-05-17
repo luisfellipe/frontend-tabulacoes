@@ -10,7 +10,7 @@ export function SidebarNav() {
       align="flex-start"
     >
       <NavSection title="GERAL">
-        <NavLink icon={RiDashboardLine} href="/dashboard">Instância</NavLink>
+        <NavLink icon={RiDashboardLine} href="/instance">Instância</NavLink>
         <NavLink icon={RiContactsLine} href="/users">Usuários</NavLink>
       </NavSection>
       

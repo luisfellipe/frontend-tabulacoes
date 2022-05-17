@@ -13,7 +13,7 @@ export const light = extendTheme({
       "moon": "#346cb7"
     },
     colorText: {
-      "dashboard": "white",
+      "instance": "white",
       "email": "#346cb7",
       "link": "#171f35",
       "linkActive": "#92b4cd",

@@ -60,7 +60,7 @@ const options = {
 const series = [
   { name: 'series1', data: [31, 120, 10, 28, 61, 18, 189] }
 ];
-export default function Dashboard() {
+export default function Instance() {
   const theme = StyleHook();
 
   return (
@@ -86,7 +86,7 @@ export default function Dashboard() {
               <Text
                 fontSize="lg"
                 mb="4"
-                color="colorText.dashboard"
+                color="colorText.instance"
               >
                 Inscritos da semana              
               </Text>
@@ -107,7 +107,7 @@ export default function Dashboard() {
               <Text
                 fontSize="lg"
                 mb="4"
-                color="colorText.dashboard"
+                color="colorText.instance"
               >
                 Taxa de abertura              
               </Text>

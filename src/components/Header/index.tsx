@@ -1,4 +1,4 @@
-import { Flex, Icon, IconButton, useBreakpointValue } from "@chakra-ui/react";
+import { Flex, Icon, IconButton, Text, useBreakpointValue } from "@chakra-ui/react";
 import { RiMenuLine } from "react-icons/ri";
 import { useSidebarDrawer } from "../../contexts/SidebarDrawerContext";
 import { Logo } from "./Logo";
@@ -40,7 +40,17 @@ export function Header() {
       )}
       <Logo />
 
-      { isWideVersion && (<SearchBox />)}
+      {/* { isWideVersion && (<SearchBox />)} */}
+      { isWideVersion && 
+        (
+          <Text
+            fontSize="24"
+            fontWeight="bold"
+          >
+            Instância - Ailos
+          </Text>
+        )
+      }
 
       <Flex
         align="center"

@@ -39,7 +39,7 @@ export default function SignIn() {
 
     // await signIn(values);
 
-    router.push('/dashboard');
+    router.push('/instance');
   }
 
   return (

@@ -9,7 +9,7 @@ export const dark = extendTheme({
       "moon": "white"
     },
     colorText: {
-      "dashboard": "#EEEEF2",
+      "instance": "#EEEEF2",
       "email": "#9699BB",
       "link": "#B3B5C6",
       "linkActive": "#346cb7",
