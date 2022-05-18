@@ -50,12 +50,8 @@ export function makeServer() {
 
       // GET TABULATIONS
       this.get('/tabulations',  function (schema, request) { 
-        // const { page = 1, per_page = 10 } = request.queryParams;
-        let page;
-        let per_page;
-        request.queryParams?.page ? page : page = 1;
-        request.queryParams?.per_page ? per_page : per_page = 10;
-
+        const { page = 1, per_page = 10 } = request.queryParams;
+        
         const total = schema.all('tabulation').length;
  
         const pageStart = (Number(page) - 1) * Number(per_page);

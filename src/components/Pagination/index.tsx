@@ -2,7 +2,7 @@ import { Box, Stack, Text } from "@chakra-ui/react";
 import { PaginationItem } from "./PaginationItem";
 
 interface PaginationProps {
-  totalCountOfRegisters?: number;
+  totalCountOfRegisters: number;
   registersPerPage?: number;
   currentPage?: number;
   onPageChange: (page: number) => void;
@@ -24,7 +24,7 @@ export function Pagination({
   currentPage = 1,
   onPageChange
 }: PaginationProps) {
-  const lastPage = Math.ceil(totalCountOfRegisters || 0 / registersPerPage);
+  const lastPage = Math.ceil(totalCountOfRegisters / registersPerPage);
   
   const previousPages = currentPage > 1
     ? generatePagesArray(currentPage - 1 - siblingsCount, currentPage - 1)
