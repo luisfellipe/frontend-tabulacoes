@@ -16,7 +16,7 @@ export default function Instance() {
           <Sidebar />
 
 
-          
+          <h1>Instancia</h1>
         </Flex>
       </Flex> 
     </ChakraProvider>

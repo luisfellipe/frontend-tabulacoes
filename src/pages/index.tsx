@@ -39,7 +39,7 @@ export default function SignIn() {
 
     // await signIn(values);
 
-    router.push('/instance');
+    router.push('/tabulations');
   }
 
   return (

@@ -7,11 +7,6 @@ type Tabulation = {
   created_at: string;
 }
 
-type DataFunction = {
-  schema: Object;
-  request: Object;
-}
-
 // criar o servidor
 export function makeServer() {
   const server = createServer({
