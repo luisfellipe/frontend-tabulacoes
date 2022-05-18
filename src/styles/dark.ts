@@ -14,7 +14,8 @@ export const dark = extendTheme({
       "link": "#B3B5C6",
       "linkActive": "#346cb7",
       "section": "#797D9A",
-      "option": "#171f35"
+      "option": "#171f35",
+      "textTable": "white"
     },
     colorBackground: {
       "searchbar": "#181823",

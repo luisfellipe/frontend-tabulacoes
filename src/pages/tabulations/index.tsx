@@ -8,7 +8,7 @@ import { Header } from "../../components/Header";
 import { Pagination } from "../../components/Pagination";
 import { Sidebar } from "../../components/Sidebar";
 import { api } from "../../services/api";
-import { useTabulations } from "../../services/hooks/useTabulations";
+import { useTabulations } from "../../hooks/useTabulations";
 import { queryClient } from "../../services/queryClient";
 import { StyleHook } from "../../hooks/StyleHook";
 
@@ -55,6 +55,7 @@ export default function Tabulations() {
               <Heading
                 size="lg"
                 fontWeight="normal"
+                color="colorText.textTable"
               >
                 Tabulações
 
@@ -197,7 +198,7 @@ export default function Tabulations() {
                             </Box>
                           </Td>
                           { isWideVersion && 
-                            <Td>
+                            <Td color="colorText.textTable" >
                               {tabulation.created_at}
                             </Td> 
                           }

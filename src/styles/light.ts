@@ -18,7 +18,8 @@ export const light = extendTheme({
       "link": "#171f35",
       "linkActive": "#92b4cd",
       "section": "#346cb7",
-      "option": "#171f35"
+      "option": "#171f35",
+      "textTable": "white"
     },
     colorBackground: {
       "searchbar": "#171f35",

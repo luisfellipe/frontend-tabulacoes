@@ -1,6 +1,6 @@
 
 import { useQuery, UseQueryOptions } from "react-query";
-import { api } from "../api";
+import { api } from "../services/api";
 
 type Tabulation = {
   id: string;
