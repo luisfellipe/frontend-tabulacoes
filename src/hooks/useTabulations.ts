@@ -48,7 +48,7 @@ export function useTabulations(page: number) {
   });
 }
 
-// Utilizando o serverSide
+// function utilizando o serverSides
 // export function useUsers(page: number, options: UseQueryOptions) {
 //   return useQuery(['users', page],() => getUsers(page), {
 //     staleTime: 1000 * 5, // 5 seconds
