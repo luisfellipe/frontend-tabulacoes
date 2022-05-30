@@ -43,7 +43,7 @@ export default function Tabulations() {
 
           <Box
             flex="1"
-            minWidth={320}
+            minWidth={340}
             borderRadius={8}
             bg="gray.800"
             p="8"
