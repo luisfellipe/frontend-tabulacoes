@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Input } from '../components/Form/Input';
 
-// Resolvi colocar o logo pra ficar mais bonito o/
+// Resolvi colocar o logo pra ficar mais bonito 
 import { Logo } from '../components/Header/Logo';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
@@ -32,7 +32,7 @@ export default function SignIn() {
   // const { signIn } = useContext(AuthContext);
 
   const { errors } = formState;
-  
+
   const handleSignIn: SubmitHandler<SignInFormData> = async (values) => {
     await new Promise(resolve => setTimeout(resolve, 2000));
     console.log(values.email, values.password);
@@ -44,47 +44,47 @@ export default function SignIn() {
 
   return (
     <ChakraProvider theme={theme}>
-      <Flex 
-        w="100vw" 
-        h="100vh" 
-        align="center" 
+      <Flex
+        w="100vw"
+        h="100vh"
+        align="center"
         justify="center"
       >
-        <Flex 
+        <Flex
           as="form"
           width="100%"
           maxWidth={320}
           bg="colorBackground.signIn"
-          p="8" 
+          p="8"
           borderRadius={8}
           flexDir="column"
           onSubmit={handleSubmit(handleSignIn)}
-        > 
+        >
           <Box mb="3" textAlign={'center'}>
             <Logo />
-          </Box>      
-          
+          </Box>
+
           <Stack spacing="4">
-            <Input 
-              type="email" 
+            <Input
+              type="email"
               label="E-mail"
               error={errors.email}
               {...register('email')}
             >
             </Input>
-            
-            <Input 
-              type="password" 
+
+            <Input
+              type="password"
               label="Senha"
               error={errors.password}
               {...register("password")}
             >
-            </Input>      
+            </Input>
           </Stack>
-          
-          <Button 
-            type="submit" 
-            mt="6" 
+
+          <Button
+            type="submit"
+            mt="6"
             colorScheme="cyan"
             size="lg"
             isLoading={formState.isSubmitting}
