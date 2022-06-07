@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Input } from '../components/Form/Input';
 
-// Resolvi colocar o logo pra ficar mais bonito 
+// Resolvi colocar o logo pra ficar mais bonito o/
 import { Logo } from '../components/Header/Logo';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
