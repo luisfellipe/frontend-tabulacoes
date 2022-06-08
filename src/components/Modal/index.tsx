@@ -63,6 +63,7 @@ export function ModalComponent({ isOpen, onClose }: ModalProps) {
           <ModalCloseButton color="colorText.closeModal"/>
           <ModalBody
             marginTop="15px"
+            marginBottom="15px"
           >
             {instances.map((instance, i) => {
               return (
