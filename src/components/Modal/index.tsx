@@ -29,7 +29,7 @@ export function ModalComponent({ isOpen, onClose }: ModalProps) {
           bg='blackAlpha.300'
           backdropFilter='blur(10px) hue-rotate(90deg)'
         />
-        <ModalContent background="colorBackground.modal" height="400px">
+        <ModalContent background="colorBackground.modal" height="400px" width={["320px", "360px", "400px", "600px"]}>
           <ModalHeader textAlign='center' color="colorText.titleModal">SELECIONE A INSTÂNCIA</ModalHeader>
           <Input 
             placeholder='Digite uma instância' 
