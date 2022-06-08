@@ -24,20 +24,26 @@ export function ModalComponent({ isOpen, onClose }: ModalProps) {
 
   return (
     <ChakraProvider theme={theme}>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay 
+      <Modal isOpen={isOpen} onClose={onClose} scrollBehavior="inside">
+        <ModalOverlay
           bg='blackAlpha.300'
           backdropFilter='blur(10px) hue-rotate(90deg)'
         />
-        <ModalContent background="colorBackground.modal">
+        <ModalContent background="colorBackground.modal" height="400px">
           <ModalHeader textAlign='center' color="colorText.titleModal">SELECIONE A INSTÂNCIA</ModalHeader>
+          <Input 
+            placeholder='Digite uma instância' 
+            color="colorText.textSearchModal" 
+            focusBorderColor="colorFocus.inputModal"
+            w="85%"
+            m="auto"
+            justifyContent="center"
+
+          />
           <ModalCloseButton color="colorText.closeModal"/>
-          <ModalBody>
-            <Input 
-              placeholder='Digite uma instância' 
-              color="colorText.textSearchModal" 
-              focusBorderColor="colorFocus.inputModal"
-            />
+          <ModalBody
+            marginTop="15px"
+          >
             {instances.map((instance) => {
               return (
                 <Button 
@@ -46,7 +52,6 @@ export function ModalComponent({ isOpen, onClose }: ModalProps) {
                   textAlign="center"
                   w='100%'
                   my='3px'
-                  _first={{ marginTop: '15px' }}
                   key={instance}
                   background="colorBackground.backgroundButtonModal"
                   color="colorText.textModal"

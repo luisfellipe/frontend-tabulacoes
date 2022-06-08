@@ -2,5 +2,8 @@ export const listInstances = [
   'AILOS',
   'HUBPREPAID',
   'GMF',
-  'MAGAZINELUIZA'
+  'MAGAZINELUIZA',
+  'FORTBRASIL',
+  'BRADESCO',
+  'GOOGLE'
 ];
