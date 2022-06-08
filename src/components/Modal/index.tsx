@@ -9,6 +9,7 @@ import {
   Button,
   ChakraProvider, 
 } from "@chakra-ui/react";
+import { useState } from "react";
 import { StyleHook } from "../../hooks/StyleHook";
 import { listInstances } from "./listInstances";
 
@@ -20,7 +21,22 @@ interface ModalProps {
 
 export function ModalComponent({ isOpen, onClose }: ModalProps) {
   const theme = StyleHook();
-  const instances = listInstances;
+  const [ instances, setInstances ] = useState<String[]>(listInstances);
+
+  function handleSearch(e: String) {
+    const newUpdatedInstace: String[] = [];
+    const textTyped = new RegExp(e.toUpperCase(), "g");
+
+    for (const instance of listInstances) {
+      if ( instance.match(textTyped) ) {
+        newUpdatedInstace.push(instance);
+      } else {
+        setInstances(listInstances);
+      }
+    }
+
+    setInstances(newUpdatedInstace);
+  }
 
   return (
     <ChakraProvider theme={theme}>
@@ -42,13 +58,13 @@ export function ModalComponent({ isOpen, onClose }: ModalProps) {
             w="85%"
             m="auto"
             justifyContent="center"
-
+            onKeyUp={(e: any) => handleSearch(e.target.value)}
           />
           <ModalCloseButton color="colorText.closeModal"/>
           <ModalBody
             marginTop="15px"
           >
-            {instances.map((instance) => {
+            {instances.map((instance, i) => {
               return (
                 <Button 
                   alignItems="center"
@@ -56,7 +72,7 @@ export function ModalComponent({ isOpen, onClose }: ModalProps) {
                   textAlign="center"
                   w='100%'
                   my='3px'
-                  key={instance}
+                  key={i}
                   background="colorBackground.backgroundButtonModal"
                   color="colorText.textModal"
                   onClick={onClose}
