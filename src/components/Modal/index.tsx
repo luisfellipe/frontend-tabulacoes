@@ -30,7 +30,11 @@ export function ModalComponent({ isOpen, onClose }: ModalProps) {
           backdropFilter='blur(10px) hue-rotate(90deg)'
         />
         <ModalContent background="colorBackground.modal" height="400px" width={["320px", "360px", "400px", "600px"]}>
-          <ModalHeader textAlign='center' color="colorText.titleModal">SELECIONE A INSTÂNCIA</ModalHeader>
+          <ModalHeader 
+            textAlign='center' 
+            color="colorText.titleModal" 
+            fontSize={["12px", "14px", "18px", "20px"]}  
+          >SELECIONE A INSTÂNCIA</ModalHeader>
           <Input 
             placeholder='Digite uma instância' 
             color="colorText.textSearchModal" 

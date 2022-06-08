@@ -150,7 +150,7 @@ export default function Tabulations() {
                 </Table>
 
                 <Pagination 
-                  totalCountOfRegisters={200}
+                  totalCountOfRegisters={1}
                   currentPage={page}
                   onPageChange={setPage}
                 />
