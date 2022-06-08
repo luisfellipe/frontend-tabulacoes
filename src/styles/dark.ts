@@ -8,6 +8,9 @@ export const dark = extendTheme({
       "searchbar": "#B3B5C6",
       "moon": "white"
     },
+    colorFocus: {
+      "inputModal": "#171f35"
+    },
     colorText: {
       "instance": "#EEEEF2",
       "email": "#9699BB",
@@ -15,7 +18,12 @@ export const dark = extendTheme({
       "linkActive": "#346cb7",
       "section": "#797D9A",
       "option": "#171f35",
-      "textTable": "white"
+      "textTable": "white",
+      "titleModal": "#171f35",
+      "textModal": "#171f35",
+      "textSearchModal": "#171f35",
+      "closeModal": "#171f35",
+      "selectInstance": "#171f35",
     },
     colorBackground: {
       "searchbar": "#181823",
@@ -24,7 +32,11 @@ export const dark = extendTheme({
       "input": "#181823",
       "inputHover": "#181823",
       "signIn": "#1F2829",
-      "buttonSignIn": "#171f35"
+      "buttonSignIn": "#171f35",
+      "modal": "#FFFFFF",
+      "backgroundButtonModal": "#E6E6E6",
+      "buttonSelectInstace": "#FFFFFF",
+      "hoverButtonSelectInstance": "#E6E6E6"
     },
   },
   fonts: {
