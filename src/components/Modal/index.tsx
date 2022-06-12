@@ -19,6 +19,7 @@ interface ModalProps {
   onClose: () => void;
 }
 
+// Modal
 export function ModalComponent({ isOpen, onClose }: ModalProps) {
   const theme = StyleHook();
   const [ instances, setInstances ] = useState<String[]>(listInstances);
