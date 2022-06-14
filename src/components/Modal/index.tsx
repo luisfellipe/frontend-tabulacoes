@@ -1,4 +1,4 @@
-import { 
+import {
   Modal,
   ModalOverlay,
   ModalContent,
@@ -7,7 +7,7 @@ import {
   ModalCloseButton,
   Input,
   Button,
-  ChakraProvider, 
+  ChakraProvider,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { StyleHook } from "../../hooks/StyleHook";
@@ -19,17 +19,16 @@ interface ModalProps {
   onClose: () => void;
 }
 
-// Modal
 export function ModalComponent({ isOpen, onClose }: ModalProps) {
   const theme = StyleHook();
-  const [ instances, setInstances ] = useState<String[]>(listInstances);
+  const [instances, setInstances] = useState<String[]>(listInstances);
 
   function handleSearch(e: String) {
     const newUpdatedInstace: String[] = [];
     const textTyped = new RegExp(e.toUpperCase(), "g");
 
     for (const instance of listInstances) {
-      if ( instance.match(textTyped) ) {
+      if (instance.match(textTyped)) {
         newUpdatedInstace.push(instance);
       } else {
         setInstances(listInstances);
@@ -47,28 +46,28 @@ export function ModalComponent({ isOpen, onClose }: ModalProps) {
           backdropFilter='blur(10px) hue-rotate(90deg)'
         />
         <ModalContent background="colorBackground.modal" height="400px" width={["320px", "360px", "400px", "600px"]}>
-          <ModalHeader 
-            textAlign='center' 
-            color="colorText.titleModal" 
-            fontSize={["12px", "14px", "18px", "20px"]}  
+          <ModalHeader
+            textAlign='center'
+            color="colorText.titleModal"
+            fontSize={["12px", "14px", "18px", "20px"]}
           >SELECIONE A INSTÂNCIA</ModalHeader>
-          <Input 
-            placeholder='Digite uma instância' 
-            color="colorText.textSearchModal" 
+          <Input
+            placeholder='Digite uma instância'
+            color="colorText.textSearchModal"
             focusBorderColor="colorFocus.inputModal"
             w="85%"
             m="auto"
             justifyContent="center"
             onKeyUp={(e: any) => handleSearch(e.target.value)}
           />
-          <ModalCloseButton color="colorText.closeModal"/>
+          <ModalCloseButton color="colorText.closeModal" />
           <ModalBody
             marginTop="15px"
             marginBottom="15px"
           >
             {instances.map((instance, i) => {
               return (
-                <Button 
+                <Button
                   alignItems="center"
                   justifyContent="center"
                   textAlign="center"
