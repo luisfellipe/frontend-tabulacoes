@@ -4,6 +4,7 @@ import faker from 'faker';
 type Tabulation = {
   name: string;
   email: string;
+  link_json: string;
   created_at: string;
 }
 
@@ -26,6 +27,9 @@ export function makeServer() {
         email() {
           return faker.internet.email().toLowerCase();
         },
+        link_json(i: number) {
+          return `www.linkJSON_${i + 1}.json`;
+        },
         created_at() {
           return faker.date.recent(10);
         },
@@ -34,7 +38,7 @@ export function makeServer() {
 
     // gerar dados apartir da inicialização do servidor
     seeds(server) {
-      server.createList('tabulation', 200);
+      server.createList('tabulation', 10);
     },
     
     // TESTE DE COMMIT

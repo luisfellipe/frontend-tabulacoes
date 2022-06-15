@@ -1,0 +1,32 @@
+{
+  "content": [
+    {
+      "group": "2ª VIA ADICIONAL",
+      "subgroups": [
+        "EXTRAVIO DE CARTÃO",
+        "PERDA/ROUBO",
+        "QUEBRADO/DANIFICADO",
+        "CARTÃO NO PRAZO DE ENTREGA"
+      ]
+    },
+    {
+      "group": "2ª VIA TITULAR",
+      "subgroups": [
+        "EXTRAVIO DE CARTÃO",
+        "PERDA/ROUBO",
+        "QUEBRADO/DANIFICADO",
+        "CARTA REGISTRADA",
+        "CÓDIGO DE RASTREIO",
+        "TERMO DE RESPONSABILIDADE LOJA",
+        "CARTÃO NO PRAZO DE ENTREGA",
+        "REENVIO"
+      ]
+    },
+    {
+      "group": "AÇÃO FELICIDADE",
+      "subgroups": [
+        "-"
+      ]
+    }
+  ]
+}

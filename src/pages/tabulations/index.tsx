@@ -68,7 +68,7 @@ export default function Tabulations() {
                   />
                 }
               </Heading>
-              <NextLink href="/users/create" passHref>
+              <NextLink href="/tabulations/create" passHref>
                 <Button 
                   as="a" 
                   size="sm" 
@@ -91,13 +91,13 @@ export default function Tabulations() {
                 <Table colorScheme="whiteAlpha">
                   <Thead>
                     <Tr>
-                      <Th
+                      {/* <Th
                         px={["4", "4", "6"]}
                         color="gray.300"
                         width="8"
                       >
                         <Checkbox colorScheme="pink" />
-                      </Th>
+                      </Th> */}
                       <Th>
                         (Dados Ficticios) Tabulações - Falha ao obter os dados das tabulações 
                       </Th>
@@ -113,9 +113,9 @@ export default function Tabulations() {
                   </Thead>
                   <Tbody>
                     <Tr>
-                      <Td px={["4", "4", "6"]}>
+                      {/* <Td px={["4", "4", "6"]}>
                         <Checkbox colorScheme="pink" />
-                      </Td>
+                      </Td> */}
                       <Td>
                         <Box>
                           <Link 
@@ -160,13 +160,6 @@ export default function Tabulations() {
                 <Table colorScheme="whiteAlpha">
                   <Thead>
                     <Tr>
-                      <Th
-                        px={["4", "4", "6"]}
-                        color="gray.300"
-                        width="8"
-                      >
-                        <Checkbox colorScheme="pink" />
-                      </Th>
                       <Th>
                         Tabulação
                       </Th>
@@ -181,12 +174,12 @@ export default function Tabulations() {
                     </Tr>
                   </Thead>
                   <Tbody>
-                    {data?.tabulations.map((tabulation) => {
+                    {data?.tabulations.map((tabulation, i) => {
                       return (
                         <Tr key = {tabulation.id}>
-                          <Td px={["4", "4", "6"]}>
+                          {/* <Td px={["4", "4", "6"]}>
                             <Checkbox colorScheme="pink" />
-                          </Td>
+                          </Td> */}
                           <Td>
                             <Box>
                               <Link 
@@ -195,7 +188,7 @@ export default function Tabulations() {
                               >
                                 <Text fontWeight="bold">{tabulation.name}</Text>
                               </Link>
-                              <Text fontSize="sm" color="gray.300">{tabulation.email}</Text>
+                              <Text fontSize="sm" color="gray.300">{tabulation.link_json}</Text>
                             </Box>
                           </Td>
                           { isWideVersion && 

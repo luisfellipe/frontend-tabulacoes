@@ -6,6 +6,7 @@ type Tabulation = {
   id: string;
   name: string;
   email: string;
+  link_json: string;
   created_at: string;
 }
 
@@ -28,6 +29,7 @@ export async function getTabulations(page: number): Promise<GetTabulationsRespon
       id: tabulation.id,
       name: tabulation.name,
       email: tabulation.email,
+      link_json: tabulation.link_json,
       created_at: new Date(tabulation.created_at).toLocaleDateString('pt-BR', {
         day: '2-digit',
         month: 'long',

@@ -21,16 +21,18 @@ export function SidebarNav() {
     >
       <ModalComponent isOpen={isOpen} onClose={onClose} />
 
-      <NavSection title="GERAL">
-        {/* <NavLink icon={RiDashboardLine} onClick={onOpen} href="">Instância</NavLink> */}
+      {/* DESATIVADO POR ENQUANTO */}
+      {/* <NavSection title="GERAL">
+        <NavLink icon={RiDashboardLine} onClick={onOpen} href="">Instância</NavLink>
         <NavLink icon={RiContactsLine} href="/users">Usuários</NavLink>
-      </NavSection>
+      </NavSection> */}
       
       <NavSection title="NAVEGAÇÃO">
         <NavLink icon={RiInputMethodLine} href="/tabulations">Tabulações</NavLink>
       </NavSection>
 
-      <Button 
+      {/* DESATIVADO POR ENQUANTO  */}
+      {/* <Button 
         w="100%" 
         onClick={onOpen} 
         color="colorText.selectInstance" 
@@ -38,7 +40,7 @@ export function SidebarNav() {
         _hover={{ background: "colorBackground.hoverButtonSelectInstance" }}
       >
         Selecionar instância
-      </Button>
+      </Button> */}
     </Stack>
   );
 }
