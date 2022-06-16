@@ -16,7 +16,7 @@ type NewContentType = {
   content: ContentType[];
 }
 
-// Create Tabulations
+// Create Tabulations*** 
 export default function Create() {
   const theme = StyleHook();
   const [newContent, setNewContent] = useState<NewContentType>({ content: []});
