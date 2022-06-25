@@ -20,7 +20,6 @@ const signInFormSchema = yup.object().shape({
   password: yup.string().required('Senha obrigatória'),
 })
 
-// A propriedade align sinaliza erro porem não esta com erro
 export default function SignIn() {
   const router = useRouter();
   const theme = StyleHook();
