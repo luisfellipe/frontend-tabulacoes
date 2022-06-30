@@ -57,6 +57,21 @@ export default function Create() {
               mt="15px"
               color="white"
             >Criar JSON</Text>
+            
+            <Flex 
+              maxWidth={1120}
+            > 
+              <Box 
+                m="5px" 
+                width="30%"
+              > 
+                <Text p="8px" color="white" fontSize={["10px", "12px", "14px"]} textAlign="center">Tipo</Text>
+              </Box>
+              
+              <Box flexDirection="row" width="70%">
+                <Text p="8px" color="white" fontSize={["10px", "12px", "14px"]} textAlign="center">Item</Text>
+              </Box>                 
+            </Flex>
 
             { newContent.content.map((content) => {
                 return (
