@@ -1,4 +1,4 @@
-import { Box, Button, ChakraProvider, Flex, Icon, Text } from "@chakra-ui/react";
+import { Box, Button, ChakraProvider, Flex, Icon, Spacer, Text, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { RiDownload2Line } from "react-icons/ri";
 import { Header } from "../../components/Header";
@@ -7,9 +7,13 @@ import { Subgroups } from "../../components/Subgroups";
 import { StyleHook } from "../../hooks/StyleHook";
 import mockTabulation from "./mock/tabulation.json";
 
+type ItemSubgroups = {
+  item: string;
+}
+
 type ContentType = {
-  group: string;
-  subgroups: string[];
+  item: string;
+  subgroup: ItemSubgroups[];
 }
 
 type NewContentType = {
@@ -18,8 +22,9 @@ type NewContentType = {
 
 // Create Tabulations*** 
 export default function Create() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const theme = StyleHook();
-  const [newContent, setNewContent] = useState<NewContentType>({ content: []});
+  const [newContent, setNewContent] = useState<NewContentType>({ content: [] });
 
   useEffect(() => {
     const constentStringify = JSON.stringify(mockTabulation.content);
@@ -27,7 +32,7 @@ export default function Create() {
     setNewContent({ content: JSON.parse(constentStringify) });
   }, [])
 
-  return(
+  return (
     <ChakraProvider theme={theme}>
       <Box>
         <Header />
@@ -42,44 +47,134 @@ export default function Create() {
             bg="gray.800"
             p="8"
           >
-            <Button
-              as="a" 
-              size="sm" 
-              fontSize="small"
-              colorScheme="pink"
-              cursor="pointer"
-              leftIcon={<Icon as={RiDownload2Line}  fontSize="20"/>}
+
+            <Flex
+              mb="5">
+
+              <Box
+                mr="3"
+                ml="2.4">
+                <Button
+                  as="a"
+                  size="sm"
+                  fontSize="small"
+                  colorScheme="pink"
+                  cursor="pointer"
+                  leftIcon={<Icon as={RiDownload2Line} fontSize="20" />}
+                >
+                  Importar
+                </Button>
+              </Box>
+
+              <Box
+                mr="3">
+                <Button
+                  as="a"
+                  size="sm"
+                  fontSize="small"
+                  colorScheme="pink"
+                  cursor="pointer"
+                  onClick={onOpen}
+                >Adicionar Tipo
+                </Button>
+                <Modal isOpen={isOpen} onClose={onClose}>
+                  <ModalOverlay />
+                  <ModalContent>
+                    <ModalHeader>Modal Title</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                      Text
+                    </ModalBody>
+
+                    <ModalFooter>
+                      <Button colorScheme='blue' mr={3} onClick={onClose}>
+                        Close
+                      </Button>
+                      <Button variant='ghost'>Secondary Action</Button>
+                    </ModalFooter>
+                  </ModalContent>
+                </Modal>
+              </Box>
+
+              <Box
+                mr="3">
+                <Button
+                  as="a"
+                  size="sm"
+                  fontSize="small"
+                  colorScheme="pink"
+                  cursor="pointer"
+                >Adicionar Item
+                </Button>
+              </Box>
+
+              <Spacer>
+
+              </Spacer>
+
+              <Box
+                mr="3">
+                <Button
+                  as="a"
+                  size="sm"
+                  fontSize="small"
+                  colorScheme="pink"
+                  cursor="pointer"
+                >Criar JSON
+                </Button>
+              </Box>
+
+            </Flex>
+
+            <Flex
+              maxWidth={1120}
             >
-              Importar
-            </Button>
 
-            <Text
-              mt="15px"
-              color="white"
-            >Criar JSON</Text>
+              <Box
+                bg="gray.700"
+                m="5px"
+                borderRadius="15px"
+                width="30%"
+              >
+                <Text p="8px" color="white" fontSize={["10px", "12px", "20px"]} textAlign="center" fontWeight="bold">Tipo</Text>
+              </Box>
+              <Box
+                flexDirection="row"
+                width="70%"
+                bg="gray.700"
+                m="5px"
+                borderRadius="15px"
+              >
+                <Text p="8px" color="white" fontSize={["10px", "12px", "20px"]} textAlign="center" fontWeight="bold">Item</Text>
+              </Box>
 
-            { newContent.content.map((content) => {
-                return (
-                  <Flex 
-                    key={content.group}
-                    maxWidth={1120}
-                  > 
-                    <Box 
-                      bg="gray.700" 
-                      m="5px" 
-                      borderRadius="5px" 
-                      width="30%"
-                    > 
-                      <Text p="8px" color="white" fontSize={["10px", "12px", "14px"]} textAlign="center">{content.group}</Text>
-                    </Box>
-                    
-                    <Box flexDirection="row" width="70%">
-                      <Subgroups subgroups={content.subgroups} /> 
-                    </Box>
-                                
-                  </Flex>
-                )
-              })
+            </Flex>
+
+            {newContent.content.map((content) => {
+              return (
+                <Flex
+                  key={content.item}
+                  maxWidth={1120}
+                >
+
+                  <Box
+                    bg="gray.700"
+                    m="5px"
+                    borderRadius="5px"
+                    width="30%"
+                  >
+                    <Text p="8px" color="white" fontSize={["10px", "12px", "14px"]} textAlign="center">{content.item}</Text>
+                  </Box>
+
+                  <Box
+                    flexDirection="row"
+                    width="70%">
+                    <Subgroups subgroup={content.subgroup} />
+                  </Box>
+
+                </Flex>
+              )
+            })
             }
           </Box>
         </Flex>

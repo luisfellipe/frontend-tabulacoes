@@ -1,21 +1,26 @@
 import { Box, Text } from "@chakra-ui/react";
 
-interface SubgroupsProps {
-  subgroups: string[];
+type ItemSubgroups = {
+  item: string;
 }
 
-export function Subgroups({ subgroups }: SubgroupsProps) {
+interface SubgroupsProps {
+  subgroup: ItemSubgroups[];
+}
+
+
+export function Subgroups({ subgroup }: SubgroupsProps) {
   return (
     <>
-      {subgroups.map((subgroup: string) => {
+      {subgroup.map((subgroup: ItemSubgroups) => {
           return (
             <Box 
-              key={subgroup} 
+              key={subgroup.item} 
               bg="pink.600" 
               m="5px" 
               borderRadius="5px" 
             >
-              <Text  p="8px" color="white" fontSize={["10px", "12px", "14px"]} textAlign="center">{subgroup}</Text>
+              <Text  p="8px" color="white" fontSize={["10px", "12px", "14px"]} textAlign="center">{subgroup.item}</Text>
             </Box>
           )
         })
