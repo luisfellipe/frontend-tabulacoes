@@ -1,4 +1,4 @@
-import { Box, Button, ChakraProvider, Flex, Icon, Spacer, Text, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, ChakraProvider, Flex, Icon, Spacer, Text, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure, Divider, Center } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { RiDownload2Line } from "react-icons/ri";
 import { Header } from "../../components/Header";
@@ -49,11 +49,12 @@ export default function Create() {
           >
 
             <Flex
-              mb="5">
-
+              mb="5"
+            >
               <Box
                 mr="3"
-                ml="2.4">
+                ml="2.4"
+              >
                 <Button
                   as="a"
                   size="sm"
@@ -67,7 +68,8 @@ export default function Create() {
               </Box>
 
               <Box
-                mr="3">
+                mr="3"
+              >
                 <Button
                   as="a"
                   size="sm"
@@ -75,7 +77,8 @@ export default function Create() {
                   colorScheme="pink"
                   cursor="pointer"
                   onClick={onOpen}
-                >Adicionar Tipo
+                >
+                  Adicionar Tipo
                 </Button>
                 <Modal isOpen={isOpen} onClose={onClose}>
                   <ModalOverlay />
@@ -97,14 +100,16 @@ export default function Create() {
               </Box>
 
               <Box
-                mr="3">
+                mr="3"
+              >
                 <Button
                   as="a"
                   size="sm"
                   fontSize="small"
                   colorScheme="pink"
                   cursor="pointer"
-                >Adicionar Item
+                >
+                  Adicionar Item
                 </Button>
               </Box>
 
@@ -120,7 +125,8 @@ export default function Create() {
                   fontSize="small"
                   colorScheme="pink"
                   cursor="pointer"
-                >Criar JSON
+                >
+                  Criar JSON
                 </Button>
               </Box>
 
@@ -131,21 +137,19 @@ export default function Create() {
             >
 
               <Box
-                bg="gray.700"
                 m="5px"
                 borderRadius="15px"
                 width="30%"
               >
-                <Text p="8px" color="white" fontSize={["10px", "12px", "20px"]} textAlign="center" fontWeight="bold">Tipo</Text>
+                <Text p="8px" color="gray.500" fontSize={["10px", "12px", "16px"]} textAlign="center" fontWeight="bold">TIPO</Text>
               </Box>
               <Box
                 flexDirection="row"
                 width="70%"
-                bg="gray.700"
                 m="5px"
                 borderRadius="15px"
               >
-                <Text p="8px" color="white" fontSize={["10px", "12px", "20px"]} textAlign="center" fontWeight="bold">Item</Text>
+                <Text p="8px" color="gray.500" fontSize={["10px", "12px", "16px"]} textAlign="center" fontWeight="bold">ITEM</Text>
               </Box>
 
             </Flex>
