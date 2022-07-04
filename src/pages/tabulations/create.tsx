@@ -1,6 +1,6 @@
 import { Box, Button, ChakraProvider, Flex, Icon, Spacer, Text, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure, Divider, Center } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { RiDownload2Line } from "react-icons/ri";
+import { RiAddLine, RiDownload2Line, RiEditBoxFill, RiSubtractFill } from "react-icons/ri";
 import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
 import { Subgroups } from "../../components/Subgroups";
@@ -50,6 +50,8 @@ export default function Create() {
 
             <Flex
               mb="5"
+              justifyContent="space-between"
+              align="center"
             >
               <Box
                 mr="3"
@@ -68,63 +70,15 @@ export default function Create() {
               </Box>
 
               <Box
-                mr="3"
+                mr="3"         
               >
                 <Button
                   as="a"
                   size="sm"
                   fontSize="small"
-                  colorScheme="pink"
+                  colorScheme="orange"
                   cursor="pointer"
-                  onClick={onOpen}
-                >
-                  Adicionar Tipo
-                </Button>
-                <Modal isOpen={isOpen} onClose={onClose}>
-                  <ModalOverlay />
-                  <ModalContent>
-                    <ModalHeader>Modal Title</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>
-                      Text
-                    </ModalBody>
-
-                    <ModalFooter>
-                      <Button colorScheme='blue' mr={3} onClick={onClose}>
-                        Close
-                      </Button>
-                      <Button variant='ghost'>Secondary Action</Button>
-                    </ModalFooter>
-                  </ModalContent>
-                </Modal>
-              </Box>
-
-              <Box
-                mr="3"
-              >
-                <Button
-                  as="a"
-                  size="sm"
-                  fontSize="small"
-                  colorScheme="pink"
-                  cursor="pointer"
-                >
-                  Adicionar Item
-                </Button>
-              </Box>
-
-              <Spacer>
-
-              </Spacer>
-
-              <Box
-                mr="3">
-                <Button
-                  as="a"
-                  size="sm"
-                  fontSize="small"
-                  colorScheme="pink"
-                  cursor="pointer"
+                  leftIcon={<Icon as={RiEditBoxFill} fontSize="20" />}
                 >
                   Criar JSON
                 </Button>
@@ -160,7 +114,6 @@ export default function Create() {
                   key={content.item}
                   maxWidth={1120}
                 >
-
                   <Box
                     bg="gray.700"
                     m="5px"
@@ -169,13 +122,21 @@ export default function Create() {
                   >
                     <Text p="8px" color="white" fontSize={["10px", "12px", "14px"]} textAlign="center">{content.item}</Text>
                   </Box>
+                  <Flex
+                    gap="5px"
+                    alignItems="end"
+                    mb="10px"
+                  >
+                  <Icon as={RiSubtractFill} color="white" fontSize="18px" bg="red" borderRadius="100%" cursor="pointer"></Icon>
+                  <Icon as={RiAddLine} color="white" fontSize="18px" bg="blue" borderRadius="100%" cursor="pointer"></Icon>
 
+                  </Flex>
+                 
                   <Box
                     flexDirection="row"
                     width="70%">
                     <Subgroups subgroup={content.subgroup} />
                   </Box>
-
                 </Flex>
               )
             })

@@ -1,4 +1,5 @@
 import { Avatar, Box, Flex, Text } from "@chakra-ui/react";
+import zenvia from "../../assets/images/zenvia.jpg";
 
 interface ProfileProps {
   showProfileData?: boolean;
@@ -11,19 +12,19 @@ export function Profile({ showProfileData }: ProfileProps) {
     >
       { showProfileData && (
         <Box mr="4" textAlign="right">
-          <Text>Ivan Oliveira</Text>
+          <Text>ZENVIA</Text>
           <Text 
             color="colorText.email" 
             fontSize="small"
           >
-            ivanoliver131@gmail.com
+            &copy; frontend-tabulações
           </Text>
         </Box>
       )}
       <Avatar 
         size="md"
-        name="Ivan Oliveira"
-        src="https://github.com/ivanOliver131.png"
+        name="ZENVIA"
+        src="../../assets/images/zenvia.jpg"
       />
     </Flex>
   );

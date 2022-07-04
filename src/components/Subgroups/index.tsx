@@ -1,4 +1,5 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Icon, Text } from "@chakra-ui/react";
+import { RiAddBoxFill, RiAddLine, RiSubtractFill } from "react-icons/ri";
 
 type ItemSubgroups = {
   item: string;
@@ -14,14 +15,24 @@ export function Subgroups({ subgroup }: SubgroupsProps) {
     <>
       {subgroup.map((subgroup: ItemSubgroups) => {
           return (
-            <Box 
-              key={subgroup.item} 
-              bg="pink.600" 
-              m="5px" 
-              borderRadius="5px" 
+            <Flex 
+              key={subgroup.item}
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              gap="5px"
             >
-              <Text  p="8px" color="white" fontSize={["10px", "12px", "14px"]} textAlign="center">{subgroup.item}</Text>
-            </Box>
+              <Box  
+                bg="pink.600" 
+                m="5px" 
+                borderRadius="5px" 
+                width="100%"
+              >
+                <Text  p="8px" color="white" fontSize={["10px", "12px", "14px"]} textAlign="center">{subgroup.item}</Text>
+              </Box>
+              <Icon as={RiSubtractFill} color="white" fontSize="18px" bg="red" borderRadius="100%" cursor="pointer"></Icon>
+              <Icon as={RiAddLine} color="white" fontSize="18px" bg="blue" borderRadius="100%" cursor="pointer"></Icon>
+            </Flex>
           )
         })
       } 
