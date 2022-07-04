@@ -1,31 +1,51 @@
 {
   "content": [
     {
-      "group": "2ª VIA ADICIONAL",
-      "subgroups": [
-        "EXTRAVIO DE CARTÃO",
-        "PERDA/ROUBO",
-        "QUEBRADO/DANIFICADO",
-        "CARTÃO NO PRAZO DE ENTREGA"
+      "item": "Bens à Venda",
+      "subgroup": [
+        {
+          "item": "Bens à Venda"
+        }
       ]
     },
     {
-      "group": "2ª VIA TITULAR",
-      "subgroups": [
-        "EXTRAVIO DE CARTÃO",
-        "PERDA/ROUBO",
-        "QUEBRADO/DANIFICADO",
-        "CARTA REGISTRADA",
-        "CÓDIGO DE RASTREIO",
-        "TERMO DE RESPONSABILIDADE LOJA",
-        "CARTÃO NO PRAZO DE ENTREGA",
-        "REENVIO"
+      "item": "Câmbio",
+      "subgroup": [
+        {
+          "item": "Moeda Estrangeira"
+        }
       ]
     },
     {
-      "group": "AÇÃO FELICIDADE",
-      "subgroups": [
-        "-"
+      "item": "Canais de Relacionamento",
+      "subgroup": [
+        {
+          "item": "Aplicativo Ailos"
+        },
+        {
+          "item": "Banco 24h"
+        },
+        {
+          "item": "Chat"
+        },
+        {
+          "item": "Conta On-line"
+        },
+        {
+          "item": "Presencial"
+        },
+        {
+          "item": "SAC"
+        },
+        {
+          "item": "Site Cooperativa"
+        },
+        {
+          "item": "Caixa Eletrônico"
+        },
+        {
+          "item": "Senhas Online"
+        }
       ]
     }
   ]
