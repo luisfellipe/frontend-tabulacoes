@@ -7,6 +7,7 @@ import { Subgroups } from "../../components/Subgroups";
 import { StyleHook } from "../../hooks/StyleHook";
 import mockTabulation from "./mock/tabulation.json";
 
+// Criar mais uma tipagem
 type ContentType = {
   group: string;
   subgroups: string[];
