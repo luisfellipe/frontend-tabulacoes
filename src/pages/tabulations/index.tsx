@@ -1,4 +1,22 @@
-import { ChakraProvider, Box, Button, Checkbox, Flex, Heading, Icon, Link, Spinner, Table, Tbody, Td, Text, Th, Thead, Tr, useBreakpoint, useBreakpointValue } from "@chakra-ui/react";
+import {
+  ChakraProvider,
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Icon,
+  Link,
+  Spinner,
+  Table,
+  Tbody,
+  Td,
+  Text,
+  Th,
+  Thead,
+  Tr,
+  useBreakpoint,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 // import { GetServerSideProps } from "next";
 import NextLink from "next/link";
 
@@ -19,18 +37,23 @@ export default function Tabulations() {
   const { data, isLoading, isFetching, error } = useTabulations(page);
 
   const isWideVersion = useBreakpointValue({
-    base: false,
-    md: true,
+    md: false,
+    lg: false,
+    xl: false,
   });
 
   async function handlePrefetchTabulation(tabulationId: string) {
-    await queryClient.prefetchQuery(['tabulations', tabulationId], async () => {
-      const response = await api.get(`/tabulations/${tabulationId}`);
-      
-      return response.data;
-    }, {
-      staleTime: 1000 * 60 * 10, // 10 minutes fresh datas
-    });
+    await queryClient.prefetchQuery(
+      ["tabulations", tabulationId],
+      async () => {
+        const response = await api.get(`/tabulations/${tabulationId}`);
+
+        return response.data;
+      },
+      {
+        staleTime: 1000 * 60 * 10, // 10 minutes fresh datas
+      }
+    );
   }
 
   return (
@@ -45,49 +68,43 @@ export default function Tabulations() {
             flex="1"
             minWidth={340}
             borderRadius={8}
-            bg="gray.800"
+            bg="colorBackground.tabulationBox"
             p="8"
           >
-            <Flex
-              mb="8"
-              justifyContent="space-between"
-              align="center"
-            >
+            <Flex mb="8" justifyContent="space-between" align="center">
               <Heading
                 size="lg"
                 fontWeight="normal"
-                color="colorText.textTable"
+                color="colorText.titleTable"
               >
                 Tabulações
-
-                { !isLoading && isFetching && 
-                  <Spinner 
-                    size="sm" 
-                    color="gray.500" 
-                    ml="5" 
-                  />
-                }
+                {!isLoading && isFetching && (
+                  <Spinner size="sm" ringColor="colorText.spin" ml="5" />
+                )}
               </Heading>
               <NextLink href="/tabulations/create" passHref>
-                <Button 
-                  as="a" 
-                  size="sm" 
+                <Button
+                  as="a"
+                  size="sm"
                   fontSize="small"
-                  colorScheme="pink"
+                  bg="colorBackground.createTabulation"
                   cursor="pointer"
-                  leftIcon={<Icon as={RiAddLine}  fontSize="20"/>}
+                  _hover={{
+                    background: "colorBackground.createTabulationHover",
+                  }}
+                  leftIcon={<Icon as={RiAddLine} fontSize="20" />}
                 >
                   Criar novo
                 </Button>
-              </NextLink>   
-            </Flex> 
+              </NextLink>
+            </Flex>
 
-            { isLoading ? (
+            {isLoading ? (
               <Flex justify="center">
                 <Spinner />
               </Flex>
             ) : error ? (
-              <>       
+              <>
                 <Table colorScheme="whiteAlpha">
                   <Thead>
                     <Tr>
@@ -99,15 +116,12 @@ export default function Tabulations() {
                         <Checkbox colorScheme="pink" />
                       </Th> */}
                       <Th>
-                        (Dados Ficticios) Tabulações - Falha ao obter os dados das tabulações 
+                        (Dados Fictícios) Tabulações - Falha ao obter os dados
+                        das tabulações
                       </Th>
 
-                      { isWideVersion && 
-                        <Th>
-                          Data de cadastro
-                        </Th> 
-                      }
-                      
+                      {isWideVersion && <Th>Data de cadastro</Th>}
+
                       <Th width="8"></Th>
                     </Tr>
                   </Thead>
@@ -118,24 +132,20 @@ export default function Tabulations() {
                       </Td> */}
                       <Td>
                         <Box>
-                          <Link 
-                            color="purple.400"
-                          >
+                          <Link color="purple.400">
                             <Text fontWeight="bold">Ivan Oliveira</Text>
                           </Link>
-                          <Text fontSize="sm" color="gray.300">ivanoliver131@gmail.com</Text>
+                          <Text fontSize="sm" color="gray.300">
+                            ivanoliver131@gmail.com
+                          </Text>
                         </Box>
                       </Td>
-                      { isWideVersion && 
+                      {isWideVersion && <Td>25 de Abril de 2022</Td>}
+                      {isWideVersion && (
                         <Td>
-                          25 de Abril de 2022
-                        </Td> 
-                      }
-                      { isWideVersion && 
-                        <Td>
-                          <Button 
-                            as="a" 
-                            size="sm" 
+                          <Button
+                            as="a"
+                            size="sm"
                             fontSize="small"
                             colorScheme="purple"
                             cursor="pointer"
@@ -143,13 +153,13 @@ export default function Tabulations() {
                           >
                             Editar
                           </Button>
-                        </Td> 
-                      }
+                        </Td>
+                      )}
                     </Tr>
                   </Tbody>
                 </Table>
 
-                <Pagination 
+                <Pagination
                   totalCountOfRegisters={1}
                   currentPage={page}
                   onPageChange={setPage}
@@ -160,63 +170,63 @@ export default function Tabulations() {
                 <Table colorScheme="whiteAlpha">
                   <Thead>
                     <Tr>
-                      <Th>
-                        Tabulação
-                      </Th>
+                      <Th>Tabulação</Th>
 
-                      { isWideVersion && 
-                        <Th>
-                          Data de cadastro
-                        </Th> 
-                      }
-                      
+                      {isWideVersion && <Th>Data de cadastro</Th>}
+
                       <Th width="8"></Th>
                     </Tr>
                   </Thead>
                   <Tbody>
                     {data?.tabulations.map((tabulation, i) => {
                       return (
-                        <Tr key = {tabulation.id}>
+                        <Tr key={tabulation.id}>
                           {/* <Td px={["4", "4", "6"]}>
                             <Checkbox colorScheme="pink" />
                           </Td> */}
                           <Td>
                             <Box>
-                              <Link 
+                              <Link
                                 color="purple.400"
-                                onMouseEnter={() => handlePrefetchTabulation(tabulation.id)}
+                                onMouseEnter={() =>
+                                  handlePrefetchTabulation(tabulation.id)
+                                }
                               >
                                 <Text fontWeight="bold">{tabulation.name}</Text>
                               </Link>
-                              <Text fontSize="sm" color="gray.300">{tabulation.link_json}</Text>
+                              <Text fontSize="sm" color="gray.300">
+                                {tabulation.link_json}
+                              </Text>
                             </Box>
                           </Td>
-                          { isWideVersion && 
-                            <Td color="colorText.textTable" >
+                          {isWideVersion && (
+                            <Td color="colorText.textTable">
                               {tabulation.created_at}
-                            </Td> 
-                          }
-                          { isWideVersion && 
+                            </Td>
+                          )}
+                          {isWideVersion && (
                             <Td>
-                              <Button 
-                                as="a" 
-                                size="sm" 
+                              <Button
+                                as="a"
+                                size="sm"
                                 fontSize="small"
                                 colorScheme="purple"
                                 cursor="pointer"
-                                leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
+                                leftIcon={
+                                  <Icon as={RiPencilLine} fontSize="16" />
+                                }
                               >
                                 Editar
                               </Button>
-                            </Td> 
-                          }
+                            </Td>
+                          )}
                         </Tr>
-                      )
+                      );
                     })}
                   </Tbody>
                 </Table>
 
-                <Pagination 
+                <Pagination
                   totalCountOfRegisters={data?.totalCount || 0}
                   currentPage={page}
                   onPageChange={setPage}
@@ -225,7 +235,7 @@ export default function Tabulations() {
             )}
           </Box>
         </Flex>
-      </Box> 
+      </Box>
     </ChakraProvider>
   );
 }
