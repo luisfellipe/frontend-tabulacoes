@@ -1,41 +1,77 @@
-import { Box, Button, Flex, Icon, Text } from "@chakra-ui/react";
-import { RiAddBoxFill, RiAddLine, RiSubtractFill } from "react-icons/ri";
+import { Box, Flex, Icon, Text } from "@chakra-ui/react";
+import { RiAddLine } from "react-icons/ri";
+import { BiTrash } from "react-icons/bi";
 
 type ItemSubgroups = {
   item: string;
-}
+};
 
 interface SubgroupsProps {
   subgroup: ItemSubgroups[];
 }
 
-
 export function Subgroups({ subgroup }: SubgroupsProps) {
   return (
     <>
       {subgroup.map((subgroup: ItemSubgroups) => {
-          return (
-            <Flex 
-              key={subgroup.item}
+        return (
+          <Flex
+            key={subgroup.item}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            gap="5px"
+          >
+            <Box
+              bg="colorBackground.typeAndItem"
+              margin="5px"
+              borderRadius="5px"
+              width="100%"
               display="flex"
-              justifyContent="center"
-              alignItems="center"
-              gap="5px"
+              justifyContent="space-between"
             >
-              <Box  
-                bg="pink.600" 
-                m="5px" 
-                borderRadius="5px" 
-                width="100%"
+              <Text
+                p="12px"
+                color="colorText.textTable"
+                fontSize={["10px", "12px", "14px"]}
+                textAlign="center"
               >
-                <Text  p="8px" color="white" fontSize={["10px", "12px", "14px"]} textAlign="center">{subgroup.item}</Text>
+                {subgroup.item}
+              </Text>
+
+              <Box display="flex" alignItems="center" margin="8px">
+                <Icon
+                  as={BiTrash}
+                  color="colorText.subtractButton"
+                  fontSize="18px"
+                  borderRadius="4px"
+                  mr="8px"
+                  cursor="pointer"
+                  textColor="colorText.deleteButton"
+                  _hover={{
+                    color: "colorText.deleteButtonHover",
+                  }}
+                  transition="0.2s"
+                ></Icon>
+
+                <Icon
+                  as={RiAddLine}
+                  color="white"
+                  fontSize="1.2rem"
+                  borderRadius="4px"
+                  cursor="pointer"
+                  textColor="colorText.addButton"
+                  _hover={{
+                    color: "colorText.addButtonHover",
+                    background: "colorBackground.addButtonHover",
+                  }}
+                  transition="0.2s"
+                ></Icon>
               </Box>
-              <Icon as={RiSubtractFill} color="white" fontSize="18px" bg="red" borderRadius="100%" cursor="pointer"></Icon>
-              <Icon as={RiAddLine} color="white" fontSize="18px" bg="blue" borderRadius="100%" cursor="pointer"></Icon>
-            </Flex>
-          )
-        })
-      } 
+            </Box>
+          </Flex>
+        );
+      })}
     </>
   );
 }

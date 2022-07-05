@@ -1,4 +1,10 @@
-import { Flex, Icon, IconButton, Text, useBreakpointValue } from "@chakra-ui/react";
+import {
+  Flex,
+  Icon,
+  IconButton,
+  Text,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import { RiMenuLine } from "react-icons/ri";
 import { useSidebarDrawer } from "../../contexts/SidebarDrawerContext";
 import { Logo } from "./Logo";
@@ -6,27 +12,27 @@ import { Darkmode } from "./Darkmode";
 import { Profile } from "./Profile";
 import { SearchBox } from "./SearchBox";
 
-
 export function Header() {
   const { onOpen } = useSidebarDrawer();
 
   const isWideVersion = useBreakpointValue({
     base: false,
-    md: true,
-  })
+    md: false,
+    lg: true,
+  });
 
   return (
     <Flex
-      as="header"  
+      as="header"
+      bg="colorBackground.header"
       w="100%"
-      maxWidth={1480}
-      h="20"
+      height="20"
       mx="auto"
-      mt="4"
+      py="3rem"
       px="6"
       align="center"
     >
-      { !isWideVersion && (
+      {!isWideVersion && (
         <IconButton
           aria-label="Open navigation"
           icon={<Icon as={RiMenuLine} my="2" />}
@@ -34,28 +40,18 @@ export function Header() {
           variant="unstyled"
           onClick={onOpen}
           mr="5"
-        >
-
-        </IconButton>
+        ></IconButton>
       )}
       <Logo />
 
       {/* { isWideVersion && (<SearchBox />)} */}
-      { isWideVersion && 
-        (
-          <Text
-            fontSize="24"
-            fontWeight="bold"
-          >
-            Instância - Ailos
-          </Text>
-        )
-      }
+      {isWideVersion && (
+        <Text fontSize="24" fontWeight="bold" color="colorText.headerText">
+          Instância - Ailos
+        </Text>
+      )}
 
-      <Flex
-        align="center"
-        ml="auto"
-      >
+      <Flex align="center" ml="auto">
         <Darkmode />
 
         <Profile showProfileData={isWideVersion} />

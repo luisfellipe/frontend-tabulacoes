@@ -1,50 +1,70 @@
-import { extendTheme } from '@chakra-ui/react';
+import { extendTheme } from "@chakra-ui/react";
 
-// * Sobreescrevendo os temas padroes
-// LIGHT THEME
 export const light = extendTheme({
   colors: {
-    colorInput: {
-      "searchbar": "white",
-      "searchbarHover": "#EEEEF2"
+    colorIcon: {
+      searchbar: "#B3B5C6",
+      moon: "white",
     },
     colorFocus: {
-      "inputModal": "#EEEEEE"
-    },
-    colorIcon: {
-      "searchbar": "white",
-      "moon": "#346cb7"
+      inputModal: "#171f35",
+      inputBorder: "#323238",
+      inputFocus: "#D3D3D3",
+      inputText: "#09090a",
     },
     colorText: {
-      "instance": "white",
-      "email": "#346cb7",
-      "link": "#171f35",
-      "linkActive": "#92b4cd",
-      "section": "#346cb7",
-      "option": "#171f35",
-      "textTable": "white",
-      "titleModal": "#EEEEF2",
-      "textModal": "#171f35",
-      "textSearchModal": "#EEEEEE",
-      "closeModal": "#EEEEEE",
-      "selectInstance": "#FFFFFF",
+      logo: "#f2f2f2",
+      inputText: "#09090a",
+      spin: "#797d7a",
+      instance: "#EEEEF2",
+      email: "#9699BB",
+      link: "#797d9a",
+      linkHover: "#C4C4CC",
+      linkActive: "#E1E1E6",
+      section: "#797D9A",
+      option: "#171f35",
+      textModal: "#171f35",
+      textSearchModal: "#171f35",
+      closeModal: "#171f35",
+      selectInstance: "#171f35",
+      headerText: "#ffffff",
+      titleModal: "#171f35",
+      titleTable: "#969CB2",
+      textTable: "#363F5F",
+      deleteButton: "#363F5F",
+      deleteButtonHover: "#ef5350",
+      addButton: "#363F5F",
+      addButtonHover: "#38a169",
+      sideNavTitle: "#797d9a",
+      sideNavItem: "#E1E1E6",
+      sideNavCloseButton: "#797d9a",
     },
     colorBackground: {
-      "searchbar": "#171f35",
-      "graphics": "#171f35",
-      "sidebarCellphone": "#EEEEEE",
-      "input": "#4B0082",
-      "inputHover": "#4B0082",
-      "signIn": "#1F2829",
-      "buttonSignIn": "#171f35",
-      "modal": "#171f35",
-      "backgroundButtonModal": "#EEEEEE",
-      "buttonSelectInstace": "#171f35",
-      "hoverButtonSelectInstance": "#241178"
+      searchbar: "#181823",
+      graphics: "#181823",
+      sidebarCellphone: "#F0F2F5",
+      input: "#f2f2f2",
+      inputHover: "#D3D3D3",
+      signIn: "#09090a",
+      signInButton: "#346cb7",
+      signInButtonHover: "#0d47a1",
+      modal: "#FFFFFF",
+      backgroundButtonModal: "#E6E6E6",
+      hoverButtonSelectInstance: "#E6E6E6",
+      buttonSelectInstance: "#FFFFFF",
+      header: "#022648",
+      tabulationBox: "#FFFFFF",
+      createTabulationBox: "#FFFFFF",
+      typeAndItem: "#F0F2F5",
+      createTabulation: "#38a169",
+      createTabulationHover: "#1e7346",
+      createJsonButton: "#38a169",
+      createJsonButtonHover: "#1e7346",
+      importButton: "#346cb7",
+      importButtonHover: "#0d47a1",
+      addButtonHover: "#c4c4cc",
+      deleteButtonHover: "#c4c4cc",
     },
-    white: {
-      "900": "#E6E6FA"
-    }
   },
   fonts: {
     heading: "Roboto",
@@ -53,9 +73,9 @@ export const light = extendTheme({
   styles: {
     global: {
       body: {
-        bg: 'white.900',
-        color: '#171f35'
-      }
-    }
-  }
-})
+        bg: "#F0F2F5",
+        color: "#EEEEF2",
+      },
+    },
+  },
+});

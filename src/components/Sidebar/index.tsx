@@ -1,4 +1,14 @@
-import { Box, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, useBreakpointValue } from "@chakra-ui/react";
+import {
+  Box,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
+  Text,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import { useSidebarDrawer } from "../../contexts/SidebarDrawerContext";
 
 import { SidebarNav } from "./SidebarNav";
@@ -8,21 +18,20 @@ export function Sidebar() {
 
   const isDrawerSidebar = useBreakpointValue({
     base: true,
-    md: false,
+    sm: true,
+    md: true,
+    lg: false,
   });
 
   if (isDrawerSidebar) {
-    return(
+    return (
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay>
-          <DrawerContent 
-            bg="colorBackground.sidebarCellphone"
-            p="8"
-          >
-            <DrawerCloseButton 
-              mt="6"
-            />
-            <DrawerHeader>Navegação</DrawerHeader>
+          <DrawerContent bg="colorBackground.sidebarCellphone" p="8">
+            <DrawerCloseButton mt="6" color="colorText.sideNavCloseButton" />
+            <DrawerHeader>
+              <Text color="colorText.sideNavTitle">Navegação</Text>
+            </DrawerHeader>
 
             <DrawerBody>
               <SidebarNav />
@@ -34,11 +43,7 @@ export function Sidebar() {
   }
 
   return (
-    <Box 
-      as="aside" 
-      w="64" 
-      mr="8"
-    >
+    <Box as="aside" w="64" mr="8">
       <SidebarNav />
     </Box>
   );

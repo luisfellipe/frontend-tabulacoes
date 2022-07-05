@@ -20,16 +20,16 @@ export function Darkmode() {
       borderColor="#353646"
     >
       {/* <Icon as={RiNotificationLine} fontSize="20" /> */}
-      <Button 
+      <Button
         bg="transparent"
-        _hover={{bg: 'transparent'}}
+        _hover={{
+          color: "colorText.linkHover",
+        }}
+        transition="0.2s"
         onClick={handleChangeMode}
       >
-        <Icon 
-          as={RiMoonLine} 
-          fontSize="20" 
-        /> 
-      </Button>      
+        <Icon as={RiMoonLine} fontSize="20" />
+      </Button>
     </HStack>
   );
 }
