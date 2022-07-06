@@ -92,7 +92,7 @@ export default function Create() {
             </Flex>
 
             <Flex maxWidth={1120}>
-              <Box m="5px" borderRadius="15px" width="30%">
+              <Box m="5px" borderRadius="15px" width={["50%", "30%"]}>
                 <Text
                   p="0.5rem"
                   color="colorText.titleTable"
@@ -103,7 +103,7 @@ export default function Create() {
                   TIPO
                 </Text>
               </Box>
-              <Box flexDirection="row" width="70%" m="5px" borderRadius="15px">
+              <Box flexDirection="row" width={["50%", "70%"]} m="5px" borderRadius="15px">
                 <Text
                   p="8px"
                   color="colorText.titleTable"
@@ -123,7 +123,7 @@ export default function Create() {
                     bg="colorBackground.typeAndItem"
                     m="5px"
                     borderRadius="5px"
-                    width="30%"
+                    width={["50%", "30%"]}
                     justifyContent="space-between"
                   >
                     <Text
@@ -139,7 +139,7 @@ export default function Create() {
                       <Icon
                         as={BiTrash}
                         color="colorText.iconText"
-                        fontSize="1.2rem"
+                        fontSize={["0.7rem", "1.2rem"]}
                         borderRadius="4px"
                         cursor="pointer"
                         textColor="colorText.deleteButton"
@@ -153,7 +153,7 @@ export default function Create() {
                       <Icon
                         as={RiAddLine}
                         color="colorText.addButtonColor"
-                        fontSize="1.2rem"
+                        fontSize={["0.7rem", "1.2rem"]}
                         borderRadius="4px"
                         cursor="pointer"
                         textColor="colorText.addButton"
@@ -166,7 +166,7 @@ export default function Create() {
                     </Flex>
                   </Flex>
 
-                  <Box flexDirection="row" width="70%">
+                  <Box flexDirection="row" width={["50%", "70%"]}>
                     <Subgroups subgroup={content.subgroup} />
                   </Box>
                 </Flex>

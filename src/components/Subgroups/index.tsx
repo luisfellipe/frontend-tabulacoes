@@ -43,7 +43,7 @@ export function Subgroups({ subgroup }: SubgroupsProps) {
                 <Icon
                   as={BiTrash}
                   color="colorText.subtractButton"
-                  fontSize="18px"
+                  fontSize={["0.7rem", "1.2rem"]}
                   borderRadius="4px"
                   mr="8px"
                   cursor="pointer"
@@ -57,7 +57,7 @@ export function Subgroups({ subgroup }: SubgroupsProps) {
                 <Icon
                   as={RiAddLine}
                   color="white"
-                  fontSize="1.2rem"
+                  fontSize={["0.7rem", "1.2rem"]}
                   borderRadius="4px"
                   cursor="pointer"
                   textColor="colorText.addButton"
