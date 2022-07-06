@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Flex, Icon, Text } from "@chakra-ui/react";
+import { Box, Flex, Icon, Input, InputGroup, InputLeftAddon, Text } from "@chakra-ui/react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { RiAddLine } from "react-icons/ri";
 import { BiTrash } from "react-icons/bi";
@@ -16,13 +16,13 @@ interface SubgroupsProps {
 
 export function Subgroups({ subgroup }: SubgroupsProps) {
   const [newSubgroup, setNewSubgroups] = useState(subgroup);
-
+  console.log(newSubgroup)
   function handleOnDragEnd(result) {
     const newItemsArray = Array.from(newSubgroup);
     const [reorderedItem] = newItemsArray.splice(result.source.index, 1);
     newItemsArray.splice(result.destination.index, 0, reorderedItem);
 
-    setNewSubgroups(newItemsArray);
+    setNewSubgroups([...newItemsArray]);
   }
 
   function handleAddSubgroup(index: number) {
@@ -73,14 +73,18 @@ export function Subgroups({ subgroup }: SubgroupsProps) {
                         display="flex"
                         justifyContent="space-between"
                       >
-                        <Text
-                          p="12px"
-                          color="colorText.textTable"
-                          fontSize={["10px", "12px", "14px"]}
-                          textAlign="center"
-                        >
-                          {subgroup.item}
-                        </Text>
+                        <InputGroup>
+                          <InputLeftAddon bg="gray.400" width="1%" height="100%" />
+                          <Input
+                            p="12px"
+                            variant="unstyled"
+                            color="colorText.textTable"
+                            fontSize={["10px", "12px", "14px"]}
+                            textAlign="center"
+                            defaultValue={subgroup.item}
+                          >
+                          </Input>
+                        </InputGroup>
 
                         <Box display="flex" alignItems="center" margin="8px">
                           <Icon
