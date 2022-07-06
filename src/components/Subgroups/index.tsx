@@ -3,6 +3,7 @@ import { Box, Flex, Icon, Text } from "@chakra-ui/react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { RiAddLine } from "react-icons/ri";
 import { BiTrash } from "react-icons/bi";
+import { v4 as uuidv4 } from 'uuid';
 
 type ItemSubgroups = {
   id: string;
@@ -14,20 +15,19 @@ interface SubgroupsProps {
 }
 
 export function Subgroups({ subgroup }: SubgroupsProps) {
-  const [items, setItems] = useState<ItemSubgroups[]>(subgroup);
   const [newSubgroup, setNewSubgroups] = useState(subgroup);
 
   function handleOnDragEnd(result) {
-    const newItemsArray = Array.from(items);
+    const newItemsArray = Array.from(newSubgroup);
     const [reorderedItem] = newItemsArray.splice(result.source.index, 1);
     newItemsArray.splice(result.destination.index, 0, reorderedItem);
 
-    setItems(newItemsArray);
+    setNewSubgroups(newItemsArray);
   }
 
   function handleAddSubgroup(index: number) {
     const hookNewSubgroup = newSubgroup;
-    hookNewSubgroup.splice(index + 1, 0, { id: String(index++), item: "-" });
+    hookNewSubgroup.splice(index + 1, 0, { id: String(uuidv4()), item: "-" });
     setNewSubgroups([...hookNewSubgroup]);
   }
 
@@ -39,10 +39,9 @@ export function Subgroups({ subgroup }: SubgroupsProps) {
       return;
     }
     const hookNewSubgroup = newSubgroup;
-    const newListSubgroup = hookNewSubgroup.filter(
-      (itemFilter) => String(itemFilter.item) != String(newSubgroup[index].item)
-    );
-    setNewSubgroups([...newListSubgroup]);
+    hookNewSubgroup.splice(index, 1);
+    console.log(index, hookNewSubgroup);
+    setNewSubgroups([...hookNewSubgroup]);
   }
 
   return (
@@ -50,7 +49,7 @@ export function Subgroups({ subgroup }: SubgroupsProps) {
       <Droppable droppableId="items">
         {(provided) => (
           <Box {...provided.droppableProps} ref={provided.innerRef}>
-            {items.map((subgroup: ItemSubgroups, index) => {
+            {newSubgroup.map((subgroup: ItemSubgroups, index) => {
               return (
                 <Draggable
                   key={subgroup.id}

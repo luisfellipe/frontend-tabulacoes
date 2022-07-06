@@ -4,7 +4,7 @@
       "item": "Bens à Venda",
       "subgroup": [
         {
-          "id": "8691",
+          "id": "7987",
           "item": "Bens à Venda"
         }
       ]
@@ -13,7 +13,7 @@
       "item": "Câmbio",
       "subgroup": [
         {
-          "id": "3380",
+          "id": "8007",
           "item": "Moeda Estrangeira"
         }
       ]
@@ -21,18 +21,6 @@
     {
       "item": "Canais de Relacionamento",
       "subgroup": [
-        {
-          "id": "2648",
-          "item": "Aplicativo Ailos"
-        },
-        {
-          "id": "1505",
-          "item": "Banco 24h"
-        },
-        {
-          "id": "6626",
-          "item": "Chat"
-        },
         {
           "id": "7994",
           "item": "Conta On-line"
