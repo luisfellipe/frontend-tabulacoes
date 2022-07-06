@@ -15,6 +15,7 @@ interface SubgroupsProps {
 
 export function Subgroups({ subgroup }: SubgroupsProps) {
   const [items, setItems] = useState<ItemSubgroups[]>(subgroup);
+  const [newSubgroup, setNewSubgroups] = useState(subgroup);
 
   function handleOnDragEnd(result) {
     const newItemsArray = Array.from(items);
@@ -22,7 +23,26 @@ export function Subgroups({ subgroup }: SubgroupsProps) {
     newItemsArray.splice(result.destination.index, 0, reorderedItem);
 
     setItems(newItemsArray);
-    console.log(newItemsArray);
+  }
+
+  function handleAddSubgroup(index: number) {
+    const hookNewSubgroup = newSubgroup;
+    hookNewSubgroup.splice(index + 1, 0, { id: String(index++), item: "-" });
+    setNewSubgroups([...hookNewSubgroup]);
+  }
+
+  function handleRemoveSubgroup(index: number) {
+    if (newSubgroup.length <= 1) {
+      const zerarSubgroup = newSubgroup;
+      zerarSubgroup[index].item = "-";
+      setNewSubgroups([...zerarSubgroup]);
+      return;
+    }
+    const hookNewSubgroup = newSubgroup;
+    const newListSubgroup = hookNewSubgroup.filter(
+      (itemFilter) => String(itemFilter.item) != String(newSubgroup[index].item)
+    );
+    setNewSubgroups([...newListSubgroup]);
   }
 
   return (
@@ -77,6 +97,7 @@ export function Subgroups({ subgroup }: SubgroupsProps) {
                               color: "colorText.deleteButtonHover",
                             }}
                             transition="0.2s"
+                            onClick={() => handleRemoveSubgroup(index)}
                           ></Icon>
 
                           <Icon
@@ -91,6 +112,7 @@ export function Subgroups({ subgroup }: SubgroupsProps) {
                               background: "colorBackground.addButtonHover",
                             }}
                             transition="0.2s"
+                            onClick={() => handleAddSubgroup(index)}
                           ></Icon>
                         </Box>
                       </Box>

@@ -173,10 +173,7 @@ export default function Create() {
                   </Flex>
 
                   <Box flexDirection="row" width={["50%", "70%"]}>
-                    <Subgroups
-                      type={content.item}
-                      subgroup={content.subgroup}
-                    />
+                    <Subgroups subgroup={content.subgroup} />
                   </Box>
                 </Flex>
               );
