@@ -40,7 +40,6 @@ export function Subgroups({ subgroup }: SubgroupsProps) {
     }
     const hookNewSubgroup = newSubgroup;
     hookNewSubgroup.splice(index, 1);
-    console.log(index, hookNewSubgroup);
     setNewSubgroups([...hookNewSubgroup]);
   }
 

@@ -16,6 +16,7 @@ import { Subgroups } from "../../components/Subgroups";
 import { StyleHook } from "../../hooks/StyleHook";
 
 import mockTabulation from "./mock/tabulation.json";
+import { v4 as uuidv4 } from 'uuid';
 
 type ItemSubgroups = {
   id: string;
@@ -40,6 +41,20 @@ export default function Create() {
 
     setNewContent({ content: JSON.parse(contentStringify) });
   }, []);
+
+  function handleRemoveGroup(index: number) {
+    const hookNewGroup = newContent.content;
+    hookNewGroup.splice(index, 1);
+    setNewContent({ content: hookNewGroup });
+    console.log(newContent)
+  }
+
+  function handleAddGroup(index: number) {
+    const hookNewGroup = newContent.content;
+    hookNewGroup.splice(index + 1, 0, { item: "-", subgroup: [ {id: uuidv4(), item: '-'} ] });
+    setNewContent({ content: hookNewGroup });
+    console.log(newContent.content)
+  }
 
   return (
     <ChakraProvider theme={theme}>
@@ -122,9 +137,9 @@ export default function Create() {
               </Box>
             </Flex>
 
-            {newContent.content.map((content) => {
+            {newContent.content.map((content, index) => {
               return (
-                <Flex key={content.item} maxWidth={1120}>
+                <Flex key={index} maxWidth={1120}>
                   <Flex
                     bg="colorBackground.typeAndItem"
                     m="5px"
@@ -154,6 +169,7 @@ export default function Create() {
                           color: "colorText.deleteButtonHover",
                         }}
                         transition="0.2s"
+                        onClick={() => handleRemoveGroup(index)}
                       ></Icon>
 
                       <Icon
@@ -168,6 +184,7 @@ export default function Create() {
                           background: "colorBackground.addButtonHover",
                         }}
                         transition="0.2s"
+                        onClick={() => handleAddGroup(index)}
                       ></Icon>
                     </Flex>
                   </Flex>
