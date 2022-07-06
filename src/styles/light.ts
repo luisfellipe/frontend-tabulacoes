@@ -4,13 +4,13 @@ export const light = extendTheme({
   colors: {
     colorIcon: {
       searchbar: "#B3B5C6",
-      moon: "white",
+      moon: "white"
     },
     colorFocus: {
       inputModal: "#171f35",
       inputBorder: "#323238",
       inputFocus: "#D3D3D3",
-      inputText: "#09090a",
+      inputText: "#09090a"
     },
     colorText: {
       logo: "#f2f2f2",
@@ -31,13 +31,14 @@ export const light = extendTheme({
       titleModal: "#171f35",
       titleTable: "#969CB2",
       textTable: "#363F5F",
+      dragIcon: "#363F5F",
       deleteButton: "#363F5F",
       deleteButtonHover: "#ef5350",
       addButton: "#363F5F",
       addButtonHover: "#38a169",
       sideNavTitle: "#797d9a",
       sideNavItem: "#E1E1E6",
-      sideNavCloseButton: "#797d9a",
+      sideNavCloseButton: "#797d9a"
     },
     colorBackground: {
       searchbar: "#181823",
@@ -64,18 +65,19 @@ export const light = extendTheme({
       importButtonHover: "#0d47a1",
       addButtonHover: "#c4c4cc",
       deleteButtonHover: "#c4c4cc",
-    },
+      inputLeftAddon: "#E1E1E6"
+    }
   },
   fonts: {
     heading: "Roboto",
-    body: "Roboto",
+    body: "Roboto"
   },
   styles: {
     global: {
       body: {
         bg: "#F0F2F5",
-        color: "#EEEEF2",
-      },
-    },
-  },
+        color: "#EEEEF2"
+      }
+    }
+  }
 });

@@ -5,21 +5,21 @@ import {
   ChakraProvider,
   Flex,
   Icon,
+  Img,
   Input,
-  InputGroup,
-  InputLeftAddon,
-  Text,
+  Text
 } from "@chakra-ui/react";
 import { RiAddLine, RiDownload2Line, RiEditBoxFill } from "react-icons/ri";
 import { BiTrash } from "react-icons/bi";
+import { v4 as uuidv4 } from "uuid";
 
 import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
 import { Subgroups } from "../../components/Subgroups";
 import { StyleHook } from "../../hooks/StyleHook";
 
+import notFound from "../../assets/images/not-found.svg";
 import mockTabulation from "./mock/tabulation.json";
-import { v4 as uuidv4 } from 'uuid';
 
 type ItemSubgroups = {
   id: string;
@@ -33,31 +33,39 @@ type ContentType = {
 
 export default function Create() {
   const theme = StyleHook();
-  const [ newContent, setNewContent ] = useState<ContentType[]>([]);
-  console.log(newContent)
+  const [newContent, setNewContent] = useState<ContentType[]>([]);
+  console.log(newContent);
   function handleImportNewContent() {
     const contentStringify = JSON.stringify(mockTabulation.content);
     const parseContent = JSON.parse(contentStringify);
-    setNewContent([ ...parseContent ]);
+    setNewContent([...parseContent]);
   }
 
   function handleInitNewContent() {
     const newCreatedContent = [];
-    newCreatedContent.push({ item: "-", subgroup: [ {id: uuidv4(), item: '-'} ] });
-    setNewContent([ ...newCreatedContent ]);
+    newCreatedContent.push({
+      item: "-",
+      subgroup: [{ id: uuidv4(), item: "-" }]
+    });
+    setNewContent([...newCreatedContent]);
   }
 
   function handleRemoveGroup(index: number) {
     const content = newContent;
     content.splice(index, 1);
-    setNewContent([ ...content ]);
+    setNewContent([...content]);
   }
 
   function handleAddGroup(index: number) {
     const content = newContent;
-    content.splice(index + 1, 0, { item: "-", subgroup: [ {id: uuidv4(), item: '-'} ] });
-    setNewContent([...content ]);
+    content.splice(index + 1, 0, {
+      item: "-",
+      subgroup: [{ id: uuidv4(), item: "-" }]
+    });
+    setNewContent([...content]);
   }
+
+  const contentIsEmpty = newContent.length === 0;
 
   return (
     <ChakraProvider theme={theme}>
@@ -84,7 +92,7 @@ export default function Create() {
                   cursor="pointer"
                   leftIcon={<Icon as={RiDownload2Line} fontSize="20" />}
                   _hover={{
-                    background: "colorBackground.importButtonHover",
+                    background: "colorBackground.importButtonHover"
                   }}
                   transition="0.2s"
                   onClick={handleImportNewContent}
@@ -94,7 +102,7 @@ export default function Create() {
               </Box>
 
               <Box mr="3">
-                { newContent.length === 0 && 
+                {contentIsEmpty && (
                   <Button
                     as="a"
                     size="sm"
@@ -103,53 +111,75 @@ export default function Create() {
                     cursor="pointer"
                     leftIcon={<Icon as={RiEditBoxFill} fontSize="20" />}
                     _hover={{
-                      background: "colorBackground.createJsonButtonHover",
+                      background: "colorBackground.createJsonButtonHover"
                     }}
                     transition="0.2s"
                     onClick={handleInitNewContent}
                   >
                     Criar JSON
                   </Button>
-                }
+                )}
               </Box>
             </Flex>
 
-            <Flex maxWidth={1120}>
-              <Box m="5px" borderRadius="15px" width={["50%", "30%"]}>
-                <Text
-                  p="0.5rem"
-                  color="colorText.titleTable"
-                  fontSize={["12px", "16px", "22px"]}
-                  textAlign="left"
-                  fontWeight="bold"
+            {!contentIsEmpty && (
+              <Flex maxWidth={1120}>
+                <Box m="5px" borderRadius="15px" width={["50%", "30%"]}>
+                  <Text
+                    p="0.5rem"
+                    color="colorText.titleTable"
+                    fontSize={["12px", "16px", "22px"]}
+                    textAlign="left"
+                    fontWeight="bold"
+                  >
+                    TIPO
+                  </Text>
+                </Box>
+                <Box
+                  flexDirection="row"
+                  width={["50%", "70%"]}
+                  m="5px"
+                  borderRadius="15px"
                 >
-                  TIPO
-                </Text>
-              </Box>
-              <Box
-                flexDirection="row"
-                width={["50%", "70%"]}
-                m="5px"
-                borderRadius="15px"
+                  <Text
+                    p="8px"
+                    color="colorText.titleTable"
+                    fontSize={["12px", "16px", "22px"]}
+                    textAlign="left"
+                    fontWeight="bold"
+                  >
+                    ITEM
+                  </Text>
+                </Box>
+              </Flex>
+            )}
+            {contentIsEmpty ? (
+              <Flex
+                color="colorText.textTable"
+                flexDirection="column"
+                justifyContent="center"
+                alignItems="center"
+                textAlign="center"
               >
-                <Text
-                  p="8px"
-                  color="colorText.titleTable"
-                  fontSize={["12px", "16px", "22px"]}
-                  textAlign="left"
-                  fontWeight="bold"
-                >
-                  ITEM
+                <Img
+                  src={notFound.src}
+                  alt="Not found"
+                  width="70px"
+                  mt="25px"
+                  style={{
+                    filter: "invert(60%)"
+                  }}
+                />
+                <Text fontSize={25} mt={6}>
+                  Nenhum dado encontrado...
                 </Text>
-              </Box>
-            </Flex>
-
-            {
-              newContent.length === 0 ? 
-                <Text color="colorText.textTable"> Nenhum dado encontrado... 
-                  Para iniciar a criação de um novo content basta clicar em Criar JSON 
-                </Text> :
-                newContent.map((content, index) => {
+                <Text fontSize={16} mt={2}>
+                  Para iniciar a criação de um novo content basta clicar em
+                  Criar JSON ou importar um arquivo JSON
+                </Text>
+              </Flex>
+            ) : (
+              newContent.map((content, index) => {
                 return (
                   <Flex key={index} maxWidth={1120}>
                     <Flex
@@ -158,18 +188,15 @@ export default function Create() {
                       borderRadius="5px"
                       width={["50%", "30%"]}
                       justifyContent="space-between"
-                    > 
-                      {/* <InputGroup> */}
-                        {/* <InputLeftAddon bg="pink.600" width="2px"  height="100%"/> */}
-                        <Input
-                          p="12px"
-                          color="colorText.textTable"
-                          variant='unstyled'
-                          fontSize={["10px", "12px", "14px"]}
-                          textAlign="center"
-                          defaultValue={content.item}    
-                        ></Input>
-                      {/* </InputGroup> */}
+                    >
+                      <Input
+                        p="12px"
+                        color="colorText.textTable"
+                        variant="unstyled"
+                        fontSize={["10px", "12px", "14px"]}
+                        textAlign="center"
+                        defaultValue={content.item}
+                      ></Input>
 
                       <Flex alignItems="end" mb="12px" mr="8px">
                         <Icon
@@ -181,7 +208,7 @@ export default function Create() {
                           textColor="colorText.deleteButton"
                           mr="8px"
                           _hover={{
-                            color: "colorText.deleteButtonHover",
+                            color: "colorText.deleteButtonHover"
                           }}
                           transition="0.2s"
                           onClick={() => handleRemoveGroup(index)}
@@ -196,7 +223,7 @@ export default function Create() {
                           textColor="colorText.addButton"
                           _hover={{
                             color: "colorText.addButtonHover",
-                            background: "colorBackground.addButtonHover",
+                            background: "colorBackground.addButtonHover"
                           }}
                           transition="0.2s"
                           onClick={() => handleAddGroup(index)}
@@ -209,7 +236,8 @@ export default function Create() {
                     </Box>
                   </Flex>
                 );
-            })}
+              })
+            )}
           </Box>
         </Flex>
       </Box>

@@ -1,9 +1,17 @@
 import { useState } from "react";
-import { Box, Flex, Icon, Input, InputGroup, InputLeftAddon, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Icon,
+  Input,
+  InputGroup,
+  InputLeftAddon
+} from "@chakra-ui/react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { RiAddLine } from "react-icons/ri";
 import { BiTrash } from "react-icons/bi";
-import { v4 as uuidv4 } from 'uuid';
+import { MdDragHandle } from "react-icons/md";
+import { v4 as uuidv4 } from "uuid";
 
 type ItemSubgroups = {
   id: string;
@@ -16,7 +24,7 @@ interface SubgroupsProps {
 
 export function Subgroups({ subgroup }: SubgroupsProps) {
   const [newSubgroup, setNewSubgroups] = useState(subgroup);
-  console.log(newSubgroup)
+  console.log(newSubgroup);
   function handleOnDragEnd(result) {
     const newItemsArray = Array.from(newSubgroup);
     const [reorderedItem] = newItemsArray.splice(result.source.index, 1);
@@ -74,7 +82,22 @@ export function Subgroups({ subgroup }: SubgroupsProps) {
                         justifyContent="space-between"
                       >
                         <InputGroup>
-                          <InputLeftAddon bg="gray.400" width="1%" height="100%" />
+                          <InputLeftAddon
+                            bg="colorBackground.inputLeftAddon"
+                            border="none"
+                            width="1%"
+                            height="100%"
+                            justifyContent="center"
+                          >
+                            <Icon
+                              as={MdDragHandle}
+                              color="colorText.subtractButton"
+                              fontSize={["0.7rem", "1.2rem"]}
+                              borderRadius="4px"
+                              textColor="colorText.dragIcon"
+                              transition="0.2s"
+                            ></Icon>
+                          </InputLeftAddon>
                           <Input
                             p="12px"
                             variant="unstyled"
@@ -82,8 +105,7 @@ export function Subgroups({ subgroup }: SubgroupsProps) {
                             fontSize={["10px", "12px", "14px"]}
                             textAlign="center"
                             defaultValue={subgroup.item}
-                          >
-                          </Input>
+                          ></Input>
                         </InputGroup>
 
                         <Box display="flex" alignItems="center" margin="8px">
@@ -96,7 +118,7 @@ export function Subgroups({ subgroup }: SubgroupsProps) {
                             cursor="pointer"
                             textColor="colorText.deleteButton"
                             _hover={{
-                              color: "colorText.deleteButtonHover",
+                              color: "colorText.deleteButtonHover"
                             }}
                             transition="0.2s"
                             onClick={() => handleRemoveSubgroup(index)}
@@ -111,7 +133,7 @@ export function Subgroups({ subgroup }: SubgroupsProps) {
                             textColor="colorText.addButton"
                             _hover={{
                               color: "colorText.addButtonHover",
-                              background: "colorBackground.addButtonHover",
+                              background: "colorBackground.addButtonHover"
                             }}
                             transition="0.2s"
                             onClick={() => handleAddSubgroup(index)}
