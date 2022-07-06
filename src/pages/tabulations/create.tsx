@@ -18,6 +18,7 @@ import { StyleHook } from "../../hooks/StyleHook";
 import mockTabulation from "./mock/tabulation.json";
 
 type ItemSubgroups = {
+  id: string;
   item: string;
 };
 
@@ -103,7 +104,12 @@ export default function Create() {
                   TIPO
                 </Text>
               </Box>
-              <Box flexDirection="row" width={["50%", "70%"]} m="5px" borderRadius="15px">
+              <Box
+                flexDirection="row"
+                width={["50%", "70%"]}
+                m="5px"
+                borderRadius="15px"
+              >
                 <Text
                   p="8px"
                   color="colorText.titleTable"

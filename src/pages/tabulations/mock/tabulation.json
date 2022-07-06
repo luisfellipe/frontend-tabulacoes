@@ -4,6 +4,7 @@
       "item": "Bens à Venda",
       "subgroup": [
         {
+          "id": "8691",
           "item": "Bens à Venda"
         }
       ]
@@ -12,6 +13,7 @@
       "item": "Câmbio",
       "subgroup": [
         {
+          "id": "3380",
           "item": "Moeda Estrangeira"
         }
       ]
@@ -20,30 +22,39 @@
       "item": "Canais de Relacionamento",
       "subgroup": [
         {
+          "id": "2648",
           "item": "Aplicativo Ailos"
         },
         {
+          "id": "1505",
           "item": "Banco 24h"
         },
         {
+          "id": "6626",
           "item": "Chat"
         },
         {
+          "id": "7994",
           "item": "Conta On-line"
         },
         {
+          "id": "1687",
           "item": "Presencial"
         },
         {
+          "id": "9637",
           "item": "SAC"
         },
         {
+          "id": "4954",
           "item": "Site Cooperativa"
         },
         {
+          "id": "1382",
           "item": "Caixa Eletrônico"
         },
         {
+          "id": "7220",
           "item": "Senhas Online"
         }
       ]
