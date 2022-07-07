@@ -7,7 +7,9 @@ import {
   Icon,
   Img,
   Input,
-  Text
+  Modal,
+  Text,
+  useDisclosure
 } from "@chakra-ui/react";
 import { RiAddLine, RiDownload2Line, RiEditBoxFill } from "react-icons/ri";
 import { BiTrash } from "react-icons/bi";
@@ -17,6 +19,7 @@ import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
 import { Subgroups } from "../../components/Subgroups";
 import { StyleHook } from "../../hooks/StyleHook";
+import { ModalImport } from "../../components/ModalImport";
 
 import notFound from "../../assets/images/not-found.svg";
 import mockTabulation from "./mock/tabulation.json";
@@ -67,6 +70,8 @@ export default function Create() {
 
   const contentIsEmpty = newContent.length === 0;
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <ChakraProvider theme={theme}>
       <Box>
@@ -95,10 +100,11 @@ export default function Create() {
                     background: "colorBackground.importButtonHover"
                   }}
                   transition="0.2s"
-                  onClick={handleImportNewContent}
+                  onClick={() => onOpen()}
                 >
                   Importar
                 </Button>
+                <ModalImport isOpen={isOpen} onClose={onClose}/>
               </Box>
 
               <Box mr="3">
