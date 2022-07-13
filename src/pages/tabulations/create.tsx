@@ -7,7 +7,6 @@ import {
   Icon,
   Img,
   Input,
-  Modal,
   Text,
   useDisclosure
 } from "@chakra-ui/react";
@@ -22,7 +21,7 @@ import { StyleHook } from "../../hooks/StyleHook";
 import { ModalImport } from "../../components/ModalImport";
 
 import notFound from "../../assets/images/not-found.svg";
-import mockTabulation from "./mock/tabulation.json";
+import { useImportContext } from "../../contexts/ImportContext";
 
 type ItemSubgroups = {
   id: string;
@@ -37,11 +36,20 @@ type ContentType = {
 export default function Create() {
   const theme = StyleHook();
   const [newContent, setNewContent] = useState<ContentType[]>([]);
-  console.log(newContent);
-  function handleImportNewContent() {
-    const contentStringify = JSON.stringify(mockTabulation.content);
-    const parseContent = JSON.parse(contentStringify);
-    setNewContent([...parseContent]);
+  const { fileJson } = useImportContext();
+  let parseContent;
+
+  useEffect(() => {
+    if (fileJson.length > 0) {
+      const json = fileJson;
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      parseContent = JSON.parse(json[0]);
+      handleSetJson();
+    }
+  }, [fileJson]);
+
+  function handleSetJson() {
+    setNewContent([...parseContent[0].content]);
   }
 
   function handleInitNewContent() {
@@ -104,7 +112,7 @@ export default function Create() {
                 >
                   Importar
                 </Button>
-                <ModalImport isOpen={isOpen} onClose={onClose}/>
+                <ModalImport isOpen={isOpen} onClose={onClose} />
               </Box>
 
               <Box mr="3">

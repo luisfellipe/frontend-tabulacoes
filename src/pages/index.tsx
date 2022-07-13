@@ -17,7 +17,7 @@ type SignInFormData = {
 // Yup schema
 const signInFormSchema = yup.object().shape({
   email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
-  password: yup.string().required("Senha obrigatória"),
+  password: yup.string().required("Senha obrigatória")
 });
 
 export default function SignIn() {
@@ -25,7 +25,7 @@ export default function SignIn() {
   const theme = StyleHook();
 
   const { register, handleSubmit, formState } = useForm<SignInFormData>({
-    resolver: yupResolver(signInFormSchema),
+    resolver: yupResolver(signInFormSchema)
   });
 
   // const { signIn } = useContext(AuthContext);
@@ -80,7 +80,7 @@ export default function SignIn() {
             size="lg"
             bg="colorBackground.signInButton"
             _hover={{
-              background: "colorBackground.signInButtonHover",
+              background: "colorBackground.signInButtonHover"
             }}
             isLoading={formState.isSubmitting}
           >

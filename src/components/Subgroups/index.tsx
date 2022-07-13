@@ -24,7 +24,7 @@ interface SubgroupsProps {
 
 export function Subgroups({ subgroup }: SubgroupsProps) {
   const [newSubgroup, setNewSubgroups] = useState(subgroup);
-  console.log(newSubgroup);
+
   function handleOnDragEnd(result) {
     const newItemsArray = Array.from(newSubgroup);
     const [reorderedItem] = newItemsArray.splice(result.source.index, 1);
