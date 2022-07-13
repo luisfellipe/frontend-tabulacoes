@@ -44,6 +44,12 @@ export default function Create() {
       const json = fileJson;
       // eslint-disable-next-line react-hooks/exhaustive-deps
       parseContent = JSON.parse(json[0]);
+      parseContent[0].content.map((content) => {
+        content.subgroup.map((subgroup) => {
+          subgroup.id = uuidv4();
+        });
+      });
+
       handleSetJson();
     }
   }, [fileJson]);
