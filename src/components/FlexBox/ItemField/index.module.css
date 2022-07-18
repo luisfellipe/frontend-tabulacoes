@@ -1,0 +1,27 @@
+.ItemFlex {
+  display: "flex";
+  justify-content: "center";
+  align-items: "center";
+}
+
+.SuperBox {
+  margin: "5px";
+  border-radius: "5px";
+  width: "100%";
+  display: "flex";
+  justify-content: "space-between";
+}
+
+.InputLeftAddon {
+  border: "none";
+  width: "1%";
+  height: "100%";
+  justify-content: "center";
+}
+
+.RiAddLine {
+  color: "white";
+  border-radius: "4px";
+  cursor: "pointer";
+  transition: "0.2s";
+}
