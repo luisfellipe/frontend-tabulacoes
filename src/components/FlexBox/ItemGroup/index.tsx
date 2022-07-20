@@ -25,7 +25,7 @@ export default function ItemGroup(props) {
   function addItem(index: number) {
     const item = {
       id: String(uuidv4()),
-      item: `${index}`
+      item: ""
     } as Item;
 
     itemArray.splice(index, 0, item);

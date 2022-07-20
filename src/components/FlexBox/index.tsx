@@ -13,6 +13,7 @@ export default function FlexBox(props) {
   const [skills, setSkills] = useState<string[]>([]);
   const [contentList, setContentList] = useState<Content[]>([]);
   const { fileJson } = useImportContext();
+  let isImport = false;
   let parseContent;
 
   useEffect(() => {
@@ -20,14 +21,31 @@ export default function FlexBox(props) {
       const json = fileJson;
       // eslint-disable-next-line react-hooks/exhaustive-deps
       parseContent = JSON.parse(json[0]);
-      const resp = parseContent[0].content.map((content) => {
-        content.subgroup.map((subgroup) => {
-          subgroup.id = uuidv4();
-        });
-      });
+      // console.log("parseContent", parseContent);
 
-      setSkills(parseContent[0].skills);
-      setContentList([...parseContent[0].content]);
+      let contents = parseContent[0].content.map(
+        (content: Content, index: number) => {
+          //console.log("CONTENTS", content);
+          let subgroup = content.subgroup.map((item: Item, index: number) => {
+            return {
+              id: String(uuidv4()),
+              item: item.item,
+              index
+            };
+          });
+
+          return {
+            item: content.item,
+            index,
+            id: String(uuidv4()),
+            subgroup
+          };
+        }
+      );
+
+      setSkills(parseContent[0].skill);
+      setContentList([...contents]);
+      isImport = true;
     }
   }, [fileJson]);
 

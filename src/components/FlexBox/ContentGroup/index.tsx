@@ -44,6 +44,7 @@ export default function ContentGroup(props) {
           fontSize={["10px", "12px", "14px"]}
           textAlign="center"
           placeholder="Digite o nome do Content ..."
+          defaultValue={content.item}
           onChange={changeContent}
         ></Input>
         <Flex alignItems="end" mb="12px" mr="8px">

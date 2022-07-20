@@ -80,6 +80,7 @@ export default function ItemField(props) {
                 fontSize={["10px", "12px", "14px"]}
                 textAlign="center"
                 placeholder="Digite o nome do item ..."
+                defaultValue={item.item}
                 onChange={(event) => changeItem(event)}
               ></Input>
             </InputGroup>
