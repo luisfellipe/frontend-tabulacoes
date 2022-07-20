@@ -12,21 +12,19 @@ import { BiTrash } from "react-icons/bi";
 import { MdDragHandle } from "react-icons/md";
 import { useState } from "react";
 import { Item } from "../Types";
-import { useEditJSONContext } from "../../../contexts/EditJSONContext";
 
 export default function ItemField(props) {
   const { itemIndex, contentIndex } = props;
   const [item, setItem] = useState<Item>(props.item as Item);
-  const { saveNewItens } = useEditJSONContext();
 
-  function handleChangeItem(event) {
+  function changeItem(event) {
     const itemName = event.target.value;
     const tmpItem = {
-      item: itemName,
-      id: item.id
+      id: item.id,
+      item: itemName
     } as Item;
     setItem(tmpItem);
-    saveNewItens(tmpItem, contentIndex, itemIndex);
+    props.changeItem(tmpItem, contentIndex, itemIndex);
   }
 
   function removeItem() {
@@ -83,7 +81,7 @@ export default function ItemField(props) {
                 textAlign="center"
                 placeholder="Digite o nome do item ..."
                 defaultValue={item.item}
-                onChange={(event) => handleChangeItem(event)}
+                onChange={(event) => changeItem(event)}
               ></Input>
             </InputGroup>
 
