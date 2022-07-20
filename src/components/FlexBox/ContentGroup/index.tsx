@@ -4,28 +4,29 @@ import { BiTrash } from "react-icons/bi";
 import ItemGroup from "../ItemGroup";
 import { Content } from "../Types";
 import { useState } from "react";
+import { useEditJSONContext } from "../../../contexts/EditJSONContext";
 
 export default function ContentGroup(props) {
   let { contentIndex } = props;
   const [content, setContent] = useState<Content>(props.content as Content);
-
+  const { saveNewContent, addNewContentBelow, removeContent } = useEditJSONContext();
   /**
    * modifica o valor do content
    * @param event : Event
    */
-  function changeContent(event) {
+  function handleChangeContent(event) {
     let contentName = event.target.value;
     content.item = contentName;
     setContent(content);
-    props.changeContent(contentName, contentIndex);
+    saveNewContent(contentName, contentIndex);
   }
 
-  function addNewContentBelow() {
-    props.addNewContentBelow(contentIndex + 1);
+  function handleAddNewContentBelow() {
+    addNewContentBelow(contentIndex + 1);
   }
 
-  function removeContent() {
-    props.removeContent(contentIndex);
+  function handleRemoveContent() {
+    removeContent(contentIndex);
   }
 
   return (
@@ -45,7 +46,7 @@ export default function ContentGroup(props) {
           textAlign="center"
           placeholder="Digite o nome do Content ..."
           defaultValue={content.item}
-          onChange={changeContent}
+          onChange={handleChangeContent}
         ></Input>
         <Flex alignItems="end" mb="12px" mr="8px">
           <Icon
@@ -60,7 +61,7 @@ export default function ContentGroup(props) {
               color: "colorText.deleteButtonHover"
             }}
             transition="0.2s"
-            onClick={removeContent}
+            onClick={handleRemoveContent}
           ></Icon>
 
           <Icon
@@ -75,7 +76,7 @@ export default function ContentGroup(props) {
               background: "colorBackground.addButtonHover"
             }}
             transition="0.2s"
-            onClick={addNewContentBelow}
+            onClick={handleAddNewContentBelow}
           ></Icon>
         </Flex>
       </Flex>

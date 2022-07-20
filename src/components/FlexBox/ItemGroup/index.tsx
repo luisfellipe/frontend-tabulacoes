@@ -4,12 +4,13 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from "uuid";
 import { Item } from "../Types";
 import ItemField from "../ItemField";
+import { useEditJSONContext } from "../../../contexts/EditJSONContext";
 
 export default function ItemGroup(props) {
   const { items, contentIndex } = props;
   const [itemArray, setItems] = useState<Item[]>(Array.from(items));
+  const { removeItemInContent, addItemInContent, changeItem } = useEditJSONContext();
 
-  ///TODO
   function handleOnDragEnd(result) {
     const newItemsArray = Array.from(itemArray);
     const [reorderedItem] = newItemsArray.splice(result.source.index, 1);
@@ -22,7 +23,7 @@ export default function ItemGroup(props) {
    * Adiciona um novo item abaixo do item atual
    * @param index localização do item na lista e no front
    */
-  function addItem(index: number) {
+  function handleAddItem(index: number) {
     const item = {
       id: String(uuidv4()),
       item: ""
@@ -31,21 +32,21 @@ export default function ItemGroup(props) {
     itemArray.splice(index, 0, item);
 
     setItems([...itemArray]);
-    props.addItemInContent(item, contentIndex, index);
+    addItemInContent(item, contentIndex, index);
   }
 
   /**
    * Remove item da lista
    * @param index localização do item na lista e no front
    */
-  function removeItem(index: number) {
+  function handleRemoveItem(index: number) {
     if (itemArray.length <= 1) {
       throw `Item not removed: Só existe uma item na lista`;
     }
     if (itemArray[index]) {
       itemArray.splice(index, 1);
       setItems([...itemArray]);
-      props.removeItemInContent(contentIndex, index);
+      removeItemInContent(contentIndex, index);
     } else {
       throw `Não existe item no indice ${index} \nTamanho da lista de items: ${itemArray.length}`;
     }
@@ -57,10 +58,10 @@ export default function ItemGroup(props) {
    * @param contentIndex
    * @param index
    */
-  function changeItem(item, contentIndex, index) {
+  function handleChangeItem(item, contentIndex, index) {
     itemArray[index] = item;
     setItems([...itemArray]);
-    props.changeItem(item, contentIndex, index);
+    changeItem(item, contentIndex, index);
   }
 
   return (
@@ -76,9 +77,9 @@ export default function ItemGroup(props) {
                     item={item}
                     contentIndex={contentIndex}
                     itemIndex={index}
-                    addItem={addItem}
-                    changeItem={changeItem}
-                    removeItem={removeItem}
+                    addItem={handleAddItem}
+                    changeItem={handleChangeItem}
+                    removeItem={handleRemoveItem}
                   ></ItemField>
                 );
               })}

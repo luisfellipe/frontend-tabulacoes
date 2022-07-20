@@ -12,26 +12,28 @@ import { BiTrash } from "react-icons/bi";
 import { MdDragHandle } from "react-icons/md";
 import { useState } from "react";
 import { Item } from "../Types";
+import { useEditJSONContext } from "../../../contexts/EditJSONContext";
 
 export default function ItemField(props) {
   const { itemIndex, contentIndex } = props;
   const [item, setItem] = useState<Item>(props.item as Item);
+  const { saveNewItens } = useEditJSONContext();
 
-  function changeItem(event) {
+  function handleChangeItem(event) {
     const itemName = event.target.value;
     const tmpItem = {
       item: itemName,
       id: item.id
     } as Item;
     setItem(tmpItem);
-    props.changeItem(item, contentIndex, itemIndex);
+    saveNewItens(tmpItem, contentIndex, itemIndex);
   }
 
   function removeItem() {
     props.removeItem(itemIndex);
   }
 
-  function addNewItemBelow() {
+  function addItem() {
     props.addItem(itemIndex + 1);
   }
 
@@ -81,7 +83,7 @@ export default function ItemField(props) {
                 textAlign="center"
                 placeholder="Digite o nome do item ..."
                 defaultValue={item.item}
-                onChange={(event) => changeItem(event)}
+                onChange={(event) => handleChangeItem(event)}
               ></Input>
             </InputGroup>
 
@@ -113,7 +115,7 @@ export default function ItemField(props) {
                   background: "colorBackground.addButtonHover"
                 }}
                 transition="0.2s"
-                onClick={addNewItemBelow}
+                onClick={addItem}
               ></Icon>
             </Box>
           </Box>
@@ -122,3 +124,4 @@ export default function ItemField(props) {
     </Draggable>
   );
 }
+

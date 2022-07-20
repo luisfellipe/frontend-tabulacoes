@@ -8,11 +8,13 @@ import ImportarButton from "./Buttons/ImportarButton";
 import CriarJSONButton from "./Buttons/CriarJSONButton";
 import { Content, Item } from "./Types";
 import TabulationArea from "./TabulationArea";
+import { SalvarJSONButton } from "./Buttons/SalvarJSONButton";
+import { useEditJSONContext } from "../../contexts/EditJSONContext";
 
 export default function FlexBox(props) {
   const [skills, setSkills] = useState<string[]>([]);
-  const [contentList, setContentList] = useState<Content[]>([]);
   const { fileJson } = useImportContext();
+  const { json, setarJson } = useEditJSONContext();
   let isImport = false;
   let parseContent;
 
@@ -21,11 +23,9 @@ export default function FlexBox(props) {
       const json = fileJson;
       // eslint-disable-next-line react-hooks/exhaustive-deps
       parseContent = JSON.parse(json[0]);
-      // console.log("parseContent", parseContent);
 
       let contents = parseContent[0].content.map(
         (content: Content, index: number) => {
-          //console.log("CONTENTS", content);
           let subgroup = content.subgroup.map((item: Item, index: number) => {
             return {
               id: String(uuidv4()),
@@ -44,19 +44,13 @@ export default function FlexBox(props) {
       );
 
       setSkills(parseContent[0].skill);
-      setContentList([...contents]);
+      setarJson(contents);
       isImport = true;
     }
   }, [fileJson]);
 
-  ///////// CONTENT HANDLES //////////////
-  function removeContent(index: number) {
-    contentList.splice(index, 1);
-    setContentList([...contentList]);
-  }
-
   function addNewContentBelow(index: number) {
-    if (contentList.length === 0) {
+    if (json.length === 0) {
       index = 0;
     }
     const content: Content = {
@@ -70,36 +64,11 @@ export default function FlexBox(props) {
         } as Item
       ]
     };
-    contentList.splice(index, 0, content);
-    setContentList([...contentList]);
+    json.splice(index, 0, content);
+    setarJson([...json]);
   }
 
-  function changeContent(contentName: string, contentIndex: number) {
-    let tmpContent = contentList[contentIndex];
-    tmpContent.item = contentName;
-  }
-
-  ////////////// ITEM HANDLES //////////////////////////////
-  function addItemInContent(
-    item: Item,
-    contentIndex: number,
-    indexItem: number
-  ) {
-    contentList[contentIndex].subgroup.splice(indexItem, 0, item);
-    setContentList([...contentList]);
-  }
-
-  function removeItemInContent(contentIndex: number, itemIndex: number) {
-    contentList[contentIndex].subgroup.splice(itemIndex, 1);
-    setContentList([...contentList]);
-  }
-
-  function changeItem(item: Item, contentIndex: number, index: number) {
-    contentList[contentIndex].subgroup[index] = item;
-    setContentList([...contentList]);
-  }
-
-  const contentIsEmpty = contentList.length === 0;
+  const contentIsEmpty = json.length === 0;
 
   return (
     <Box
@@ -111,22 +80,21 @@ export default function FlexBox(props) {
     >
       <Flex mb="5" justifyContent="space-between" align="center">
         <ImportarButton />
-        {contentIsEmpty && <CriarJSONButton addContent={addNewContentBelow} />}
+        {!contentIsEmpty && <SalvarJSONButton />}
+        {contentIsEmpty &&
+          <> <SalvarJSONButton /><CriarJSONButton addContent={addNewContentBelow} /></>
+        }
       </Flex>
-      {contentIsEmpty ? (
-        <NotFound />
-      ) : (
-        <TabulationArea
-          skills={skills}
-          contentList={contentList}
-          removeContent={removeContent}
-          addNewContentBelow={addNewContentBelow}
-          changeItem={changeItem}
-          changeContent={changeContent}
-          addItemInContent={addItemInContent}
-          removeItemInContent={removeItemInContent}
-        />
-      )}
-    </Box>
+      {
+        contentIsEmpty ? (
+          <NotFound />
+        ) : (
+          <TabulationArea
+            skills={skills}
+            contentList={json}
+          />
+        )
+      }
+    </Box >
   );
 }

@@ -7,6 +7,10 @@ import { Content } from "../Types";
 export default function TabulationArea(props) {
   const { contentList, skills } = props;
 
+  function saveItem(item) {
+    props.saveItem(item);
+  }
+
   return (
     <Box>
       <Skills skills={skills} />
@@ -17,12 +21,7 @@ export default function TabulationArea(props) {
             key={content.id}
             content={content}
             contentIndex={index}
-            removeContent={props.removeContent}
-            addNewContentBelow={props.addNewContentBelow}
-            changeItem={props.changeItem}
-            changeContent={props.changeContent}
-            addItemInContent={props.addItemInContent}
-            removeItemInContent={props.removeItemInContent}
+            saveItem={saveItem}
           />
         );
       })}
