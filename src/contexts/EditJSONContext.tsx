@@ -11,9 +11,9 @@ type EditJsonContextData = {
   saveJSON: () => void;
   saveNewContent: (contentName: string, contentIndex: number) => void;
   saveNewItens: (item: Item, contentIndex: number, index: number) => void;
+  saveAllItens: (index: number, newItens: Item[]) => void;
   setarJson: (contentJson: any) => void;
   removeContent: (index: number) => void;
-  changeItem: (item: Item, contentIndex: number, index: number) => void;
   removeItemInContent: (ontentIndex: number, itemIndex: number) => void;
   addItemInContent: (
     item: Item,
@@ -40,9 +40,14 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
     newJSON = json;
   }
 
+  function saveAllItens(index, newItens) {
+    console.log(index, newItens);
+    json[index].subgroup = newItens;
+    newJSON = json;
+  }
+
   function saveJSON() {
     setJson(newJSON);
-    console.log(json)
   }
 
   function setarJson(JSON: any) {
@@ -71,6 +76,7 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
         } as Item
       ]
     };
+
     json.splice(index, 0, content);
     setJson([...json]);
     newJSON = json;
@@ -87,24 +93,18 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
     indexItem: number
   ) {
     json[contentIndex].subgroup.splice(indexItem, 0, item);
-    setJson([...json]);
+    // setJson([...json]);
     newJSON = json;
   }
 
   function removeItemInContent(contentIndex: number, itemIndex: number) {
     json[contentIndex].subgroup.splice(itemIndex, 1);
-    setJson([...json]);
-    newJSON = json;
-  }
-
-  async function changeItem(item: Item, contentIndex: number, index: number) {
-    json[contentIndex].subgroup[index] = item;
-    setJson([...json]);
+    // setJson([...json]);
     newJSON = json;
   }
 
   return (
-    <EditJSONContext.Provider value={{ json, saveNewItens, saveNewContent, saveJSON, setarJson, removeContent, changeItem, removeItemInContent, addItemInContent, addNewContentBelow, changeContent }}>
+    <EditJSONContext.Provider value={{ json, saveNewItens, saveNewContent, saveJSON, saveAllItens, setarJson, removeContent, removeItemInContent, addItemInContent, addNewContentBelow, changeContent }}>
       {children}
     </EditJSONContext.Provider>
   );
