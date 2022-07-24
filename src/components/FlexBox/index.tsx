@@ -15,7 +15,6 @@ export default function FlexBox(props) {
   const [skills, setSkills] = useState<string[]>([]);
   const { fileJson } = useImportContext();
   const { json, setarJson } = useEditJSONContext();
-  let isImport = false;
   let parseContent;
 
   useEffect(() => {
@@ -45,7 +44,6 @@ export default function FlexBox(props) {
 
       setSkills(parseContent[0].skill);
       setarJson(contents);
-      isImport = true;
     }
   }, [fileJson]);
 

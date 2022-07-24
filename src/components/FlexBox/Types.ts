@@ -11,11 +11,11 @@ type Content = {
   subgroup: Item[];
 };
 
-type Tabulation = {
-  content: Content;
-  skills: string[];
+type Skill = {
+  id: string;
+  name: string[];
 };
 
 export type { Item };
 export type { Content };
-export type { Tabulation };
+export type { Skill };

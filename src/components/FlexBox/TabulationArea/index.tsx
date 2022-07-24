@@ -1,7 +1,7 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import ContentGroup from "../ContentGroup";
 import ContentGroupHeader from "../ContentGroupHeader";
-import Skills from "../Skills";
+import SkillGroup from "../SkillGroup";
 import { Content } from "../Types";
 
 export default function TabulationArea(props) {
@@ -13,8 +13,17 @@ export default function TabulationArea(props) {
 
   return (
     <Box>
-      <Skills skills={skills} />
-      <ContentGroupHeader />
+      <Text
+        p="0.5rem"
+        color="colorText.titleTable"
+        fontSize={["12px", "16px", "22px"]}
+        textAlign="left"
+        fontWeight="bold"
+      >
+        SKILL
+      </Text>
+      <SkillGroup key="skillgroup" skills={skills} />
+      <ContentGroupHeader key="ContentGroupHeader" />
       {contentList.map((content: Content, index: number) => {
         return (
           <ContentGroup

@@ -30,7 +30,7 @@ export default function ContentGroup(props) {
   }
 
   return (
-    <Flex key={contentIndex} maxWidth={1120}>
+    <Flex key={content.id} maxWidth={1120}>
       <Flex
         bg="colorBackground.typeAndItem"
         m="5px"
