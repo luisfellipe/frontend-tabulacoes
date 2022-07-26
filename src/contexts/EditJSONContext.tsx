@@ -41,13 +41,13 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
   }
 
   function saveAllItens(index, newItens) {
-    console.log(index, newItens);
     json[index].subgroup = newItens;
     newJSON = json;
   }
 
   function saveJSON() {
     setJson(newJSON);
+    console.log(json)
   }
 
   function setarJson(JSON: any) {

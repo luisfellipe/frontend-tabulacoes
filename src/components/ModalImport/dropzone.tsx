@@ -22,17 +22,21 @@ export default function Dropzone({ onDrop }) {
       <Box
         {...getRootProps({ className: "dropzone" })}
         border="3px gray dashed"
+        display="flex"
         textAlign="center"
-        h="100px"
-        position="relative"
+        alignItems="center"
+        justifyContent="center"
+        p="10px"
+        h="100%"
+        cursor="cell"
       >
         <input className="input-zone" {...getInputProps()} />
-        <Center>
+        <Center color="colorText.textModal">
           {isDragActive ? (
-            <Text color="black">Release to drop the files here</Text>
+            <Text>Large seu arquivo aqui.</Text>
           ) : (
-            <Text color="black">
-              Drag’n’drop some files here, or click to select files
+            <Text>
+              Arraste e solte aqui seu arquivo JSON ou clique para encontro-lo.
             </Text>
           )}
         </Center>

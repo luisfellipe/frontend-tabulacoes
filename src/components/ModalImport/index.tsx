@@ -6,9 +6,8 @@ import {
   ModalHeader,
   ModalBody,
   ModalCloseButton,
-  Input,
-  Button,
-  ChakraProvider
+  ChakraProvider,
+  Flex
 } from "@chakra-ui/react";
 import Dropzone from "./dropzone";
 import { StyleHook } from "../../hooks/StyleHook";
