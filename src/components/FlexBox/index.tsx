@@ -6,7 +6,7 @@ import { useImportContext } from "../../contexts/ImportContext";
 import NotFound from "./NotFound";
 import ImportarButton from "./Buttons/ImportarButton";
 import CriarJSONButton from "./Buttons/CriarJSONButton";
-import { Content, Item } from "./Types";
+import { Content, Item, Skill } from "./Types";
 import TabulationArea from "./TabulationArea";
 import { SalvarJSONButton } from "./Buttons/SalvarJSONButton";
 import { useEditJSONContext } from "../../contexts/EditJSONContext";
@@ -23,7 +23,7 @@ export default function FlexBox(props) {
       // eslint-disable-next-line react-hooks/exhaustive-deps
       parseContent = JSON.parse(json[0]);
 
-      let contents = parseContent[0].content.map(
+      let tmpContents = parseContent[0].content.map(
         (content: Content, index: number) => {
           let subgroup = content.subgroup.map((item: Item, index: number) => {
             return {
@@ -41,9 +41,15 @@ export default function FlexBox(props) {
           };
         }
       );
+      const tmpSkills = parseContent[0].skills.map((skillName) => {
+        return {
+          id: String(uuidv4()),
+          name: skillName
 
-      setSkills(parseContent[0].skill);
-      setarJson(contents);
+        } as Skill; 
+      });
+      setSkills(tmpSkills);
+      setarJson(tmpContents);
     }
   }, [fileJson]);
 
