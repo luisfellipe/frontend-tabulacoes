@@ -9,7 +9,7 @@ import { useEditJSONContext } from "../../../contexts/EditJSONContext";
 export default function ItemGroup(props) {
   const { items, contentIndex } = props;
   const [itemArray, setItems] = useState<Item[]>(Array.from(items));
-  const { removeItemInContent, addItemInContent, saveAllItens, saveNewItens } = useEditJSONContext();
+  const { removeItemInContent, addItemInContent, saveAllItems, saveNewItems } = useEditJSONContext();
 
   function handleOnDragEnd(result) {
     const newItemsArray = Array.from(itemArray);
@@ -17,7 +17,7 @@ export default function ItemGroup(props) {
     newItemsArray.splice(result.destination.index, 0, reorderedItem);
 
     setItems([...newItemsArray]);
-    saveAllItens(props.contentIndex, newItemsArray);
+    saveAllItems(props.contentIndex, newItemsArray);
   }
 
   /**
@@ -54,7 +54,7 @@ export default function ItemGroup(props) {
   }
 
   function handleChangeItem(tmpItem, contentIndex, itemIndex) {
-    saveNewItens(tmpItem, contentIndex, itemIndex);
+    saveNewItems(tmpItem, contentIndex, itemIndex);
   }
 
   return (

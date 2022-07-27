@@ -7,7 +7,7 @@ import NotFound from "./NotFound";
 import ImportarButton from "./Buttons/ImportarButton";
 import CriarJSONButton from "./Buttons/CriarJSONButton";
 import { Content, Item, Skill } from "./Types";
-import TabulationArea from "./TabulationArea";
+import ContentGroup from "./ContentGroup";
 import { SalvarJSONButton } from "./Buttons/SalvarJSONButton";
 import { useEditJSONContext } from "../../contexts/EditJSONContext";
 
@@ -45,32 +45,12 @@ export default function FlexBox(props) {
         return {
           id: String(uuidv4()),
           name: skillName
-
-        } as Skill; 
+        } as Skill;
       });
       setSkills(tmpSkills);
       setarJson(tmpContents);
     }
   }, [fileJson]);
-
-  function addNewContentBelow(index: number) {
-    if (json.length === 0) {
-      index = 0;
-    }
-    const content: Content = {
-      item: "",
-      id: String(uuidv4()),
-      index,
-      subgroup: [
-        {
-          item: "",
-          id: String(uuidv4())
-        } as Item
-      ]
-    };
-    json.splice(index, 0, content);
-    setarJson([...json]);
-  }
 
   const contentIsEmpty = json.length === 0;
 
@@ -86,14 +66,17 @@ export default function FlexBox(props) {
         <ImportarButton />
         {!contentIsEmpty && <SalvarJSONButton />}
         {contentIsEmpty &&
-          <> <SalvarJSONButton /><CriarJSONButton addContent={addNewContentBelow} /></>
+          <>
+            <SalvarJSONButton />
+            <CriarJSONButton />
+        </>
         }
       </Flex>
       {
         contentIsEmpty ? (
           <NotFound />
         ) : (
-          <TabulationArea
+          <ContentGroup
             skills={skills}
             contentList={json}
           />

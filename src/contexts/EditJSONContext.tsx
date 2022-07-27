@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from "react";
-import { Content, Item } from "../components/FlexBox/Types";
+import { Content, Item, JSONFile, Skill } from "../components/FlexBox/Types";
 import { v4 as uuidv4 } from "uuid";
 
 interface ImportContextProviderProps {
@@ -9,18 +9,19 @@ interface ImportContextProviderProps {
 type EditJsonContextData = {
   json: Array<any>;
   saveJSON: () => void;
-  saveNewContent: (contentName: string, contentIndex: number) => void;
-  saveNewItens: (item: Item, contentIndex: number, index: number) => void;
-  saveAllItens: (index: number, newItens: Item[]) => void;
+  saveNewItems: (item: Item, contentIndex: number, index: number) => void;
+  saveAllItems: (index: number, newItens: Item[]) => void;
   setarJson: (contentJson: any) => void;
-  removeContent: (index: number) => void;
+  removeContent: (id: string) => void;
   removeItemInContent: (ontentIndex: number, itemIndex: number) => void;
   addItemInContent: (
     item: Item,
     contentIndex: number,
     indexItem: number) => void;
-  addNewContentBelow: (contentJson: any) => void;
-  changeContent: (contentName: string, contentIndex: number) => void;
+  addNewContentBelow: (index: number) => void;
+  changeContent: (content: Content) => void;
+
+  saveSkills: (skills: Skill[]) => void;
 };
 
 const EditJSONContext = createContext({} as EditJsonContextData);
@@ -28,19 +29,19 @@ const EditJSONContext = createContext({} as EditJsonContextData);
 export function EditJSONProvider({ children }: ImportContextProviderProps) {
   const [json, setJson] = useState([]);
   let newJSON = json;
+  const jsonFile: JSONFile = {
+    name: "Nome da Intância",
+    contents: [],
+    skills: []
+  };
 
-  function saveNewContent(contentName: string, contentIndex: number) {
-    let tmpContent = json[contentIndex];
-    tmpContent.item = contentName;
-    newJSON = json;
-  }
 
-  function saveNewItens(item: Item, contentIndex: number, index: number) {
+  function saveNewItems(item: Item, contentIndex: number, index: number) {
     json[contentIndex].subgroup[index] = item;
     newJSON = json;
   }
 
-  function saveAllItens(index, newItens) {
+  function saveAllItems(index, newItens) {
     json[index].subgroup = newItens;
     newJSON = json;
   }
@@ -55,9 +56,10 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
     newJSON = json;
   }
 
-  function removeContent(index: number) {
-    json.splice(index, 1);
-    setJson([...json]);
+  function removeContent(id: string) {
+   const tmpJSON =  json.filter((ct: Content) => ct.id !== id)
+    console.log("remove: ", tmpJSON);
+    setJson([...tmpJSON]);
     newJSON = json;
   }
 
@@ -78,13 +80,14 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
     };
 
     json.splice(index, 0, content);
+    console.log("adiciona: ", json);
     setJson([...json]);
     newJSON = json;
   }
 
-  function changeContent(contentName: string, contentIndex: number) {
-    let tmpContent = json[contentIndex];
-    tmpContent.item = contentName;
+  function changeContent(content: Content) {
+    json[content.index] = content;
+     newJSON = json;
   }
 
   function addItemInContent(
@@ -103,8 +106,24 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
     newJSON = json;
   }
 
+  function saveSkills(skills: Skill[]) {
+    jsonFile.skills = skills;
+  }
+  
   return (
-    <EditJSONContext.Provider value={{ json, saveNewItens, saveNewContent, saveJSON, saveAllItens, setarJson, removeContent, removeItemInContent, addItemInContent, addNewContentBelow, changeContent }}>
+    <EditJSONContext.Provider value={{
+      json,
+      saveNewItems,
+      saveJSON,
+      saveAllItems,
+      setarJson,
+      removeContent,
+      removeItemInContent,
+      addItemInContent,
+      addNewContentBelow,
+      changeContent,
+      saveSkills
+    }}>
       {children}
     </EditJSONContext.Provider>
   );

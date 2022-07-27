@@ -1,21 +1,23 @@
-type Item = {
+export type Item = {
   id: string;
   index: number; //index do item na lista
   item: string;
 };
 
-type Content = {
+export type Content = {
   item: string;
   id: string;
   index: number; //index do content na lista
   subgroup: Item[];
 };
 
-type Skill = {
+export type Skill = {
   id: string;
   name: string[];
 };
 
-export type { Item };
-export type { Content };
-export type { Skill };
+export type JSONFile = {
+  name: string;
+  skills: Skill[]
+  contents: Content[]
+}
