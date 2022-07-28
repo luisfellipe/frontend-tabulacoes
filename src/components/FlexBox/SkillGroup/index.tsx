@@ -6,7 +6,7 @@ import SkillItem from "../SkillItem";
 import { Skill } from "../Types";
 
 export default function SkillGroup(props) {
-  const [skills, setSkills] = useState<Skill[]>(props.skills as Skill[]);
+  const [skills, setSkills] = useState<Skill[]>(sortSkills(props.skills as Skill[]));
 
   function handleAddSkill(event) {
     let name = event.target.value;
@@ -16,16 +16,8 @@ export default function SkillGroup(props) {
         name
       } as Skill;
       skills.push(skill);
-      skills.sort((skill1, skill2) => {
-        if (skill1.name.length > skill2.name.length) {
-          return 1;
-        } else if (skill1.name.length < skill2.name.length) {
-          return -1;
-        } else {
-          return 0;
-        }
-      });
-      setSkills([...skills]);
+      const tmpSkills = sortSkills(skills);
+      setSkills([...tmpSkills]);
     }
   }
   function handleRemoveSkill(id: string) {
@@ -34,6 +26,19 @@ export default function SkillGroup(props) {
     }
     let tmpSkills = skills.filter((skill) => skill.id != id);
     setSkills([...tmpSkills]);
+  }
+
+  function sortSkills(skills: Skill[]) {
+    skills.sort((skill1, skill2) => {
+      if (skill1.name.length > skill2.name.length) {
+        return 1;
+      } else if (skill1.name.length < skill2.name.length) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+    return skills;
   }
 
 

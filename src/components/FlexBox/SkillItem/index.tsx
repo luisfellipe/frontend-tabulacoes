@@ -9,7 +9,13 @@ export default function SkillItem(props) {
     props.handleRemoveSkill(skill.id);
   }
   return (
-    <Box  display="inline-flex" mb="10px" aria-details="">
+    <Box display="inline-flex" mb="10px"
+      onMouseEnter={() => {
+        document.getElementById(skill.id).style.display = "flex";
+      }}
+      onMouseLeave={() => {
+        document.getElementById(skill.id).style.display = "none";
+      }}>
       <Box
         borderRadius="5px"
         display="flex"
@@ -22,15 +28,17 @@ export default function SkillItem(props) {
         <Text
           margin="auto"
           color="black"
-          pl="5px"
+          pl="8px"
+          pr="8px"
           fontSize="12pt"
         >
           {skill.name}
         </Text>
 
         <Icon
+          id={skill.id}
           as={BiTrash}
-          
+          display="none"
           color="colorText.iconText"
           fontSize={["0.7rem", "1.2rem"]}
           borderRadius="4px"
