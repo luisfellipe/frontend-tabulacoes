@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Icon, Text } from "@chakra-ui/react";
+import { Box, Icon, Text } from "@chakra-ui/react";
 import { BiTrash } from "react-icons/bi";
 import { Skill } from "../Types";
 
@@ -11,10 +11,13 @@ export default function SkillItem(props) {
   return (
     <Box display="inline-flex" mb="10px"
       onMouseEnter={() => {
-        document.getElementById(skill.id).style.display = "flex";
+        let iconDelete = document.getElementById(skill.id);
+        iconDelete.style.display = "flex";
       }}
       onMouseLeave={() => {
-        document.getElementById(skill.id).style.display = "none";
+        setTimeout(() => {
+          document.getElementById(skill.id).style.display = "flex";
+        }, 5000);
       }}>
       <Box
         borderRadius="5px"
@@ -38,15 +41,16 @@ export default function SkillItem(props) {
         <Icon
           id={skill.id}
           as={BiTrash}
-          display="none"
+          display="flex"
+          alignItems="center"
           color="colorText.iconText"
           fontSize={["0.7rem", "1.2rem"]}
           borderRadius="4px"
           cursor="pointer"
           textColor="colorText.deleteButton"
           mt="5px"
-          mr="4px"
-          ml="4px"
+          mr="5px"
+          ml="5px"
           _hover={{
             color: "colorText.deleteButtonHover"
           }}
