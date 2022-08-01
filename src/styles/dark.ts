@@ -13,6 +13,7 @@ export const dark = extendTheme({
       inputText: "#09090a"
     },
     colorText: {
+      skillItem: "#F1F1F1",
       logo: "#f2f2f2",
       inputText: "#09090a",
       instance: "#EEEEF2",

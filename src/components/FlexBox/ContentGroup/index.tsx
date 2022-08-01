@@ -37,7 +37,7 @@ export default function ContentGroup(props) {
         textAlign="left"
         fontWeight="bold"
       >
-        SKILL
+        SKILLS
       </Text>
       <SkillGroup key="skillgroup" skills={skills} />
       <ContentGroupHeader key="ContentGroupHeader" />
