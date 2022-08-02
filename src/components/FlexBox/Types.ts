@@ -13,7 +13,7 @@ export type Content = {
 
 export type Skill = {
   id: string;
-  name: string[];
+  name: string;
 };
 
 export type JSONFile = {
