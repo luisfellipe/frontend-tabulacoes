@@ -1,30 +1,39 @@
 import { Box, Flex, Input } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-
 import SkillItem from "../SkillItem";
 import { Skill } from "../Types";
 
 export default function SkillGroup(props) {
   const [skills, setSkills] = useState<Skill[]>(sortSkills(props.skills as Skill[]));
 
-  function handleAddSkill(event) {
-    let name = event.target.value;
-    if (name.length > 1) {
-      const skill = {
-        id: String(uuidv4()),
-        name
-      } as Skill;
-      skills.push(skill);
-      const tmpSkills = sortSkills(skills);
-      setSkills([...tmpSkills]);
+  function handleAddSkill(name: string) {
+    let shouldAdd = !skills.some(
+        (skill) => skill.name.trim().toLowerCase() === name.trim().toLowerCase());
+      
+    if (shouldAdd) {
+      if (name.length > 1) {
+        const skill = {
+          id: String(uuidv4()),
+          name
+        } as Skill;
+        skills.push(skill);
+        const tmpSkills = sortSkills(skills);
+        setSkills([...tmpSkills]);
+      }
     }
   }
   function handleRemoveSkill(id: string) {
     if (skills.length === 1) {
       setSkills([]);
     }
-    let tmpSkills = skills.filter((skill) => skill.id != id);
+    let tmpSkills = skills.filter((skill) => skill.id !== id);
+    setSkills([...tmpSkills]);
+  }
+
+  function handleAddSkillFromList(skill: Skill) {
+    skills.push(skill);
+    const tmpSkills = sortSkills(skills);
     setSkills([...tmpSkills]);
   }
 
@@ -40,7 +49,6 @@ export default function SkillGroup(props) {
     });
     return skills;
   }
-
 
   return (
     <Box>
@@ -66,30 +74,37 @@ export default function SkillGroup(props) {
       >
         {skills.map((skill: Skill, index: number) => {
           return (
-              <SkillItem
-                key={skill.id}
-                skill={skill}
-                index={index}
-                handleRemoveSkill={handleRemoveSkill}
-              />
+            <SkillItem
+              key={skill.id}
+              skill={skill}
+              index={index}
+              handleRemoveSkill={handleRemoveSkill}
+            />
           );
         })}
       <Box>
         <Input     
-          h="30px"
-          id="inputSkill"
-          border="none"
-          color="black"
-          display="none"
-          onBlur={(event) => {
-              const input = event.target;
-              input.style.display = "none";
-          }}
-          onKeyPress={(event) => {
-            if (event.key === "Enter") {
-              handleAddSkill(event);
+            h="30px"
+            id="inputSkill"
+            border="none"
+            color="colorText.skillItem"
+            display="none"
+            autoComplete="off"
+            onBlur={
+              (event) => {
+                const input = event.target;
+                input.style.display = "none";
+              }
             }
-          }}
+            onKeyDown={
+              (event) => {
+                let input = String(event.target.value).trim();
+                if (event.key === "Enter") {
+                  handleAddSkill(input);
+                  return;
+                }    
+              } 
+            }
           />
         </Box>
       </Flex>

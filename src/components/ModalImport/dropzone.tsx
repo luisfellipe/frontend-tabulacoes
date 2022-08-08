@@ -45,12 +45,12 @@ export default function Dropzone({ onDrop }) {
           justifyContent="center"
         >
           {isDragActive ? (
-            <Text>Large seu arquivo aqui.</Text>
+            <Text>Largue seu arquivo aqui.</Text>
           ) : (
             <Text>
               {files.length
                 ? "Arquivos selecionados:"
-                : "Arraste e solte aqui seu arquivo JSON ou clique para encontro-lo."}
+                : "Arraste e solte aqui seu arquivo JSON ou clique para encontra-lo."}
             </Text>
           )}
 

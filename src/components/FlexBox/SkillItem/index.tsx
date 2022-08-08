@@ -1,13 +1,15 @@
 import { Box, Icon, Text } from "@chakra-ui/react";
 import { BiX } from "react-icons/bi";
 import { Skill } from "../Types";
+import { useEditJSONContext } from "../..//../contexts/EditJSONContext";
 
 export default function SkillItem(props) {
   const skill = props.skill as Skill;
-
+  const { normalizeName } = useEditJSONContext();
   function removeSkill() {
     props.handleRemoveSkill(skill.id);
   }
+
   return (
     <Box display="inline-flex" mb="10px" color="colorText.skillItem">
       <Box
@@ -26,7 +28,7 @@ export default function SkillItem(props) {
           pr="8px"
           fontSize="12pt"
         >
-          {skill.name}
+          {normalizeName(skill.name, 20)}
         </Text>
 
         <Icon

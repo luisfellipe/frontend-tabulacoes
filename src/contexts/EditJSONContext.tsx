@@ -20,8 +20,8 @@ type EditJsonContextData = {
     indexItem: number) => void;
   addNewContentBelow: (index: number) => void;
   changeContent: (content: Content) => void;
-
   saveSkills: (skills: Skill[]) => void;
+  normalizeName: (name: string, size: number) => string;
 };
 
 const EditJSONContext = createContext({} as EditJsonContextData);
@@ -80,7 +80,6 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
     };
 
     json.splice(index, 0, content);
-    console.log("adiciona: ", json);
     setJson([...json]);
     newJSON = json;
   }
@@ -109,6 +108,15 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
   function saveSkills(skills: Skill[]) {
     jsonFile.skills = skills;
   }
+
+function normalizeName(name: string, size: number) {
+    if (name.length > size) {
+      name = name.slice(0, size).concat("...");
+    } else {
+      return name;
+    }
+    return name;
+  }
   
   return (
     <EditJSONContext.Provider value={{
@@ -122,7 +130,8 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
       addItemInContent,
       addNewContentBelow,
       changeContent,
-      saveSkills
+      saveSkills,
+      normalizeName
     }}>
       {children}
     </EditJSONContext.Provider>

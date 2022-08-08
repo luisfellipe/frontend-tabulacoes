@@ -12,7 +12,7 @@ import { SalvarJSONButton } from "./Buttons/SalvarJSONButton";
 import { useEditJSONContext } from "../../contexts/EditJSONContext";
 
 export default function FlexBox(props) {
-  const [skills, setSkills] = useState<string[]>([]);
+  const [skills, setSkills] = useState<Skill[]>([]);
   const { fileJson } = useImportContext();
   const { json, setarJson } = useEditJSONContext();
   let parseContent;
@@ -67,9 +67,8 @@ export default function FlexBox(props) {
         {!contentIsEmpty && <SalvarJSONButton />}
         {contentIsEmpty &&
           <>
-            <SalvarJSONButton />
             <CriarJSONButton />
-        </>
+          </>
         }
       </Flex>
       {
