@@ -2,16 +2,15 @@ import { Box, Flex, Input } from "@chakra-ui/react";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import SkillItem from "../SkillItem";
+import { useEditJSONContext } from "../../../contexts/EditJSONContext";
 import { Skill } from "../Types";
 
 export default function SkillGroup(props) {
-  const [skills, setSkills] = useState<Skill[]>(sortSkills(props.skills as Skill[]));
+  const { saveSkills, getSkills } = useEditJSONContext();
+  let skills: Skill[] = sortSkills(getSkills());
 
   function handleAddSkill(name: string) {
-    let shouldAdd = !skills.some(
-        (skill) => skill.name.trim().toLowerCase() === name.trim().toLowerCase());
-      
-    if (shouldAdd) {
+    if (notContainSkill(name)) {
       if (name.length > 1) {
         const skill = {
           id: String(uuidv4()),
@@ -19,22 +18,17 @@ export default function SkillGroup(props) {
         } as Skill;
         skills.push(skill);
         const tmpSkills = sortSkills(skills);
-        setSkills([...tmpSkills]);
+        saveSkills([...tmpSkills]);
+        console.log(tmpSkills)
       }
     }
   }
   function handleRemoveSkill(id: string) {
     if (skills.length === 1) {
-      setSkills([]);
+      saveSkills([]);
     }
-    let tmpSkills = skills.filter((skill) => skill.id !== id);
-    setSkills([...tmpSkills]);
-  }
-
-  function handleAddSkillFromList(skill: Skill) {
-    skills.push(skill);
-    const tmpSkills = sortSkills(skills);
-    setSkills([...tmpSkills]);
+    let tmpSkills = sortSkills(skills.filter((skill) => skill.id !== id));
+    saveSkills(tmpSkills);
   }
 
   function sortSkills(skills: Skill[]) {
@@ -48,6 +42,12 @@ export default function SkillGroup(props) {
       }
     });
     return skills;
+  }
+
+  function notContainSkill(name: String): boolean {
+    name = name.trim().toLowerCase();
+    return !skills.some(
+      (skill) => (skill.name.trim().toLowerCase() === name));
   }
 
   return (
@@ -83,7 +83,7 @@ export default function SkillGroup(props) {
           );
         })}
       <Box>
-        <Input     
+        <Input
             h="30px"
             id="inputSkill"
             border="none"
@@ -94,6 +94,7 @@ export default function SkillGroup(props) {
               (event) => {
                 const input = event.target;
                 input.style.display = "none";
+                input.value = "";
               }
             }
             onKeyDown={
@@ -101,8 +102,9 @@ export default function SkillGroup(props) {
                 let input = String(event.target.value).trim();
                 if (event.key === "Enter") {
                   handleAddSkill(input);
+                  event.target.value = "";
                   return;
-                }    
+                }
               } 
             }
           />

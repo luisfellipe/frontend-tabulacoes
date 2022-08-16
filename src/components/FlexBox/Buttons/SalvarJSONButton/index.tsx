@@ -3,8 +3,11 @@ import { RiSave2Fill } from "react-icons/ri";
 import { useEditJSONContext } from "../../../../contexts/EditJSONContext";
 
 export function SalvarJSONButton() {
-  const { saveJSON } = useEditJSONContext();
-
+  const { getJSONFile } = useEditJSONContext();
+  function saveJSON() {
+    const jsonFile = getJSONFile();
+    //salvar json na s3
+  }
   return (
     <Box mr="3" ml="2.4">
       <Button

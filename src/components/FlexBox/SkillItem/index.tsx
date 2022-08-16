@@ -20,6 +20,7 @@ export default function SkillItem(props) {
         boxSizing="border-box"
         h="30px"
         mr="20px"
+        transition="background-color 2s"
       >
         <Text
           margin="auto"

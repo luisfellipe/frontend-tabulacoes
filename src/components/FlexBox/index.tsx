@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
 
@@ -12,9 +12,8 @@ import { SalvarJSONButton } from "./Buttons/SalvarJSONButton";
 import { useEditJSONContext } from "../../contexts/EditJSONContext";
 
 export default function FlexBox(props) {
-  const [skills, setSkills] = useState<Skill[]>([]);
   const { fileJson } = useImportContext();
-  const { json, setarJson } = useEditJSONContext();
+  const { contents, saveContents, saveSkills } = useEditJSONContext();
   let parseContent;
 
   useEffect(() => {
@@ -47,12 +46,12 @@ export default function FlexBox(props) {
           name: skillName
         } as Skill;
       });
-      setSkills(tmpSkills);
-      setarJson(tmpContents);
+      saveContents(tmpContents);
+      saveSkills(tmpSkills);
     }
   }, [fileJson]);
 
-  const contentIsEmpty = json.length === 0;
+  const contentIsEmpty = contents.length === 0;
 
   return (
     <Box
@@ -65,10 +64,7 @@ export default function FlexBox(props) {
       <Flex mb="5" justifyContent="space-between" align="center">
         <ImportarButton />
         {!contentIsEmpty && <SalvarJSONButton />}
-        {contentIsEmpty &&
-          <>
-            <CriarJSONButton />
-          </>
+        {contentIsEmpty && <CriarJSONButton />
         }
       </Flex>
       {
@@ -76,8 +72,7 @@ export default function FlexBox(props) {
           <NotFound />
         ) : (
           <ContentGroup
-            skills={skills}
-            contentList={json}
+            contentList={contents}
           />
         )
       }
