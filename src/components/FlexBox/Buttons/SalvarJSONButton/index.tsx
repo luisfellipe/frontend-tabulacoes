@@ -6,7 +6,7 @@ export function SalvarJSONButton() {
   const { getJSONFile } = useEditJSONContext();
   function saveJSON() {
     const jsonFile = getJSONFile();
-    //salvar json na s3
+    console.log(jsonFile);
   }
   return (
     <Box mr="3" ml="2.4">

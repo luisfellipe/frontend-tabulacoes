@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
 
@@ -14,6 +14,7 @@ import { useEditJSONContext } from "../../contexts/EditJSONContext";
 export default function FlexBox(props) {
   const { fileJson } = useImportContext();
   const { contents, saveContents, saveSkills } = useEditJSONContext();
+  let skills = useRef<Skill[]>([]);
   let parseContent;
 
   useEffect(() => {
@@ -47,8 +48,10 @@ export default function FlexBox(props) {
         } as Skill;
       });
       saveContents(tmpContents);
-      saveSkills(tmpSkills);
+      saveSkills([...tmpSkills]);
+      skills.current = tmpSkills;
     }
+    
   }, [fileJson]);
 
   const contentIsEmpty = contents.length === 0;
@@ -71,8 +74,9 @@ export default function FlexBox(props) {
         contentIsEmpty ? (
           <NotFound />
         ) : (
-          <ContentGroup
-            contentList={contents}
+            <ContentGroup
+              skills={skills.current}
+              contentList={contents}
           />
         )
       }

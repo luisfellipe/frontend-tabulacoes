@@ -7,13 +7,9 @@ import { Box, Text } from "@chakra-ui/react";
 import ContentField from "../ContentField";
 
 export default function ContentGroup(props) {
-  const { contentList } = props;
+  const { contentList, skills } = props;
+    const { changeContent, addNewContentBelow, removeContent, getSkills } = useEditJSONContext();
 
-    const { changeContent, addNewContentBelow, removeContent } = useEditJSONContext();
-  /**
-   * modifica o valor do content
-   * @param event : Event
-   */
   function handleChangeContent(content: Content) {
     changeContent(content);
   }
@@ -39,7 +35,7 @@ export default function ContentGroup(props) {
       >
         SKILLS
       </Text>
-      <SkillGroup key="skillgroup" />
+      <SkillGroup skills={skills} key="skillgroup" />
       <ContentGroupHeader key="ContentGroupHeader" />
       {contentList.map((content: Content, index: number) => {
         return (

@@ -28,9 +28,8 @@ type EditJsonContextData = {
 const EditJSONContext = createContext({} as EditJsonContextData);
 
 export function EditJSONProvider({ children }: ImportContextProviderProps) {
-  const [contents, setContents] = useState([]);
-  const [skills, setSkills] = useState<Skill[]>([])
-  let newJSON = contents;
+  const [contents, setContents] = useState<Content[]>([]);
+  const [skills, setSkills] = useState<Skill[]>([]);
 
   function saveNewItems(item: Item, contentIndex: number, index: number) {
     contents[contentIndex].subgroup[index] = item;
@@ -45,7 +44,6 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
 
   function removeContent(id: string) {
    const tmpContents =  contents.filter((ct: Content) => ct.id !== id)
-    console.log("remove: ", tmpContents);
     setContents([...tmpContents]);
   }
 
@@ -67,7 +65,6 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
 
     contents.splice(index, 0, content);
     setContents([...contents]);
-    newJSON = contents;
   }
 
   function changeContent(content: Content) {
@@ -86,11 +83,13 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
     contents[contentIndex].subgroup.splice(itemIndex, 1);
   }
 
-  function saveSkills(_skills: Skill[]) {
-    let skillNames: string[] = skills.map((skill: Skill) => skill.name);
-    let tmpSkills = _skills.filter((skill: Skill) =>  skillNames.includes(skill.name));
+  function saveSkills(skills: Skill[]) {
+    let skillNames: string[] = skills.map((skill: Skill) => skill.name.trim());
+    let tmpSkills = skills.filter((skill: Skill) => {
+      return skillNames.filter((name: string) => !(skill.name.trim() === name));
+    });
     setSkills([...tmpSkills]);
-    console.log(tmpSkills);
+    console.log(tmpSkills)
   }
 
   function getSkills(): Skill[]{
@@ -99,7 +98,7 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
 
   function getJSONFile(): [JSONFile] {
     return [{
-			item: "<Nome da instância>",
+			name: "<Nome da instância>",
 			skills: skills.map((skill: Skill) => skill.name),
 			contents: contents.map((content: Content) => {
 					return {
