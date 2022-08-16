@@ -14,6 +14,7 @@ export default function ItemGroup(props) {
   function handleOnDragEnd(result) {
     const newItemsArray = Array.from(itemArray);
     const [reorderedItem] = newItemsArray.splice(result.source.index, 1);
+    console.log(reorderedItem)
     newItemsArray.splice(result.destination.index, 0, reorderedItem);
 
     setItems([...newItemsArray]);

@@ -5,17 +5,17 @@ import { useEditJSONContext } from "../../../contexts/EditJSONContext";
 import ContentGroupHeader from "../ContentGroupHeader";
 import { Box, Text } from "@chakra-ui/react";
 import ContentField from "../ContentField";
+import NameContent from "../NameContent";
 
 export default function ContentGroup(props) {
   const { contentList, skills } = props;
-    const { changeContent, addNewContentBelow, removeContent, getSkills } = useEditJSONContext();
+    const { changeContent, addNewContentBelow, removeContent } = useEditJSONContext();
 
   function handleChangeContent(content: Content) {
     changeContent(content);
   }
 
   function handleAddNewContentBelow(contentIndex: number) {
-    console.log("adicionanodo c: ", contentIndex)
     addNewContentBelow(contentIndex);
   }
 
@@ -26,6 +26,7 @@ export default function ContentGroup(props) {
 
   return (
     <Box>
+      <NameContent></NameContent>
       <Text
         p="0.5rem"
         color="colorText.titleTable"

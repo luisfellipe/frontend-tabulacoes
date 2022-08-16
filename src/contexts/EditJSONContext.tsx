@@ -8,6 +8,8 @@ interface ImportContextProviderProps {
 
 type EditJsonContextData = {
   contents: Array<any>;
+  saveName: (name: string) => void;
+  getNome: () => string;
   saveContents: (contents: Content[]) => void;
   saveNewItems: (item: Item, contentIndex: number, index: number) => void;
   saveAllItems: (index: number, newItens: Item[]) => void;
@@ -30,6 +32,7 @@ const EditJSONContext = createContext({} as EditJsonContextData);
 export function EditJSONProvider({ children }: ImportContextProviderProps) {
   const [contents, setContents] = useState<Content[]>([]);
   const [skills, setSkills] = useState<Skill[]>([]);
+  const [name, setName] = useState<string>('');
 
   function saveNewItems(item: Item, contentIndex: number, index: number) {
     contents[contentIndex].subgroup[index] = item;
@@ -68,6 +71,9 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
   }
 
   function changeContent(content: Content) {
+    if (contents.length < 1) {
+      contents[0] = content;
+    }
     contents[content.index] = content;
   }
 
@@ -96,9 +102,17 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
     return skills;
   }
 
+  function saveName(name: string) {
+    setName(name);
+  }
+
+  function getNome() {
+    return name;
+  }
+
   function getJSONFile(): [JSONFile] {
     return [{
-			name: "<Nome da instância>",
+			name: name,
 			skills: skills.map((skill: Skill) => skill.name),
 			contents: contents.map((content: Content) => {
 					return {
@@ -132,6 +146,8 @@ function normalizeName(name: string, size: number) {
       changeContent,
       saveSkills,
       getSkills,
+      saveName,
+      getNome,
       normalizeName
     }}>
       {children}
