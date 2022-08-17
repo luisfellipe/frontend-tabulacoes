@@ -9,7 +9,7 @@ interface SkillItemProps {
   handleRemoveSkill: (id: string) => void;
 }
 
-export function SkillItem({ skill, handleRemoveSkill }: SkillItemProps) {
+export default function SkillItem({ skill, handleRemoveSkill }: SkillItemProps) {
   const { normalizeName } = useEditJSONContext();
 
   function removeSkill() {

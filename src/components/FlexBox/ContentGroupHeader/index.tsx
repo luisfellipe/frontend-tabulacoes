@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 
-export function ContentGroupHeader() {
+export default function ContentGroupHeader() {
   return (
     <Flex maxWidth={1120}>
       <Box m="5px" borderRadius="15px" width={["50%", "30%"]}>

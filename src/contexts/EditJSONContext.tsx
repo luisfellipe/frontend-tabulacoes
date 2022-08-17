@@ -19,7 +19,8 @@ type EditJsonContextData = {
   addItemInContent: (
     item: Item,
     contentIndex: number,
-    indexItem: number) => void;
+    indexItem: number
+  ) => void;
   addNewContentBelow: (index: number) => void;
   changeContent: (content: Content) => void;
   saveSkills: (skills: Skill[]) => void;
@@ -32,7 +33,7 @@ const EditJSONContext = createContext({} as EditJsonContextData);
 export function EditJSONProvider({ children }: ImportContextProviderProps) {
   const [contents, setContents] = useState<Content[]>([]);
   const [skills, setSkills] = useState<Skill[]>([]);
-  const [name, setName] = useState<string>('');
+  const [name, setName] = useState<string>("");
 
   function saveNewItems(item: Item, contentIndex: number, index: number) {
     contents[contentIndex].subgroup[index] = item;
@@ -46,7 +47,7 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
   }
 
   function removeContent(id: string) {
-   const tmpContents =  contents.filter((ct: Content) => ct.id !== id)
+    const tmpContents = contents.filter((ct: Content) => ct.id !== id);
     setContents([...tmpContents]);
   }
 
@@ -105,19 +106,20 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
   }
 
   function getJSONFile(): [JSONFile] {
-    return [{
-			name: name,
-			skills: skills.map((skill: Skill) => skill.name),
-			contents: contents.map((content: Content) => {
-					return {
-						item: content.item,
-						subgroup: content.subgroup.map((item: Item) => item.item),
-					}
-				}
-			),
-		}as JSONFile];
+    return [
+      {
+        name: name,
+        skills: skills.map((skill: Skill) => skill.name),
+        contents: contents.map((content: Content) => {
+          return {
+            item: content.item,
+            subgroup: content.subgroup.map((item: Item) => item.item)
+          };
+        })
+      } as JSONFile
+    ];
   }
-function normalizeName(name: string, size: number) {
+  function normalizeName(name: string, size: number) {
     if (name.length > size) {
       name = name.slice(0, size).concat("...");
     } else {
@@ -125,7 +127,7 @@ function normalizeName(name: string, size: number) {
     }
     return name;
   }
-  
+
   return (
     <EditJSONContext.Provider value={{
       contents,

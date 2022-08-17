@@ -4,10 +4,12 @@ import { useEditJSONContext } from "../../../../contexts/EditJSONContext";
 
 export function SaveJSONButton() {
   const { getJSONFile } = useEditJSONContext();
+
   function saveJSON() {
     const jsonFile = getJSONFile();
     console.log(jsonFile);
   }
+
   return (
     <Box mr="3" ml="2.4">
       <Button

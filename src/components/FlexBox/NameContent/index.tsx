@@ -4,7 +4,7 @@ import { RiEdit2Fill } from "react-icons/ri";
 
 import { useEditJSONContext } from "../../../contexts/EditJSONContext";
 
-export function NameContent() {
+export default function NameContent() {
 
   function setInputVisibilityOff() {
     let input = document.querySelector<HTMLInputElement>('#InputName');

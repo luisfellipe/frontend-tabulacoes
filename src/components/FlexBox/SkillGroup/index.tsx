@@ -1,14 +1,15 @@
 import { Box, Flex, Input, Text } from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
 
-import { SkillItem } from "../SkillItem";
+import SkillItem from "../SkillItem";
 
 import { useEditJSONContext } from "../../../contexts/EditJSONContext";
 
 import { Skill } from "../Types";
 
-export function SkillGroup() {
+export default function SkillGroup() {
   const { saveSkills, skills } = useEditJSONContext();
+
   function handleAddSkill(name: string) {
     if (notContainSkill(name)) {
       if (name.length > 1) {
