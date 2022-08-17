@@ -96,10 +96,10 @@ export default function SkillGroup(props) {
             }
             onKeyDown={
               (event) => {
-                let input = String(event.target.value).trim();
+                let input = document.querySelector("inputSkill");
                 if (event.key === "Enter") {
-                  handleAddSkill(input);
-                  event.target.value = "";
+                  handleAddSkill(input.textContent.trim());
+                  input.textContent = "";
                   return;
                 }
               } 
