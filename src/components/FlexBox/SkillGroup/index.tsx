@@ -7,9 +7,12 @@ import { useEditJSONContext } from "../../../contexts/EditJSONContext";
 
 import { Skill } from "../Types";
 
-export function SkillGroup(props) {
+interface SkillGroup {
+  skills: Skill[];
+}
+
+export function SkillGroup({ skills }: SkillGroup) {
   const { saveSkills, getSkills } = useEditJSONContext();
-  let skills: Skill[] = props.skills;
   function handleAddSkill(name: string) {
     if (notContainSkill(name)) {
       if (name.length > 1) {
