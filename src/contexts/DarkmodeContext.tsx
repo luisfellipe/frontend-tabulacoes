@@ -1,11 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 
 interface DarkmodeProviderProps {
   children: ReactNode;

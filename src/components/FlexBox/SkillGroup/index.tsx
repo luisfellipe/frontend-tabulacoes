@@ -1,12 +1,15 @@
-import { Box, Flex, Input } from "@chakra-ui/react";
+import { Box, Flex, Input, Text } from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
+
 import SkillItem from "../SkillItem";
+
 import { useEditJSONContext } from "../../../contexts/EditJSONContext";
+
 import { Skill } from "../Types";
 
-export default function SkillGroup(props) {
-  const { saveSkills, getSkills } = useEditJSONContext();
-  let skills: Skill[] = props.skills;
+export default function SkillGroup() {
+  const { saveSkills, skills } = useEditJSONContext();
+
   function handleAddSkill(name: string) {
     if (notContainSkill(name)) {
       if (name.length > 1) {
@@ -43,12 +46,20 @@ export default function SkillGroup(props) {
 
   function notContainSkill(name: String): boolean {
     name = name.trim().toLowerCase();
-    return !skills.some(
-      (skill) => (skill.name.trim().toLowerCase() === name));
+    return !skills.some((skill) => skill.name.trim().toLowerCase() === name);
   }
 
   return (
     <Box>
+      <Text
+        p="0.5rem"
+        color="colorText.titleTable"
+        fontSize={["12px", "16px", "22px"]}
+        textAlign="left"
+        fontWeight="bold"
+      >
+        SKILLS
+      </Text>
       <Flex
         justifyContent="space-between"
         overflow="auto"
@@ -64,9 +75,8 @@ export default function SkillGroup(props) {
         bg="colorBackground.typeAndItem"
         onClick={() => {
           let inputSkill = document.getElementById("inputSkill");
-          inputSkill.style.display = "flex"
+          inputSkill.style.display = "flex";
           inputSkill.focus();
-          
         }}
       >
         {skills.map((skill: Skill, index: number) => {
@@ -74,38 +84,35 @@ export default function SkillGroup(props) {
             <SkillItem
               key={skill.id}
               skill={skill}
-              index={index}
               handleRemoveSkill={handleRemoveSkill}
             />
           );
         })}
-      <Box>
         <Input
-            h="30px"
-            id="inputSkill"
-            border="none"
-            color="colorText.skillItem"
-            display="none"
-            autoComplete="off"
-            onBlur={
-              (event) => {
-                const input = event.target;
-                input.style.display = "none";
-                input.value = "";
+          mt="10px"
+          id="inputSkill"
+          h="30px"
+          gap="10px"
+          border="none"
+          color="colorText.textTable"
+          display="none"
+          autoComplete="off"
+          onBlur={(event) => {
+            const input = event.target;
+            input.style.display = "none";
+            input.value = "";
+          }}
+          onKeyDown={
+            (event) => {
+              let input = document.querySelector<HTMLInputElement>('#inputSkill');
+              if (event.key === "Enter") {
+                handleAddSkill(String(input.value).trim());
+                input.value = '';
+                return;
               }
-            }
-            onKeyDown={
-              (event) => {
-                let input = document.querySelector("inputSkill");
-                if (event.key === "Enter") {
-                  handleAddSkill(input.textContent.trim());
-                  input.textContent = "";
-                  return;
-                }
-              } 
-            }
-          />
-        </Box>
+            } 
+          }
+        />
       </Flex>
     </Box>
   );

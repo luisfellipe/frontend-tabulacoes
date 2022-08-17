@@ -2,19 +2,20 @@ import { useEffect, useRef } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
 
+import { ContentGroup } from "./ContentGroup";
+import { ImportButton } from "./Buttons/ImportButton";
+import { NotFound } from "./NotFound";
+import { SaveJSONButton } from "./Buttons/SaveJSONButton";
+import { CreateJSONButton } from "./Buttons/CreateJSONButton";
+
 import { useImportContext } from "../../contexts/ImportContext";
-import NotFound from "./NotFound";
-import ImportarButton from "./Buttons/ImportarButton";
-import CriarJSONButton from "./Buttons/CriarJSONButton";
-import { Content, Item, Skill } from "./Types";
-import ContentGroup from "./ContentGroup";
-import { SalvarJSONButton } from "./Buttons/SalvarJSONButton";
 import { useEditJSONContext } from "../../contexts/EditJSONContext";
 
-export default function FlexBox(props) {
+import { Content, Item, Skill } from "./Types";
+
+export default function FlexBox() {
   const { fileJson } = useImportContext();
   const { contents, saveContents, saveSkills } = useEditJSONContext();
-  let skills = useRef<Skill[]>([]);
   let parseContent;
 
   useEffect(() => {
@@ -49,9 +50,7 @@ export default function FlexBox(props) {
       });
       saveContents(tmpContents);
       saveSkills([...tmpSkills]);
-      skills.current = tmpSkills;
     }
-    
   }, [fileJson]);
 
   const contentIsEmpty = contents.length === 0;
@@ -65,21 +64,15 @@ export default function FlexBox(props) {
       p="8"
     >
       <Flex mb="5" justifyContent="space-between" align="center">
-        <ImportarButton />
-        {!contentIsEmpty && <SalvarJSONButton />}
-        {contentIsEmpty && <CriarJSONButton />
-        }
+        <ImportButton />
+        {!contentIsEmpty && <SaveJSONButton />}
+        {contentIsEmpty && <CreateJSONButton />}
       </Flex>
-      {
-        contentIsEmpty ? (
-          <NotFound />
-        ) : (
-            <ContentGroup
-              skills={skills.current}
-              contentList={contents}
-          />
-        )
-      }
-    </Box >
+      {contentIsEmpty ? (
+        <NotFound />
+      ) : (
+        <ContentGroup contentList={contents} />
+      )}
+    </Box>
   );
 }

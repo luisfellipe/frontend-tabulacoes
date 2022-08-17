@@ -1,17 +1,22 @@
+import { Box } from "@chakra-ui/react";
+
 import ItemGroup from "../ItemGroup";
 import SkillGroup from "../SkillGroup";
 import { Content } from "../Types";
 import { useEditJSONContext } from "../../../contexts/EditJSONContext";
-import ContentGroupHeader from "../ContentGroupHeader";
-import { Box, Text } from "@chakra-ui/react";
-import ContentField from "../ContentField";
+import  ContentGroupHeader from "../ContentGroupHeader";
 import NameContent from "../NameContent";
+import ContentField from "../ContentField";
 
-export default function ContentGroup(props) {
-  const { contentList, skills } = props;
-    const { changeContent, addNewContentBelow, removeContent } = useEditJSONContext();
+interface ContentGroupProps {
+  contentList: Content[];
+}
 
-  function handleChangeContent(content: Content) {
+export function ContentGroup({ contentList }: ContentGroupProps) {
+  const { changeContent, addNewContentBelow, removeContent } =
+    useEditJSONContext();
+
+  function handleChangeContent(content: any) {
     changeContent(content);
   }
 
@@ -23,20 +28,10 @@ export default function ContentGroup(props) {
     removeContent(id);
   }
 
-
   return (
     <Box>
       <NameContent></NameContent>
-      <Text
-        p="0.5rem"
-        color="colorText.titleTable"
-        fontSize={["12px", "16px", "22px"]}
-        textAlign="left"
-        fontWeight="bold"
-      >
-        SKILLS
-      </Text>
-      <SkillGroup skills={skills} key="skillgroup" />
+      <SkillGroup key="skillgroup" />
       <ContentGroupHeader key="ContentGroupHeader" />
       {contentList.map((content: Content, index: number) => {
         return (

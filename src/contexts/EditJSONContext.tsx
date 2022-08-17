@@ -7,9 +7,10 @@ interface ImportContextProviderProps {
 }
 
 type EditJsonContextData = {
-  contents: Array<any>;
+  contents: Array<Content>;
+  skills: Array<Skill>;
   saveName: (name: string) => void;
-  getNome: () => string;
+  getName: () => string;
   saveContents: (contents: Content[]) => void;
   saveNewItems: (item: Item, contentIndex: number, index: number) => void;
   saveAllItems: (index: number, newItens: Item[]) => void;
@@ -18,11 +19,11 @@ type EditJsonContextData = {
   addItemInContent: (
     item: Item,
     contentIndex: number,
-    indexItem: number) => void;
+    indexItem: number
+  ) => void;
   addNewContentBelow: (index: number) => void;
   changeContent: (content: Content) => void;
   saveSkills: (skills: Skill[]) => void;
-  getSkills: () => Skill[];
   getJSONFile: () => [JSONFile]
   normalizeName: (name: string, size: number) => string;
 };
@@ -32,7 +33,7 @@ const EditJSONContext = createContext({} as EditJsonContextData);
 export function EditJSONProvider({ children }: ImportContextProviderProps) {
   const [contents, setContents] = useState<Content[]>([]);
   const [skills, setSkills] = useState<Skill[]>([]);
-  const [name, setName] = useState<string>('');
+  const [name, setName] = useState<string>("");
 
   function saveNewItems(item: Item, contentIndex: number, index: number) {
     contents[contentIndex].subgroup[index] = item;
@@ -46,7 +47,7 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
   }
 
   function removeContent(id: string) {
-   const tmpContents =  contents.filter((ct: Content) => ct.id !== id)
+    const tmpContents = contents.filter((ct: Content) => ct.id !== id);
     setContents([...tmpContents]);
   }
 
@@ -75,6 +76,7 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
       contents[0] = content;
     }
     contents[content.index] = content;
+    setContents([...contents]);
   }
 
   function addItemInContent(
@@ -83,47 +85,41 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
     indexItem: number
   ) {
     contents[contentIndex].subgroup.splice(indexItem, 0, item);
+    setContents([...contents]);
   }
 
   function removeItemInContent(contentIndex: number, itemIndex: number) {
     contents[contentIndex].subgroup.splice(itemIndex, 1);
+    setContents([...contents]);
   }
 
   function saveSkills(skills: Skill[]) {
-    let skillNames: string[] = skills.map((skill: Skill) => skill.name.trim());
-    let tmpSkills = skills.filter((skill: Skill) => {
-      return skillNames.filter((name: string) => !(skill.name.trim() === name));
-    });
-    setSkills([...tmpSkills]);
-    console.log(tmpSkills)
-  }
-
-  function getSkills(): Skill[]{
-    return skills;
+    setSkills([...skills]);
   }
 
   function saveName(name: string) {
     setName(name);
   }
 
-  function getNome() {
+  function getName() {
     return name;
   }
 
   function getJSONFile(): [JSONFile] {
-    return [{
-			name: name,
-			skills: skills.map((skill: Skill) => skill.name),
-			contents: contents.map((content: Content) => {
-					return {
-						item: content.item,
-						subgroup: content.subgroup.map((item: Item) => item.item),
-					}
-				}
-			),
-		}as JSONFile];
+    return [
+      {
+        name: name,
+        skills: skills.map((skill: Skill) => skill.name),
+        contents: contents.map((content: Content) => {
+          return {
+            item: content.item,
+            subgroup: content.subgroup.map((item: Item) => item.item)
+          };
+        })
+      } as JSONFile
+    ];
   }
-function normalizeName(name: string, size: number) {
+  function normalizeName(name: string, size: number) {
     if (name.length > size) {
       name = name.slice(0, size).concat("...");
     } else {
@@ -131,10 +127,11 @@ function normalizeName(name: string, size: number) {
     }
     return name;
   }
-  
+
   return (
     <EditJSONContext.Provider value={{
       contents,
+      skills,
       getJSONFile,
       saveNewItems,
       saveContents,
@@ -145,9 +142,8 @@ function normalizeName(name: string, size: number) {
       addNewContentBelow,
       changeContent,
       saveSkills,
-      getSkills,
       saveName,
-      getNome,
+      getName,
       normalizeName
     }}>
       {children}

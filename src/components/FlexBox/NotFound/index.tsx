@@ -2,7 +2,7 @@ import { Flex, Img, Text } from "@chakra-ui/react";
 
 import notFound from "../../../assets/images/not-found.svg";
 
-function NotFound(props) {
+export function NotFound() {
   return (
     <Flex
       color="colorText.textTable"
@@ -25,10 +25,8 @@ function NotFound(props) {
       </Text>
       <Text fontSize={16} mt={2}>
         Para iniciar a criação de um novo content basta clicar em{" "}
-        <strong style={{ color: props.color }}>Criar JSON </strong>ou importar
-        um arquivo JSON
+        <strong>Criar JSON </strong>ou importar um arquivo JSON
       </Text>
     </Flex>
   );
 }
-export default NotFound;
