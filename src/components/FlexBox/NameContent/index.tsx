@@ -4,7 +4,7 @@ import { RiEdit2Fill } from "react-icons/ri";
 
 import { useEditJSONContext } from "../../../contexts/EditJSONContext";
 
-export default function NameContent() {
+export function NameContent() {
   const [isHidden, setIsHidden] = useState(true);
 
   const { saveName, getNome } = useEditJSONContext();
@@ -55,7 +55,7 @@ export default function NameContent() {
         mt="10px"
         minWidth="100%"
         p="10px"
-        color="colorText.skillItem"
+        color="colorText.textTable"
         bg="colorBackground.typeAndItem"
         autoComplete="off"
         display={isHidden ? "none" : "block"}
