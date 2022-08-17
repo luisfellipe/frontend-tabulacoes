@@ -8,6 +8,7 @@ import { QueryClientProvider } from "react-query";
 // import { ReactQueryDevtools } from 'react-query/devtools';
 import { queryClient } from "../services/queryClient";
 import { ImportProvider } from "../contexts/ImportContext";
+import { EditJSONProvider } from "../contexts/EditJSONContext";
 // import { AuthProvider } from '../contexts/AuthContext';
 
 if (process.env.NODE_ENV === "development") {
@@ -20,11 +21,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <DarkmodeProvider>
         <ImportProvider>
-          <ChakraProvider theme={dark}>
-            <SidebarDrawerProvider>
-              <Component {...pageProps} />
-            </SidebarDrawerProvider>
-          </ChakraProvider>
+          <EditJSONProvider>
+            <ChakraProvider theme={dark}>
+              <SidebarDrawerProvider>
+                <Component {...pageProps} />
+              </SidebarDrawerProvider>
+            </ChakraProvider>
+          </EditJSONProvider>
         </ImportProvider>
       </DarkmodeProvider>
     </QueryClientProvider>

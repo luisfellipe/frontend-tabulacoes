@@ -15,7 +15,7 @@ import {
   Thead,
   Tr,
   useBreakpoint,
-  useBreakpointValue,
+  useBreakpointValue
 } from "@chakra-ui/react";
 // import { GetServerSideProps } from "next";
 import NextLink from "next/link";
@@ -39,7 +39,7 @@ export default function Tabulations() {
   const isWideVersion = useBreakpointValue({
     md: false,
     lg: false,
-    xl: false,
+    xl: false
   });
 
   async function handlePrefetchTabulation(tabulationId: string) {
@@ -51,7 +51,7 @@ export default function Tabulations() {
         return response.data;
       },
       {
-        staleTime: 1000 * 60 * 10, // 10 minutes fresh datas
+        staleTime: 1000 * 60 * 10 // 10 minutes fresh datas
       }
     );
   }
@@ -90,7 +90,7 @@ export default function Tabulations() {
                   bg="colorBackground.createTabulation"
                   cursor="pointer"
                   _hover={{
-                    background: "colorBackground.createTabulationHover",
+                    background: "colorBackground.createTabulationHover"
                   }}
                   leftIcon={<Icon as={RiAddLine} fontSize="20" />}
                 >

@@ -13,6 +13,7 @@ export const light = extendTheme({
       inputText: "#09090a"
     },
     colorText: {
+      skillItem: "#5A5A5A",
       logo: "#f2f2f2",
       inputText: "#09090a",
       spin: "#797d7a",

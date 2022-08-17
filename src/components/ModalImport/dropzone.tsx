@@ -1,5 +1,12 @@
 import { useDropzone } from "react-dropzone";
-import { Box, ChakraProvider, Center, Text } from "@chakra-ui/react";
+import {
+  Box,
+  ChakraProvider,
+  Text,
+  Flex,
+  List,
+  ListItem
+} from "@chakra-ui/react";
 import { StyleHook } from "../../hooks/StyleHook";
 
 export default function Dropzone({ onDrop }) {
@@ -14,7 +21,7 @@ export default function Dropzone({ onDrop }) {
     });
 
   const files = acceptedFiles.map((file) => (
-    <li key={file.name}>{file.name}</li>
+    <ListItem key={file.name}>{file.name}</ListItem>
   ));
 
   return (
@@ -22,23 +29,35 @@ export default function Dropzone({ onDrop }) {
       <Box
         {...getRootProps({ className: "dropzone" })}
         border="3px gray dashed"
+        display="flex"
         textAlign="center"
-        h="100px"
-        position="relative"
+        alignItems="center"
+        justifyContent="center"
+        p="10px"
+        h="100%"
+        cursor="cell"
       >
         <input className="input-zone" {...getInputProps()} />
-        <Center>
+        <Flex
+          color="colorText.textModal"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+        >
           {isDragActive ? (
-            <Text color="black">Release to drop the files here</Text>
+            <Text>Largue seu arquivo aqui.</Text>
           ) : (
-            <Text color="black">
-              Drag’n’drop some files here, or click to select files
+            <Text>
+              {files.length
+                ? "Arquivos selecionados:"
+                : "Arraste e solte aqui seu arquivo JSON ou clique para encontra-lo."}
             </Text>
           )}
-        </Center>
-        <aside>
-          <ul>{files}</ul>
-        </aside>
+
+          <List mt="10px" fontSize="14px" fontWeight="normal">
+            {files}
+          </List>
+        </Flex>
       </Box>
     </ChakraProvider>
   );
