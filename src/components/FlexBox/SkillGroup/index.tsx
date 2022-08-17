@@ -1,7 +1,10 @@
 import { Box, Flex, Input } from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
-import SkillItem from "../SkillItem";
+
+import { SkillItem } from "../SkillItem";
+
 import { useEditJSONContext } from "../../../contexts/EditJSONContext";
+
 import { Skill } from "../Types";
 
 export default function SkillGroup(props) {
@@ -43,8 +46,7 @@ export default function SkillGroup(props) {
 
   function notContainSkill(name: String): boolean {
     name = name.trim().toLowerCase();
-    return !skills.some(
-      (skill) => (skill.name.trim().toLowerCase() === name));
+    return !skills.some((skill) => skill.name.trim().toLowerCase() === name);
   }
 
   return (
@@ -64,9 +66,8 @@ export default function SkillGroup(props) {
         bg="colorBackground.typeAndItem"
         onClick={() => {
           let inputSkill = document.getElementById("inputSkill");
-          inputSkill.style.display = "flex"
+          inputSkill.style.display = "flex";
           inputSkill.focus();
-          
         }}
       >
         {skills.map((skill: Skill, index: number) => {
@@ -74,38 +75,32 @@ export default function SkillGroup(props) {
             <SkillItem
               key={skill.id}
               skill={skill}
-              index={index}
               handleRemoveSkill={handleRemoveSkill}
             />
           );
         })}
-      <Box>
         <Input
-            h="30px"
-            id="inputSkill"
-            border="none"
-            color="colorText.skillItem"
-            display="none"
-            autoComplete="off"
-            onBlur={
-              (event) => {
-                const input = event.target;
-                input.style.display = "none";
-                input.value = "";
-              }
+          id="inputSkill"
+          h="30px"
+          gap="10px"
+          border="none"
+          color="colorText.textTable"
+          display="none"
+          autoComplete="off"
+          onBlur={(event) => {
+            const input = event.target;
+            input.style.display = "none";
+            input.value = "";
+          }}
+          onKeyDown={(event) => {
+            let input = String(event.target.value).trim();
+            if (event.key === "Enter") {
+              handleAddSkill(input);
+              event.target.value = "";
+              return;
             }
-            onKeyDown={
-              (event) => {
-                let input = String(event.target.value).trim();
-                if (event.key === "Enter") {
-                  handleAddSkill(input);
-                  event.target.value = "";
-                  return;
-                }
-              } 
-            }
-          />
-        </Box>
+          }}
+        />
       </Flex>
     </Box>
   );

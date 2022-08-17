@@ -13,7 +13,7 @@ export const light = extendTheme({
       inputText: "#09090a"
     },
     colorText: {
-      skillItem: "#5A5A5A",
+      skillItem: "#f9f8f8",
       logo: "#f2f2f2",
       inputText: "#09090a",
       spin: "#797d7a",
@@ -42,6 +42,7 @@ export const light = extendTheme({
       sideNavCloseButton: "#797d9a"
     },
     colorBackground: {
+      skillItem: "#3772c2",
       searchbar: "#181823",
       graphics: "#181823",
       sidebarCellphone: "#F0F2F5",

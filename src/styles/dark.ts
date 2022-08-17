@@ -41,6 +41,7 @@ export const dark = extendTheme({
       sideNavCloseButton: "#797d9a"
     },
     colorBackground: {
+      skillItem: "#346cb7",
       searchbar: "#181823",
       graphics: "#181823",
       sidebarCellphone: "#202024",
