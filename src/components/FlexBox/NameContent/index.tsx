@@ -44,10 +44,12 @@ export default function NameContent() {
             border="none"
             color="colorText.skillItem"
             autoComplete="off"
+            
             onKeyDown={
               (event) => {
+                let inputSkill = document.querySelector("InputName");
                 if (event.key === "Enter") {
-                  saveName(String(event.target.value).trim());
+                  saveName(String(inputSkill.textContent).trim());
                   return;
                 }
               } 
