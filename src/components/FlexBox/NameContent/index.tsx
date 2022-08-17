@@ -5,18 +5,24 @@ import { RiEdit2Fill } from "react-icons/ri";
 import { useEditJSONContext } from "../../../contexts/EditJSONContext";
 
 export function NameContent() {
-  const [isHidden, setIsHidden] = useState(true);
 
-  const { saveName, getNome } = useEditJSONContext();
-
-  const tabulationName = getNome() ? getNome() : "NOME DA TABULAÇÃO";
-
-  function handleChangeInputVisibility() {
-    setIsHidden(!isHidden);
+  function setInputVisibilityOff() {
+    let input = document.querySelector<HTMLInputElement>('#InputName');
+    input.style.display = 'none';
+    input.value = '';
   }
+  function setInputVisibilityOn() {
+    let input = document.querySelector<HTMLInputElement>('#InputName');
+    input.style.display = 'block';
+    input.focus();
+  }
+  const { saveName, getName } = useEditJSONContext();
+
+  const tabulationName = getName() ? getName() : "NOME DA TABULAÇÃO";
+
 
   function handleChangeTabulationName(event: ChangeEvent<HTMLInputElement>) {
-    const newTabulationName = event.target.value.trim();
+    const newTabulationName = String(event.target.value).trim();
     saveName(newTabulationName);
   }
 
@@ -42,7 +48,9 @@ export function NameContent() {
           _hover={{
             background: "colorBackground.editNameHover"
           }}
-          onClick={handleChangeInputVisibility}
+          onClick={() => {
+            setInputVisibilityOn();
+          }}
         />
       </Flex>
 
@@ -58,9 +66,9 @@ export function NameContent() {
         color="colorText.textTable"
         bg="colorBackground.typeAndItem"
         autoComplete="off"
-        display={isHidden ? "none" : "block"}
+        display="none"
         onChange={handleChangeTabulationName}
-        onBlur={() => setIsHidden(true)}
+        onBlur={() => setInputVisibilityOff()}
       />
 
       <Divider />

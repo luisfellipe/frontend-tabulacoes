@@ -24,7 +24,8 @@ export function ContentField(props) {
             placeholder="Digite o nome do Content ..."
             defaultValue={content.item}
             onChange={(event) => {
-              props.handleChangeContent(String(event.target.value));
+              content.item = String(event.target.value);
+              props.handleChangeContent(content);
             }}
           ></Input>
           <Flex alignItems="end" mb="12px" mr="8px">

@@ -16,7 +16,6 @@ import { Content, Item, Skill } from "./Types";
 export default function FlexBox(props) {
   const { fileJson } = useImportContext();
   const { contents, saveContents, saveSkills } = useEditJSONContext();
-  let skills = useRef<Skill[]>([]);
   let parseContent;
 
   useEffect(() => {
@@ -51,7 +50,6 @@ export default function FlexBox(props) {
       });
       saveContents(tmpContents);
       saveSkills([...tmpSkills]);
-      skills.current = tmpSkills;
     }
   }, [fileJson]);
 
@@ -73,7 +71,7 @@ export default function FlexBox(props) {
       {contentIsEmpty ? (
         <NotFound />
       ) : (
-        <ContentGroup skills={skills.current} contentList={contents} />
+        <ContentGroup contentList={contents} />
       )}
     </Box>
   );

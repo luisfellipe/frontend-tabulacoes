@@ -1,4 +1,4 @@
-import { Box, Flex, Input } from "@chakra-ui/react";
+import { Box, Flex, Input, Text } from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
 
 import { SkillItem } from "../SkillItem";
@@ -7,9 +7,8 @@ import { useEditJSONContext } from "../../../contexts/EditJSONContext";
 
 import { Skill } from "../Types";
 
-export function SkillGroup(props) {
-  const { saveSkills, getSkills } = useEditJSONContext();
-  let skills: Skill[] = props.skills;
+export function SkillGroup() {
+  const { saveSkills, skills } = useEditJSONContext();
   function handleAddSkill(name: string) {
     if (notContainSkill(name)) {
       if (name.length > 1) {
@@ -51,6 +50,15 @@ export function SkillGroup(props) {
 
   return (
     <Box>
+      <Text
+        p="0.5rem"
+        color="colorText.titleTable"
+        fontSize={["12px", "16px", "22px"]}
+        textAlign="left"
+        fontWeight="bold"
+      >
+        SKILLS
+      </Text>
       <Flex
         justifyContent="space-between"
         overflow="auto"
@@ -80,6 +88,7 @@ export function SkillGroup(props) {
           );
         })}
         <Input
+          mt="10px"
           id="inputSkill"
           h="30px"
           gap="10px"
@@ -92,14 +101,16 @@ export function SkillGroup(props) {
             input.style.display = "none";
             input.value = "";
           }}
-          onKeyDown={(event) => {
-            let input = String(event.target.value).trim();
-            if (event.key === "Enter") {
-              handleAddSkill(input);
-              event.target.value = "";
-              return;
-            }
-          }}
+          onKeyDown={
+            (event) => {
+              let input = document.querySelector<HTMLInputElement>('#inputSkill');
+              if (event.key === "Enter") {
+                handleAddSkill(String(input.value).trim());
+                input.value = '';
+                return;
+              }
+            } 
+          }
         />
       </Flex>
     </Box>
