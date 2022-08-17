@@ -51,7 +51,6 @@ export default function FlexBox(props) {
       saveSkills([...tmpSkills]);
       skills.current = tmpSkills;
     }
-    
   }, [fileJson]);
 
   const contentIsEmpty = contents.length === 0;
@@ -67,19 +66,13 @@ export default function FlexBox(props) {
       <Flex mb="5" justifyContent="space-between" align="center">
         <ImportarButton />
         {!contentIsEmpty && <SalvarJSONButton />}
-        {contentIsEmpty && <CriarJSONButton />
-        }
+        {contentIsEmpty && <CriarJSONButton />}
       </Flex>
-      {
-        contentIsEmpty ? (
-          <NotFound />
-        ) : (
-            <ContentGroup
-              skills={skills.current}
-              contentList={contents}
-          />
-        )
-      }
-    </Box >
+      {contentIsEmpty ? (
+        <NotFound />
+      ) : (
+        <ContentGroup skills={skills.current} contentList={contents} />
+      )}
+    </Box>
   );
 }
