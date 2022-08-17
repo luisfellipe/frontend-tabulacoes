@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { Box, Flex, Icon, Input, Text } from "@chakra-ui/react";
+import { Box, Divider, Flex, Icon, Input, Text } from "@chakra-ui/react";
 import { RiEdit2Fill } from "react-icons/ri";
 
 import { useEditJSONContext } from "../../../contexts/EditJSONContext";
@@ -62,6 +62,8 @@ export default function NameContent() {
         onChange={handleChangeTabulationName}
         onBlur={() => setIsHidden(true)}
       />
+
+      <Divider />
     </Box>
   );
 }
