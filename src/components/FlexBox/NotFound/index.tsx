@@ -2,7 +2,7 @@ import { Flex, Img, Text } from "@chakra-ui/react";
 
 import notFound from "../../../assets/images/not-found.svg";
 
-function NotFound(props) {
+export function NotFound(props) {
   return (
     <Flex
       color="colorText.textTable"
@@ -31,4 +31,3 @@ function NotFound(props) {
     </Flex>
   );
 }
-export default NotFound;

@@ -2,7 +2,7 @@ import { Box, Button, Icon, useDisclosure } from "@chakra-ui/react";
 import { RiDownload2Line } from "react-icons/ri";
 import { ModalImport } from "../../../ModalImport";
 
-function ImportarButton() {
+export function ImportButton() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box mr="3" ml="2.4">
@@ -25,5 +25,3 @@ function ImportarButton() {
     </Box>
   );
 }
-
-export default ImportarButton;

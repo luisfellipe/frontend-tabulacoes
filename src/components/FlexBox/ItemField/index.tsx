@@ -13,7 +13,7 @@ import { MdDragHandle } from "react-icons/md";
 import { useState } from "react";
 import { Item } from "../Types";
 
-export default function ItemField(props) {
+export function ItemField(props) {
   const { itemIndex, contentIndex } = props;
   const [item, setItem] = useState<Item>(props.item as Item);
 
@@ -122,4 +122,3 @@ export default function ItemField(props) {
     </Draggable>
   );
 }
-

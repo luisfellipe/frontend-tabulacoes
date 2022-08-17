@@ -7,7 +7,7 @@ import { useEditJSONContext } from "../../../contexts/EditJSONContext";
 
 import { Skill } from "../Types";
 
-export default function SkillGroup(props) {
+export function SkillGroup(props) {
   const { saveSkills, getSkills } = useEditJSONContext();
   let skills: Skill[] = props.skills;
   function handleAddSkill(name: string) {

@@ -7,6 +7,7 @@ import {
   List,
   ListItem
 } from "@chakra-ui/react";
+
 import { StyleHook } from "../../hooks/StyleHook";
 
 export default function Dropzone({ onDrop }) {

@@ -2,7 +2,7 @@ import { Box, Button, Icon, useDisclosure } from "@chakra-ui/react";
 import { RiSave2Fill } from "react-icons/ri";
 import { useEditJSONContext } from "../../../../contexts/EditJSONContext";
 
-export function SalvarJSONButton() {
+export function SaveJSONButton() {
   const { getJSONFile } = useEditJSONContext();
   function saveJSON() {
     const jsonFile = getJSONFile();
@@ -28,4 +28,3 @@ export function SalvarJSONButton() {
     </Box>
   );
 }
-

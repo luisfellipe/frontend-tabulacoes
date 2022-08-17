@@ -2,7 +2,7 @@ import { Flex, Icon, Input, Tooltip } from "@chakra-ui/react";
 import { RiAddLine } from "react-icons/ri";
 import { BiTrash } from "react-icons/bi";
 
-export default function ContentField(props) {
+export function ContentField(props) {
   let { contentIndex, content } = props;
 
   return (
@@ -24,7 +24,7 @@ export default function ContentField(props) {
             placeholder="Digite o nome do Content ..."
             defaultValue={content.item}
             onChange={(event) => {
-              props.handleChangeContent(String(event.target.value))
+              props.handleChangeContent(String(event.target.value));
             }}
           ></Input>
           <Flex alignItems="end" mb="12px" mr="8px">
@@ -59,7 +59,7 @@ export default function ContentField(props) {
             ></Icon>
           </Flex>
         </Flex>
-        </Tooltip>
+      </Tooltip>
       {props.children}
     </Flex>
   );
