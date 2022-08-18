@@ -52,6 +52,7 @@ export default function SkillGroup() {
   return (
     <Box>
       <Text
+        mt="15px"
         p="0.5rem"
         color="colorText.titleTable"
         fontSize={["12px", "16px", "22px"]}
