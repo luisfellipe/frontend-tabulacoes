@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Box,
   Flex,
@@ -11,44 +10,29 @@ import { Draggable } from "react-beautiful-dnd";
 import { RiAddLine } from "react-icons/ri";
 import { BiTrash } from "react-icons/bi";
 import { MdDragHandle } from "react-icons/md";
-
+import { useState } from "react";
 import { Item } from "../Types";
 
-interface ItemFieldProps {
-  itemIndex: any;
-  itemData: any;
-  contentIndex: number;
-  changeItem: (tmpItem: any, contentIndex: any, itemIndex: any) => void;
-  removeItem: (itemIndex: any) => void;
-  addItem: (itemPosition: number) => void;
-}
+export function ItemField(props) {
+  const { itemIndex, contentIndex } = props;
+  const [item, setItem] = useState<Item>(props.item as Item);
 
-export function ItemField({
-  itemIndex,
-  itemData,
-  contentIndex,
-  changeItem,
-  removeItem,
-  addItem
-}: ItemFieldProps) {
-  const [item, setItem] = useState<Item>(itemData as Item);
-
-  function handleChangeItem(event) {
+  function changeItem(event) {
     const itemName = event.target.value;
     const tmpItem = {
       id: item.id,
       item: itemName
     } as Item;
     setItem(tmpItem);
-    changeItem(tmpItem, contentIndex, itemIndex);
+    props.changeItem(tmpItem, contentIndex, itemIndex);
   }
 
-  function handleRemoveItem() {
-    removeItem(itemIndex);
+  function removeItem() {
+    props.removeItem(itemIndex);
   }
 
-  function handleAddItem() {
-    addItem(itemIndex + 1);
+  function addItem() {
+    props.addItem(itemIndex + 1);
   }
 
   return (
@@ -97,8 +81,8 @@ export function ItemField({
                 textAlign="center"
                 placeholder="Digite o nome do item ..."
                 defaultValue={item.item}
-                onChange={(event) => handleChangeItem(event)}
-              />
+                onChange={(event) => changeItem(event)}
+              ></Input>
             </InputGroup>
 
             <Box display="flex" alignItems="center" margin="8px">
@@ -114,8 +98,8 @@ export function ItemField({
                   color: "colorText.deleteButtonHover"
                 }}
                 transition="0.2s"
-                onClick={handleRemoveItem}
-              />
+                onClick={removeItem}
+              ></Icon>
 
               <Icon
                 as={RiAddLine}
@@ -129,8 +113,8 @@ export function ItemField({
                   background: "colorBackground.addButtonHover"
                 }}
                 transition="0.2s"
-                onClick={handleAddItem}
-              />
+                onClick={addItem}
+              ></Icon>
             </Box>
           </Box>
         </Flex>

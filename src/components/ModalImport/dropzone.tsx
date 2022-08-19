@@ -10,11 +10,7 @@ import {
 
 import { StyleHook } from "../../hooks/StyleHook";
 
-interface DropzoneProps {
-  onDrop: any;
-}
-
-export function Dropzone({ onDrop }: DropzoneProps) {
+export default function Dropzone({ onDrop }) {
   const theme = StyleHook();
 
   const { acceptedFiles, getRootProps, getInputProps, isDragActive } =

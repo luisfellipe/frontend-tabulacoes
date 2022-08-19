@@ -2,23 +2,9 @@ import { Flex, Icon, Input, Tooltip } from "@chakra-ui/react";
 import { RiAddLine } from "react-icons/ri";
 import { BiTrash } from "react-icons/bi";
 
-interface ContentFieldProps {
-  contentIndex: number;
-  content: any;
-  children: any;
-  handleChangeContent: (content: any) => void;
-  handleRemoveContent: (id: string) => void;
-  handleAddNewContentBelow: (id: number) => void;
-}
+export function ContentField(props) {
+  let { contentIndex, content } = props;
 
-export function ContentField({
-  contentIndex,
-  content,
-  children,
-  handleChangeContent,
-  handleRemoveContent,
-  handleAddNewContentBelow
-}: ContentFieldProps) {
   return (
     <Flex key={content.id} maxWidth={1120}>
       <Tooltip hasArrow label={content.item} placement="left" mt="10px">
@@ -35,13 +21,12 @@ export function ContentField({
             variant="unstyled"
             fontSize={["10px", "12px", "14px"]}
             textAlign="center"
-            placeholder="Digite o nome do Tipo..."
+            placeholder="Digite o nome do Content ..."
             defaultValue={content.item}
             onChange={(event) => {
-              handleChangeContent(event.target.value);
+              props.handleChangeContent(String(event.target.value));
             }}
-          />
-
+          ></Input>
           <Flex alignItems="end" mb="12px" mr="8px">
             <Icon
               as={BiTrash}
@@ -55,8 +40,9 @@ export function ContentField({
                 color: "colorText.deleteButtonHover"
               }}
               transition="0.2s"
-              onClick={() => handleRemoveContent(content.id)}
-            />
+              onClick={() => props.handleRemoveContent(content.id)}
+            ></Icon>
+
             <Icon
               as={RiAddLine}
               color="colorText.addButtonColor"
@@ -69,12 +55,12 @@ export function ContentField({
                 background: "colorBackground.addButtonHover"
               }}
               transition="0.2s"
-              onClick={() => handleAddNewContentBelow(contentIndex + 1)}
-            />
+              onClick={() => props.handleAddNewContentBelow(contentIndex + 1)}
+            ></Icon>
           </Flex>
         </Flex>
       </Tooltip>
-      {children}
+      {props.children}
     </Flex>
   );
 }

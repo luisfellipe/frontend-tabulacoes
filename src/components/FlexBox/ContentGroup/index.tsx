@@ -1,25 +1,18 @@
-import { Box, Text } from "@chakra-ui/react";
-
 import ItemGroup from "../ItemGroup";
 import { SkillGroup } from "../SkillGroup";
+import { Content } from "../Types";
+import { useEditJSONContext } from "../../../contexts/EditJSONContext";
+import { ContentGroupHeader } from "../ContentGroupHeader";
+import { Box, Text } from "@chakra-ui/react";
 import { ContentField } from "../ContentField";
 import { NameContent } from "../NameContent";
-import { ContentGroupHeader } from "../ContentGroupHeader";
 
-import { useEditJSONContext } from "../../../contexts/EditJSONContext";
-
-import { Content, Skill } from "../Types";
-
-interface ContentGroupProps {
-  skills: Skill[];
-  contentList: any[];
-}
-
-export function ContentGroup({ skills, contentList }: ContentGroupProps) {
+export function ContentGroup(props) {
+  const { contentList, skills } = props;
   const { changeContent, addNewContentBelow, removeContent } =
     useEditJSONContext();
 
-  function handleChangeContent(content: any) {
+  function handleChangeContent(content: Content) {
     changeContent(content);
   }
 

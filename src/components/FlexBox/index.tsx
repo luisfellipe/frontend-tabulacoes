@@ -13,7 +13,7 @@ import { useEditJSONContext } from "../../contexts/EditJSONContext";
 
 import { Content, Item, Skill } from "./Types";
 
-export default function FlexBox() {
+export default function FlexBox(props) {
   const { fileJson } = useImportContext();
   const { contents, saveContents, saveSkills } = useEditJSONContext();
   let skills = useRef<Skill[]>([]);
