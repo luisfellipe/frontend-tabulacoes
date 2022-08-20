@@ -27,7 +27,7 @@ export default function SkillGroup() {
     if (skills.length === 1) {
       saveSkills([]);
     }
-    let tmpSkills = sortSkills(skills.filter((skill) => skill.id !== id));
+    let tmpSkills = skills.filter((skill) => skill.id !== id);
     saveSkills(tmpSkills);
   }
 
@@ -52,6 +52,7 @@ export default function SkillGroup() {
   return (
     <Box>
       <Text
+        mt="15px"
         p="0.5rem"
         color="colorText.titleTable"
         fontSize={["12px", "16px", "22px"]}
@@ -89,7 +90,6 @@ export default function SkillGroup() {
           );
         })}
         <Input
-          mt="10px"
           id="inputSkill"
           h="30px"
           gap="10px"
