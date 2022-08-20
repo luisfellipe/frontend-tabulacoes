@@ -15,7 +15,7 @@ import { Content, Item, Skill } from "./Types";
 
 export default function FlexBox() {
   const { fileJson } = useImportContext();
-  const { contents, saveContents, saveSkills } = useEditJSONContext();
+  const { contents, saveContents, saveSkills, saveName } = useEditJSONContext();
   let parseContent;
 
   useEffect(() => {
@@ -23,8 +23,8 @@ export default function FlexBox() {
       const json = fileJson;
       // eslint-disable-next-line react-hooks/exhaustive-deps
       parseContent = JSON.parse(json[0]);
-
-      let tmpContents = parseContent[0].content.map(
+      saveName(parseContent[0].name);
+      let tmpContents = parseContent[0].contents.map(
         (content: Content, index: number) => {
           let subgroup = content.subgroup.map((item: Item, index: number) => {
             return {

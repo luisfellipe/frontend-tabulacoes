@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import { Box, Divider, Flex, Icon, Input, Text } from "@chakra-ui/react";
 import { RiEdit2Fill } from "react-icons/ri";
 
