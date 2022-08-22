@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Box, Flex } from "@chakra-ui/react";
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidV4 } from "uuid";
 
 import { ContentGroup } from "./ContentGroup";
 import { ImportButton } from "./Buttons/ImportButton";
@@ -13,7 +13,7 @@ import { useEditJSONContext } from "../../contexts/EditJSONContext";
 
 import { Content, Item, Skill } from "./Types";
 
-export default function FlexBox(props) {
+export function FlexBox() {
   const { fileJson } = useImportContext();
   const { contents, saveContents, saveSkills } = useEditJSONContext();
   let skills = useRef<Skill[]>([]);
@@ -29,7 +29,7 @@ export default function FlexBox(props) {
         (content: Content, index: number) => {
           let subgroup = content.subgroup.map((item: Item, index: number) => {
             return {
-              id: String(uuidv4()),
+              id: String(uuidV4()),
               item: item.item,
               index
             };
@@ -38,14 +38,14 @@ export default function FlexBox(props) {
           return {
             item: content.item,
             index,
-            id: String(uuidv4()),
+            id: String(uuidV4()),
             subgroup
           };
         }
       );
       const tmpSkills = parseContent[0].skills.map((skillName) => {
         return {
-          id: String(uuidv4()),
+          id: String(uuidV4()),
           name: skillName
         } as Skill;
       });
@@ -70,11 +70,7 @@ export default function FlexBox(props) {
         {!contentIsEmpty && <SaveJSONButton />}
         {contentIsEmpty && <CreateJSONButton />}
       </Flex>
-      {contentIsEmpty ? (
-        <NotFound />
-      ) : (
-        <ContentGroup skills={skills.current} contentList={contents} />
-      )}
+      {contentIsEmpty ? <NotFound /> : <ContentGroup contentList={contents} />}
     </Box>
   );
 }

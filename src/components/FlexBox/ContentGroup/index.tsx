@@ -8,7 +8,7 @@ import { ContentField } from "../ContentField";
 import { NameContent } from "../NameContent";
 
 export function ContentGroup(props) {
-  const { contentList, skills } = props;
+  const { contentList } = props;
   const { changeContent, addNewContentBelow, removeContent } =
     useEditJSONContext();
 
@@ -26,7 +26,7 @@ export function ContentGroup(props) {
 
   return (
     <Box>
-      <NameContent></NameContent>
+      <NameContent />
       <Text
         p="0.5rem"
         color="colorText.titleTable"
@@ -36,7 +36,7 @@ export function ContentGroup(props) {
       >
         SKILLS
       </Text>
-      <SkillGroup skills={skills} key="skillgroup" />
+      <SkillGroup />
       <ContentGroupHeader key="ContentGroupHeader" />
       {contentList.map((content: Content, index: number) => {
         return (

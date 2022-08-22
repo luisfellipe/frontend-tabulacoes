@@ -1,5 +1,5 @@
 import { Box, Flex, Input } from "@chakra-ui/react";
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidV4 } from "uuid";
 
 import { SkillItem } from "../SkillItem";
 
@@ -7,14 +7,16 @@ import { useEditJSONContext } from "../../../contexts/EditJSONContext";
 
 import { Skill } from "../Types";
 
-export function SkillGroup(props) {
+export function SkillGroup() {
   const { saveSkills, getSkills } = useEditJSONContext();
-  let skills: Skill[] = props.skills;
+
+  const skills = getSkills();
+
   function handleAddSkill(name: string) {
     if (notContainSkill(name)) {
       if (name.length > 1) {
         const skill = {
-          id: String(uuidv4()),
+          id: String(uuidV4()),
           name
         } as Skill;
         skills.push(skill);
@@ -23,11 +25,14 @@ export function SkillGroup(props) {
       }
     }
   }
+
   function handleRemoveSkill(id: string) {
     if (skills.length === 1) {
       saveSkills([]);
     }
+
     let tmpSkills = sortSkills(skills.filter((skill) => skill.id !== id));
+
     saveSkills(tmpSkills);
   }
 
