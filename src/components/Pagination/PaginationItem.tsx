@@ -17,11 +17,13 @@ export function PaginationItem({
         size="sm"
         fontSize="xs"
         width="4"
-        colorScheme="pink"
         disabled
         _disabled={{
-          bgColor: "pink.500",
-          cursor: "default"
+          bgColor: "colorBackground.paginationItem",
+          cursor: "pointer"
+        }}
+        _hover={{
+          bgColor: "colorBackground.paginationItemHover"
         }}
       >
         {number}
@@ -34,10 +36,9 @@ export function PaginationItem({
       size="sm"
       fontSize="xs"
       width="4"
-      colorScheme="pink"
-      bg="gray.700"
+      bg="colorText.paginationItem"
       _hover={{
-        bg: "gray.500"
+        bgColor: "colorBackground.paginationItemHover"
       }}
       onClick={() => onPageChange(number)}
     >

@@ -39,7 +39,9 @@ export const dark = extendTheme({
       addButtonHover: "#38a169",
       sideNavTitle: "#E1E1E6",
       sideNavItem: "#E1E1E6",
-      sideNavCloseButton: "#797d9a"
+      sideNavCloseButton: "#797d9a",
+      tabulationTitle: "#C4C4CC",
+      tabulationLink: "#7C7C8A"
     },
     colorBackground: {
       editNameHover: "#333333",
@@ -68,7 +70,9 @@ export const dark = extendTheme({
       importButtonHover: "#0d47a1",
       addButtonHover: "#333333",
       deleteButtonHover: "#333333",
-      inputLeftAddon: "#29292E"
+      inputLeftAddon: "#29292E",
+      paginationItem: "#346cb7",
+      paginationItemHover: "#0d47a1"
     }
   },
   fonts: {

@@ -48,8 +48,8 @@ export function Pagination({
       align="center"
       spacing="6"
     >
-      <Box color="white">
-        <strong>0</strong> - <strong>10</strong> de{" "}
+      <Box color="colorText.textTable">
+        <strong>0</strong> - <strong>10</strong> de
         <strong>{totalCountOfRegisters}</strong>
       </Box>
       <Stack direction="row" spacing="2">
@@ -95,7 +95,7 @@ export function Pagination({
         {currentPage + siblingsCount < lastPage && (
           <>
             {currentPage + 1 + siblingsCount < lastPage && (
-              <Text color="gray.300" width="8" textAlign="center">
+              <Text color="colorText.textTable" width="8" textAlign="center">
                 ...
               </Text>
             )}

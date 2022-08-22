@@ -170,7 +170,7 @@ export default function Tabulations() {
                 <Table colorScheme="whiteAlpha">
                   <Thead>
                     <Tr>
-                      <Th>Tabulação</Th>
+                      <Th color="colorText.textTable">Tabulação</Th>
 
                       {isWideVersion && <Th>Data de cadastro</Th>}
 
@@ -187,14 +187,17 @@ export default function Tabulations() {
                           <Td>
                             <Box>
                               <Link
-                                color="purple.400"
+                                color="colorText.tabulationTitle"
                                 onMouseEnter={() =>
                                   handlePrefetchTabulation(tabulation.id)
                                 }
                               >
                                 <Text fontWeight="bold">{tabulation.name}</Text>
                               </Link>
-                              <Text fontSize="sm" color="gray.300">
+                              <Text
+                                fontSize="sm"
+                                color="colorText.tabulationLink"
+                              >
                                 {tabulation.link_json}
                               </Text>
                             </Box>
