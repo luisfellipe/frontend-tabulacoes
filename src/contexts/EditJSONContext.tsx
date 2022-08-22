@@ -1,5 +1,10 @@
 import { createContext, ReactNode, useContext, useState } from "react";
-import { Content, Item, JSONFile, Skill } from "../components/FlexBox/Types";
+import {
+  Content,
+  Item,
+  JSONFile,
+  Skill
+} from "../components/TabulationBox/Types";
 import { v4 as uuidv4 } from "uuid";
 
 interface ImportContextProviderProps {
