@@ -1,9 +1,43 @@
+import { ChangeEvent, ReactNode } from "react";
 import { Flex, Icon, Input, Tooltip } from "@chakra-ui/react";
 import { RiAddLine } from "react-icons/ri";
 import { BiTrash } from "react-icons/bi";
 
-export function ContentField(props) {
-  let { contentIndex, content } = props;
+import { useEditJSONContext } from "../../../contexts/EditJSONContext";
+
+interface Item {
+  index: number;
+  id: string;
+  item: string;
+}
+
+interface Content {
+  index: number;
+  id: string;
+  item: string;
+  subgroup: Item[];
+}
+
+interface ContentFieldProps {
+  contentIndex: number;
+  content: Content;
+  children: ReactNode;
+}
+
+export function ContentField({
+  contentIndex,
+  content,
+  children
+}: ContentFieldProps) {
+  const { changeContent, removeContent, addNewContentBelow } =
+    useEditJSONContext();
+
+  function handleChangeContent(event: ChangeEvent<HTMLInputElement>) {
+    changeContent({
+      ...content,
+      item: event.target.value
+    });
+  }
 
   return (
     <Flex key={content.id} maxWidth={1120}>
@@ -23,10 +57,9 @@ export function ContentField(props) {
             textAlign="center"
             placeholder="Digite o nome do Content ..."
             defaultValue={content.item}
-            onChange={(event) => {
-              props.handleChangeContent(String(event.target.value));
-            }}
-          ></Input>
+            onChange={handleChangeContent}
+          />
+
           <Flex alignItems="end" mb="12px" mr="8px">
             <Icon
               as={BiTrash}
@@ -40,8 +73,8 @@ export function ContentField(props) {
                 color: "colorText.deleteButtonHover"
               }}
               transition="0.2s"
-              onClick={() => props.handleRemoveContent(content.id)}
-            ></Icon>
+              onClick={() => removeContent(content.id)}
+            />
 
             <Icon
               as={RiAddLine}
@@ -55,12 +88,12 @@ export function ContentField(props) {
                 background: "colorBackground.addButtonHover"
               }}
               transition="0.2s"
-              onClick={() => props.handleAddNewContentBelow(contentIndex + 1)}
-            ></Icon>
+              onClick={() => addNewContentBelow(contentIndex + 1)}
+            />
           </Flex>
         </Flex>
       </Tooltip>
-      {props.children}
+      {children}
     </Flex>
   );
 }
