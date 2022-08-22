@@ -2,8 +2,9 @@ import { Box, Button, Icon } from "@chakra-ui/react";
 import { RiEditBoxFill } from "react-icons/ri";
 import { useEditJSONContext } from "../../../../contexts/EditJSONContext";
 
-export function CreateJSONButton(props) {
+export function CreateJSONButton() {
   const { addNewContentBelow } = useEditJSONContext();
+
   return (
     <Box mr="3">
       <Button

@@ -1,6 +1,6 @@
 import { Box, Text } from "@chakra-ui/react";
 
-import ItemGroup from "../ItemGroup";
+import { ItemGroup } from "../ItemGroup";
 import { SkillGroup } from "../SkillGroup";
 import { ContentGroupHeader } from "../ContentGroupHeader";
 import { ContentField } from "../ContentField";

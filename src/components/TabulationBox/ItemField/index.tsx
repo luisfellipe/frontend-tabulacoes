@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Box,
   Flex,
@@ -10,33 +11,48 @@ import { Draggable } from "react-beautiful-dnd";
 import { RiAddLine } from "react-icons/ri";
 import { BiTrash } from "react-icons/bi";
 import { MdDragHandle } from "react-icons/md";
-import { useState } from "react";
+
 import { Item } from "../Types";
 
-export function ItemField(props) {
-  const { itemIndex, contentIndex } = props;
-  const [item, setItem] = useState<Item>(props.item as Item);
+interface ItemFieldProps {
+  item: Item;
+  itemIndex: number;
+  contentIndex: number;
+  changeItem: (tmpItem: any, contentIndex: number, itemIndex: number) => void;
+  removeItem: (itemIndex: number) => void;
+  addItem: (itemIndex: number) => void;
+}
 
-  function changeItem(event) {
+export function ItemField({
+  item,
+  itemIndex,
+  contentIndex,
+  changeItem,
+  removeItem,
+  addItem
+}: ItemFieldProps) {
+  const [itemLocal, setItemLocal] = useState<Item>(item);
+
+  function handleChangeItem(event) {
     const itemName = event.target.value;
     const tmpItem = {
-      id: item.id,
+      id: itemLocal.id,
       item: itemName
     } as Item;
-    setItem(tmpItem);
-    props.changeItem(tmpItem, contentIndex, itemIndex);
+    setItemLocal(tmpItem);
+    changeItem(tmpItem, contentIndex, itemIndex);
   }
 
-  function removeItem() {
-    props.removeItem(itemIndex);
+  function handleRemoveItem() {
+    removeItem(itemIndex);
   }
 
-  function addItem() {
-    props.addItem(itemIndex + 1);
+  function handleAddItem() {
+    addItem(itemIndex + 1);
   }
 
   return (
-    <Draggable key={item.id} draggableId={item.id} index={itemIndex}>
+    <Draggable key={itemLocal.id} draggableId={itemLocal.id} index={itemIndex}>
       {(provided) => (
         <Flex
           display="flex"
@@ -70,19 +86,19 @@ export function ItemField(props) {
                   borderRadius="4px"
                   textColor="colorText.dragIcon"
                   transition="0.2s"
-                ></Icon>
+                />
               </InputLeftAddon>
               <Input
-                key={item.id}
+                key={itemLocal.id}
                 p="12px"
                 variant="unstyled"
                 color="colorText.textTable"
                 fontSize={["10px", "12px", "14px"]}
                 textAlign="center"
                 placeholder="Digite o nome do item ..."
-                defaultValue={item.item}
-                onChange={(event) => changeItem(event)}
-              ></Input>
+                defaultValue={itemLocal.item}
+                onChange={handleChangeItem}
+              />
             </InputGroup>
 
             <Box display="flex" alignItems="center" margin="8px">
@@ -98,8 +114,8 @@ export function ItemField(props) {
                   color: "colorText.deleteButtonHover"
                 }}
                 transition="0.2s"
-                onClick={removeItem}
-              ></Icon>
+                onClick={handleRemoveItem}
+              />
 
               <Icon
                 as={RiAddLine}
@@ -113,8 +129,8 @@ export function ItemField(props) {
                   background: "colorBackground.addButtonHover"
                 }}
                 transition="0.2s"
-                onClick={addItem}
-              ></Icon>
+                onClick={handleAddItem}
+              />
             </Box>
           </Box>
         </Flex>

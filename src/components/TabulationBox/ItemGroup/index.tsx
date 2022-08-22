@@ -1,14 +1,22 @@
 import { useState } from "react";
 import { Box } from "@chakra-ui/react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import { v4 as uuidv4 } from "uuid";
-import { Item } from "../Types";
+import { v4 as uuidV4 } from "uuid";
+
 import { ItemField } from "../ItemField";
+
 import { useEditJSONContext } from "../../../contexts/EditJSONContext";
 
-export default function ItemGroup(props) {
-  const { items, contentIndex } = props;
+import { Item } from "../Types";
+
+interface ItemGroupProps {
+  items: Item[];
+  contentIndex: number;
+}
+
+export function ItemGroup({ items, contentIndex }: ItemGroupProps) {
   const [itemArray, setItems] = useState<Item[]>(Array.from(items));
+
   const { removeItemInContent, addItemInContent, saveAllItems, saveNewItems } =
     useEditJSONContext();
 
@@ -19,16 +27,12 @@ export default function ItemGroup(props) {
     newItemsArray.splice(result.destination.index, 0, reorderedItem);
 
     setItems([...newItemsArray]);
-    saveAllItems(props.contentIndex, newItemsArray);
+    saveAllItems(contentIndex, newItemsArray);
   }
 
-  /**
-   * Adiciona um novo item abaixo do item atual
-   * @param index localização do item na lista e no front
-   */
   function handleAddItem(index: number) {
     const item = {
-      id: String(uuidv4()),
+      id: String(uuidV4()),
       item: ""
     } as Item;
 
@@ -38,20 +42,17 @@ export default function ItemGroup(props) {
     addItemInContent(item, contentIndex, index);
   }
 
-  /**
-   * Remove item da lista
-   * @param index localização do item na lista e no front
-   */
   function handleRemoveItem(index: number) {
     if (itemArray.length <= 1) {
       throw `Item not removed: Só existe uma item na lista`;
     }
+
     if (itemArray[index]) {
       itemArray.splice(index, 1);
       setItems([...itemArray]);
       removeItemInContent(contentIndex, index);
     } else {
-      throw `Não existe item no indice ${index} \nTamanho da lista de items: ${itemArray.length}`;
+      throw `Não existe item no índice ${index} \nTamanho da lista de items: ${itemArray.length}`;
     }
   }
 
@@ -75,7 +76,7 @@ export default function ItemGroup(props) {
                     changeItem={handleChangeItem}
                     addItem={handleAddItem}
                     removeItem={handleRemoveItem}
-                  ></ItemField>
+                  />
                 );
               })}
               {provided.placeholder}
