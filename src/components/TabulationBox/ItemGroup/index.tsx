@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Box } from "@chakra-ui/react";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { v4 as uuidV4 } from "uuid";
 
 import { ItemField } from "../ItemField";
@@ -19,16 +18,6 @@ export function ItemGroup({ items, contentIndex }: ItemGroupProps) {
 
   const { removeItemInContent, addItemInContent, saveAllItems, saveNewItems } =
     useEditJSONContext();
-
-  function handleOnDragEnd(result) {
-    const newItemsArray = Array.from(itemArray);
-    const [reorderedItem] = newItemsArray.splice(result.source.index, 1);
-    console.log(reorderedItem);
-    newItemsArray.splice(result.destination.index, 0, reorderedItem);
-
-    setItems([...newItemsArray]);
-    saveAllItems(contentIndex, newItemsArray);
-  }
 
   function handleAddItem(index: number) {
     const item = {
@@ -62,28 +51,19 @@ export function ItemGroup({ items, contentIndex }: ItemGroupProps) {
 
   return (
     <Box flexDirection="row" width={["50%", "70%"]}>
-      <DragDropContext onDragEnd={handleOnDragEnd}>
-        <Droppable droppableId="items">
-          {(provided) => (
-            <Box {...provided.droppableProps} ref={provided.innerRef}>
-              {itemArray.map((item: Item, index: number) => {
-                return (
-                  <ItemField
-                    key={item.id}
-                    item={item}
-                    contentIndex={contentIndex}
-                    itemIndex={index}
-                    changeItem={handleChangeItem}
-                    addItem={handleAddItem}
-                    removeItem={handleRemoveItem}
-                  />
-                );
-              })}
-              {provided.placeholder}
-            </Box>
-          )}
-        </Droppable>
-      </DragDropContext>
+      {itemArray.map((item: Item, index: number) => {
+        return (
+          <ItemField
+            key={item.id}
+            item={item}
+            contentIndex={contentIndex}
+            itemIndex={index}
+            changeItem={handleChangeItem}
+            addItem={handleAddItem}
+            removeItem={handleRemoveItem}
+          />
+        );
+      })}
     </Box>
   );
 }
