@@ -20,9 +20,11 @@ interface ModalProps {
 }
 
 export function ModalImport({ isOpen, onClose }: ModalProps) {
-  const theme = StyleHook();
-  const { setarJson } = useImportContext();
   const [contentJson, setContentJson] = useState([]);
+
+  const theme = StyleHook();
+
+  const { setJson } = useImportContext();
 
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.map((file) => {
@@ -37,8 +39,8 @@ export function ModalImport({ isOpen, onClose }: ModalProps) {
   }, []);
 
   useEffect(() => {
-    setarJson(contentJson);
-  }, [contentJson]);
+    setJson(contentJson);
+  }, [contentJson, setJson]);
 
   return (
     <ChakraProvider theme={theme}>

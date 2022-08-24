@@ -6,7 +6,7 @@ interface ImportContextProviderProps {
 
 type ImportDrawerContextData = {
   fileJson: Array<any>;
-  setarJson: (contentJson: any) => void;
+  setJson: (contentJson: any) => void;
 };
 
 const ImportContext = createContext({} as ImportDrawerContextData);
@@ -14,12 +14,12 @@ const ImportContext = createContext({} as ImportDrawerContextData);
 export function ImportProvider({ children }: ImportContextProviderProps) {
   const [fileJson, setFileJson] = useState([]);
 
-  function setarJson(contentJson: any) {
+  function setJson(contentJson: any) {
     setFileJson([...contentJson]);
   }
 
   return (
-    <ImportContext.Provider value={{ fileJson, setarJson }}>
+    <ImportContext.Provider value={{ fileJson, setJson }}>
       {children}
     </ImportContext.Provider>
   );
