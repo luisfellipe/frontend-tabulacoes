@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useState
+} from "react";
 
 interface ImportContextProviderProps {
   children: ReactNode;
@@ -14,9 +20,12 @@ const ImportContext = createContext({} as ImportDrawerContextData);
 export function ImportProvider({ children }: ImportContextProviderProps) {
   const [fileJson, setFileJson] = useState([]);
 
-  function setJson(contentJson: any) {
-    setFileJson([...contentJson]);
-  }
+  const setJson = useCallback(
+    (contentJson: any) => {
+      setFileJson([...contentJson]);
+    },
+    [setFileJson]
+  );
 
   return (
     <ImportContext.Provider value={{ fileJson, setJson }}>
