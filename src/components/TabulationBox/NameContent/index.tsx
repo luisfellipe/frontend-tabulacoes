@@ -9,11 +9,9 @@ export function NameContent() {
   const [isHidden, setIsHidden] = useState(true);
 
   const { fileJson } = useImportContext();
-  const { saveName } = useEditJSONContext();
+  const { saveName, getName } = useEditJSONContext();
 
-  const jsonFormatted = JSON.parse(fileJson[0]);
-
-  const tabulationName = jsonFormatted[0].name || "NOME DA TABULAÇÃO";
+  const tabulationName = getName() || "NOME DA TABULAÇÃO";
 
   function handleChangeInputVisibility() {
     setIsHidden(!isHidden);
