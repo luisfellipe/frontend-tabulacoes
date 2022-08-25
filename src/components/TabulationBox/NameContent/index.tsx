@@ -2,14 +2,18 @@ import { ChangeEvent, useState } from "react";
 import { Box, Divider, Flex, Icon, Input, Text } from "@chakra-ui/react";
 import { RiEdit2Fill } from "react-icons/ri";
 
+import { useImportContext } from "../../../contexts/ImportContext";
 import { useEditJSONContext } from "../../../contexts/EditJSONContext";
 
 export function NameContent() {
   const [isHidden, setIsHidden] = useState(true);
 
-  const { saveName, getName } = useEditJSONContext();
+  const { fileJson } = useImportContext();
+  const { saveName } = useEditJSONContext();
 
-  const tabulationName = getName() ? getName() : "NOME DA TABULAÇÃO";
+  const jsonFormatted = JSON.parse(fileJson[0]);
+
+  const tabulationName = jsonFormatted[0].name || "NOME DA TABULAÇÃO";
 
   function handleChangeInputVisibility() {
     setIsHidden(!isHidden);
@@ -19,8 +23,6 @@ export function NameContent() {
     const newTabulationName = event.target.value.trim();
     saveName(newTabulationName);
   }
-
-  console.log(getName());
 
   return (
     <Box>
