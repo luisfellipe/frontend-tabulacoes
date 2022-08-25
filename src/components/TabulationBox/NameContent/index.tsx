@@ -2,13 +2,11 @@ import { ChangeEvent, useState } from "react";
 import { Box, Divider, Flex, Icon, Input, Text } from "@chakra-ui/react";
 import { RiEdit2Fill } from "react-icons/ri";
 
-import { useImportContext } from "../../../contexts/ImportContext";
 import { useEditJSONContext } from "../../../contexts/EditJSONContext";
 
 export function NameContent() {
   const [isHidden, setIsHidden] = useState(true);
 
-  const { fileJson } = useImportContext();
   const { saveName, getName } = useEditJSONContext();
 
   const tabulationName = getName() || "NOME DA TABULAÇÃO";
@@ -61,8 +59,10 @@ export function NameContent() {
         bg="colorBackground.typeAndItem"
         autoComplete="off"
         display={isHidden ? "none" : "block"}
-        onChange={handleChangeTabulationName}
-        onBlur={() => setIsHidden(true)}
+        onBlur={(e) => {
+          handleChangeTabulationName(e);
+          setIsHidden(true);
+        }}
       />
 
       <Divider />
