@@ -5,7 +5,7 @@ import {
   JSONFile,
   Skill
 } from "../components/TabulationBox/Types";
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidV4 } from "uuid";
 
 interface ImportContextProviderProps {
   children: ReactNode;
@@ -14,7 +14,7 @@ interface ImportContextProviderProps {
 type EditJsonContextData = {
   contents: Array<any>;
   saveName: (name: string) => void;
-  getNome: () => string;
+  getName: () => string;
   saveContents: (contents: Content[]) => void;
   saveNewItems: (item: Item, contentIndex: number, index: number) => void;
   saveAllItems: (index: number, newItens: Item[]) => void;
@@ -62,12 +62,12 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
     }
     const content: Content = {
       item: "",
-      id: String(uuidv4()),
+      id: String(uuidV4()),
       index,
       subgroup: [
         {
           item: "",
-          id: String(uuidv4())
+          id: String(uuidV4())
         } as Item
       ]
     };
@@ -112,7 +112,7 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
     setName(name);
   }
 
-  function getNome() {
+  function getName() {
     return name;
   }
 
@@ -155,7 +155,7 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
         saveSkills,
         getSkills,
         saveName,
-        getNome,
+        getName,
         normalizeName
       }}
     >
