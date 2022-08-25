@@ -2,5 +2,5 @@ import axios from "axios";
 
 export const api = axios.create({
   //baseURL: process.env.NEXT_PUBLIC_BASE_URL,
-  baseURL: "http://localhost:3000/api"
+  baseURL: "https://wphe0t0xrb.execute-api.sa-east-1.amazonaws.com/dev/"
 });
