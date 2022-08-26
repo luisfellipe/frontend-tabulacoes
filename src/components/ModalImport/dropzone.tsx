@@ -8,10 +8,10 @@ import {
   ListItem
 } from "@chakra-ui/react";
 
-import { StyleHook } from "../../hooks/StyleHook";
+import { useStyle } from "../../hooks/useStyle";
 
 export default function Dropzone({ onDrop }) {
-  const theme = StyleHook();
+  const theme = useStyle();
 
   const { acceptedFiles, getRootProps, getInputProps, isDragActive } =
     useDropzone({

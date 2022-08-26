@@ -11,7 +11,7 @@ import {
 
 import Dropzone from "./dropzone";
 
-import { StyleHook } from "../../hooks/StyleHook";
+import { useStyle } from "../../hooks/useStyle";
 import { useImportContext } from "../../contexts/ImportContext";
 
 interface ModalProps {
@@ -22,7 +22,7 @@ interface ModalProps {
 export function ModalImport({ isOpen, onClose }: ModalProps) {
   const [contentJson, setContentJson] = useState([]);
 
-  const theme = StyleHook();
+  const theme = useStyle();
 
   const { setJson } = useImportContext();
 

@@ -7,6 +7,7 @@ export const api = axios.create({
   // baseURL: "https://pokeapi.co/api/v2/pokemon/", // API para teste
   headers: {
     // authenticator: '5D9BDEA8C1C7525821999C3898F93',
-    "Access-Control-Allow-Origin": "*"
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
   } as AxiosRequestHeaders
 });

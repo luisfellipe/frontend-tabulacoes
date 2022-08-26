@@ -2,10 +2,10 @@ import { ChakraProvider, Flex } from "@chakra-ui/react";
 
 import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
-import { StyleHook } from "../../hooks/StyleHook";
+import { useStyle } from "../../hooks/useStyle";
 
 export default function Users() {
-  const theme = StyleHook();
+  const theme = useStyle();
 
   return (
     <ChakraProvider theme={theme}>
@@ -16,9 +16,9 @@ export default function Users() {
           <Sidebar />
 
           <h1>Usuários</h1>
-          
+
         </Flex>
-      </Flex> 
+      </Flex>
     </ChakraProvider>
   );
 }

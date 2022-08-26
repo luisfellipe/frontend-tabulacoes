@@ -7,7 +7,7 @@ import * as yup from "yup";
 import { Input } from "../components/Form/Input";
 import { Logo } from "../components/Header/Logo";
 
-import { StyleHook } from "../hooks/StyleHook";
+import { useStyle } from "../hooks/useStyle";
 
 type SignInFormData = {
   email: string;
@@ -22,7 +22,7 @@ const signInFormSchema = yup.object().shape({
 
 export default function SignIn() {
   const router = useRouter();
-  const theme = StyleHook();
+  const theme = useStyle();
 
   const { register, handleSubmit, formState } = useForm<SignInFormData>({
     resolver: yupResolver(signInFormSchema)

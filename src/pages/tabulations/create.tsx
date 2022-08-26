@@ -2,11 +2,11 @@ import { Box, ChakraProvider, Flex } from "@chakra-ui/react";
 
 import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
-import { StyleHook } from "../../hooks/StyleHook";
+import { useStyle } from "../../hooks/useStyle";
 import { TabulationBox } from "../../components/TabulationBox";
 
 export default function Create() {
-  const theme = StyleHook();
+  const theme = useStyle();
   return (
     <ChakraProvider theme={theme}>
       <Box>

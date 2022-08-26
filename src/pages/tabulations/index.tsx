@@ -27,10 +27,10 @@ import { Sidebar } from "../../components/Sidebar";
 import { api } from "../../services/api";
 import { useTabulations } from "../../hooks/useTabulations";
 import { queryClient } from "../../services/queryClient";
-import { StyleHook } from "../../hooks/StyleHook";
+import { useStyle } from "../../hooks/useStyle";
 
 export default function Tabulations() {
-  const theme = StyleHook();
+  const theme = useStyle();
   const [page, setPage] = useState(1);
   // 'data' vai receber o tabulations
   const { data, isLoading, isFetching, error } = useTabulations(page);

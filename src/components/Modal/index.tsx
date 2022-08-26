@@ -10,7 +10,7 @@ import {
   ChakraProvider,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { StyleHook } from "../../hooks/StyleHook";
+import { useStyle } from "../../hooks/useStyle";
 import { listInstances } from "./listInstances";
 
 
@@ -20,7 +20,7 @@ interface ModalProps {
 }
 
 export function ModalComponent({ isOpen, onClose }: ModalProps) {
-  const theme = StyleHook();
+  const theme = useStyle();
   const [instances, setInstances] = useState<String[]>(listInstances);
 
   function handleSearch(e: String) {
