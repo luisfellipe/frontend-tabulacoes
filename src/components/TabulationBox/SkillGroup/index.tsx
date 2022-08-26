@@ -6,6 +6,7 @@ import { SkillItem } from "../SkillItem";
 import { useEditJSONContext } from "../../../contexts/EditJSONContext";
 
 import { Skill } from "../Types";
+import { KeyboardEventHandler } from "react";
 
 export function SkillGroup() {
   const { saveSkills, getSkills } = useEditJSONContext();
@@ -92,13 +93,13 @@ export function SkillGroup() {
           color="colorText.textTable"
           display="none"
           autoComplete="off"
-          onBlur={(event) => {
+          onBlur={(event: any) => {
             const input = event.target;
             input.style.display = "none";
             input.value = "";
           }}
-          onKeyDown={(event) => {
-            let input = String(event.target.value).trim();
+          onKeyDown={(event: any) => {
+            let input = event.target.value;
             if (event.key === "Enter") {
               handleAddSkill(input);
               event.target.value = "";

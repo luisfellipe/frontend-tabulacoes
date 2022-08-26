@@ -14,10 +14,9 @@ import {
   Th,
   Thead,
   Tr,
-  useBreakpoint,
   useBreakpointValue
 } from "@chakra-ui/react";
-// import { GetServerSideProps } from "next";
+
 import NextLink from "next/link";
 
 import { useState } from "react";
@@ -28,12 +27,12 @@ import { Sidebar } from "../../components/Sidebar";
 import { api } from "../../services/api";
 import { useTabulations } from "../../hooks/useTabulations";
 import { queryClient } from "../../services/queryClient";
-import { StyleHook } from "../../hooks/StyleHook";
+import { useStyle } from "../../hooks/useStyle";
 
 export default function Tabulations() {
-  const theme = StyleHook();
+  const theme = useStyle();
   const [page, setPage] = useState(1);
-  // data vai receber o tabulations
+  // 'data' vai receber o tabulations
   const { data, isLoading, isFetching, error } = useTabulations(page);
 
   const isWideVersion = useBreakpointValue({
@@ -42,11 +41,15 @@ export default function Tabulations() {
     xl: false
   });
 
-  async function handlePrefetchTabulation(tabulationId: string) {
+  async function handlePrefetchTabulation() {
     await queryClient.prefetchQuery(
-      ["tabulations", tabulationId],
+      ["tabulations"],
       async () => {
-        const response = await api.get(`/tabulations/${tabulationId}`);
+        const response = await api.get(`/listTabulation`, {
+          params: {
+            clientName: 'ailos',
+          },
+        });
 
         return response.data;
       },
@@ -180,7 +183,7 @@ export default function Tabulations() {
                   <Tbody>
                     {data?.tabulations.map((tabulation, i) => {
                       return (
-                        <Tr key={tabulation.id}>
+                        <Tr key={tabulation.fileName}>
                           {/* <Td px={["4", "4", "6"]}>
                             <Checkbox colorScheme="pink" />
                           </Td> */}
@@ -189,40 +192,19 @@ export default function Tabulations() {
                               <Link
                                 color="colorText.tabulationTitle"
                                 onMouseEnter={() =>
-                                  handlePrefetchTabulation(tabulation.id)
+                                  handlePrefetchTabulation()
                                 }
                               >
-                                <Text fontWeight="bold">{tabulation.name}</Text>
+                                <Text fontWeight="bold">{tabulation.fileName}</Text>
                               </Link>
                               <Text
                                 fontSize="sm"
                                 color="colorText.tabulationLink"
                               >
-                                {tabulation.link_json}
+                                {tabulation.publicUrl}
                               </Text>
                             </Box>
                           </Td>
-                          {isWideVersion && (
-                            <Td color="colorText.textTable">
-                              {tabulation.created_at}
-                            </Td>
-                          )}
-                          {isWideVersion && (
-                            <Td>
-                              <Button
-                                as="a"
-                                size="sm"
-                                fontSize="small"
-                                colorScheme="purple"
-                                cursor="pointer"
-                                leftIcon={
-                                  <Icon as={RiPencilLine} fontSize="16" />
-                                }
-                              >
-                                Editar
-                              </Button>
-                            </Td>
-                          )}
                         </Tr>
                       );
                     })}

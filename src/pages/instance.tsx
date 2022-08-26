@@ -3,10 +3,10 @@ import { ChakraProvider, Flex } from "@chakra-ui/react";
 import { Header } from "../components/Header";
 import { Sidebar } from "../components/Sidebar";
 
-import { StyleHook } from "../hooks/StyleHook";
+import { useStyle } from "../hooks/useStyle";
 
 export default function Instance() {
-  const theme = StyleHook();
+  const theme = useStyle();
 
   return (
     <ChakraProvider theme={theme}>

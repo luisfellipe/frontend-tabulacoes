@@ -9,7 +9,7 @@ export function NameContent() {
 
   const { saveName, getName } = useEditJSONContext();
 
-  const tabulationName = getName() ? getName() : "NOME DA TABULAÇÃO";
+  const tabulationName = getName() || "NOME DA TABULAÇÃO";
 
   function handleChangeInputVisibility() {
     setIsHidden(!isHidden);
@@ -19,8 +19,6 @@ export function NameContent() {
     const newTabulationName = event.target.value.trim();
     saveName(newTabulationName);
   }
-
-  console.log(getName());
 
   return (
     <Box>
@@ -61,8 +59,10 @@ export function NameContent() {
         bg="colorBackground.typeAndItem"
         autoComplete="off"
         display={isHidden ? "none" : "block"}
-        onChange={handleChangeTabulationName}
-        onBlur={() => setIsHidden(true)}
+        onBlur={(e) => {
+          handleChangeTabulationName(e);
+          setIsHidden(true);
+        }}
       />
 
       <Divider />

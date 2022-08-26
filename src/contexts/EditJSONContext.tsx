@@ -43,6 +43,7 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
   function saveNewItems(item: Item, contentIndex: number, index: number) {
     contents[contentIndex].subgroup[index] = item;
   }
+
   function saveAllItems(index, newItens) {
     contents[index].subgroup = newItens;
   }
