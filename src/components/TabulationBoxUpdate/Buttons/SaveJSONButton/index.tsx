@@ -29,7 +29,7 @@ export function SaveJSONButton() {
       progress: undefined,
     });
 
-    router.push("/tabulations")
+    router.push("/tabulations");
   }
 
   return (
