@@ -128,7 +128,7 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
       {
         name: name,
         skills: skills.map((skill: Skill) => skill.name),
-        contents: contents.map((content: Content) => {
+        content: contents.map((content: Content) => {
           return {
             item: content.item,
             subgroup: content.subgroup.map((item: Item) => item.item)
