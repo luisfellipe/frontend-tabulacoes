@@ -49,9 +49,6 @@ export default function Tabulations() {
           params: {
             clientName: 'ailos',
           },
-          headers: {
-            Authorization: '5D9BDEA8C1C7525821999C3898F93',
-          }
         });
 
         return response.data;

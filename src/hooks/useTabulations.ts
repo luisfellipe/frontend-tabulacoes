@@ -17,11 +17,7 @@ export async function getTabulations(page: number): Promise<GetTabulationsRespon
     params: {
       clientName: 'ailos',
     },
-    headers: {
-      Authorization: '5D9BDEA8C1C7525821999C3898F93',
-    }
   });
-
 
   let totalCount = Number(headers['x-total-count'])
 
