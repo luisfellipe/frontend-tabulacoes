@@ -26,6 +26,7 @@ export const light = extendTheme({
       section: "#797D9A",
       option: "#171f35",
       textModal: "#171f35",
+      textButton: "#171f35",
       textSearchModal: "#171f35",
       closeModal: "#171f35",
       selectInstance: "#171f35",

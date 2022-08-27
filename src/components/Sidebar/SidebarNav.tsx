@@ -1,10 +1,10 @@
 import { Button, Stack, useDisclosure } from "@chakra-ui/react";
 import {
-  RiContactsLine,
-  RiDashboardLine,
-  RiInputMethodLine,
+  // RiContactsLine,
+  // RiDashboardLine,
+  RiInputMethodLine
 } from "react-icons/ri";
-import { ModalComponent } from "../Modal";
+import { ModalComponent } from "../Modal/ModalInstances";
 import { NavLink } from "./NavLink";
 import { NavSection } from "./NavSection";
 
@@ -29,7 +29,7 @@ export function SidebarNav() {
           ml="16px"
           _hover={{
             textDecoration: "none",
-            color: "colorText.linkHover",
+            color: "colorText.linkHover"
           }}
         >
           Tabulações

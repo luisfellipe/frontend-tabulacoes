@@ -3,14 +3,13 @@ import {
   Icon,
   IconButton,
   Text,
-  useBreakpointValue,
+  useBreakpointValue
 } from "@chakra-ui/react";
 import { RiMenuLine } from "react-icons/ri";
 import { useSidebarDrawer } from "../../contexts/SidebarDrawerContext";
 import { Logo } from "./Logo";
 import { Darkmode } from "./Darkmode";
 import { Profile } from "./Profile";
-import { SearchBox } from "./SearchBox";
 
 export function Header() {
   const { onOpen } = useSidebarDrawer();
@@ -18,7 +17,7 @@ export function Header() {
   const isWideVersion = useBreakpointValue({
     base: false,
     md: false,
-    lg: true,
+    lg: true
   });
 
   return (
@@ -44,7 +43,6 @@ export function Header() {
       )}
       <Logo />
 
-      {/* { isWideVersion && (<SearchBox />)} */}
       {isWideVersion && (
         <Text fontSize="24" fontWeight="bold" color="colorText.headerText">
           Instância - Ailos

@@ -1,6 +1,6 @@
 import { Box, Button, Icon, useDisclosure } from "@chakra-ui/react";
 import { RiDownload2Line } from "react-icons/ri";
-import { ModalImport } from "../../../ModalImport";
+import { ModalImport } from "../../../Modal/ModalImport";
 
 export function ImportButton() {
   const { isOpen, onOpen, onClose } = useDisclosure();

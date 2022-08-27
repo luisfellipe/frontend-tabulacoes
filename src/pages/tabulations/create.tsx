@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Box, ChakraProvider, Flex } from "@chakra-ui/react";
 
 import { Header } from "../../components/Header";
@@ -17,7 +18,7 @@ export default function Create() {
 
   useEffect(() => {
     handleCleanStates();
-  }, [])
+  }, []);
 
   return (
     <ChakraProvider theme={theme}>

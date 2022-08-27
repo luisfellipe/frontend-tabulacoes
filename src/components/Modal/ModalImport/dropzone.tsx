@@ -8,7 +8,7 @@ import {
   ListItem
 } from "@chakra-ui/react";
 
-import { useStyle } from "../../hooks/useStyle";
+import { useStyle } from "../../../hooks/useStyle";
 
 export default function Dropzone({ onDrop }) {
   const theme = useStyle();

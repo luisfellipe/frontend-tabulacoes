@@ -4,20 +4,19 @@ import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
 import { TabulationBoxUpdated } from "../../components/TabulationBoxUpdate";
 import { useStyle } from "../../hooks/useStyle";
-import { api } from '../../services/api';
+import { api } from "../../services/api";
 
 interface TabulationProps {
   tabulationSelected: {
     fileName: string;
     publicUrl: string;
-  }
-};
+  };
+}
 
 type Tabulation = {
   fileName: string;
   publicUrl: string;
 };
-
 
 export default function Tabulations({ tabulationSelected }: TabulationProps) {
   const theme = useStyle();
@@ -32,11 +31,13 @@ export default function Tabulations({ tabulationSelected }: TabulationProps) {
         </Flex>
       </Box>
     </ChakraProvider>
-
-  )
+  );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  params
+}) => {
   const { slug } = params;
   const { data } = await api.get("/listTabulation", {
     params: {
@@ -44,11 +45,13 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
     }
   });
 
-  const tabulationSelected = data.find((tabulation: Tabulation) => tabulation.fileName === slug);
+  const tabulationSelected = data.find(
+    (tabulation: Tabulation) => tabulation.fileName === slug
+  );
 
   return {
     props: {
       tabulationSelected
     }
-  }
-}
+  };
+};

@@ -42,7 +42,7 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
   const [name, setName] = useState<string>("");
 
   function cleanStatesContext() {
-    setName('');
+    setName("");
     setContents([]);
     setSkills([]);
   }

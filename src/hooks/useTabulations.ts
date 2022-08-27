@@ -14,13 +14,13 @@ type GetTabulationsResponse = {
 export async function getTabulations(
   page: number
 ): Promise<GetTabulationsResponse> {
-  const { data, headers } = await api.get("/listTabulation", {
+  const { data } = await api.get("/listTabulation", {
     params: {
       clientName: "ailos"
     }
   });
 
-  let totalCount = Number(headers["x-total-count"]);
+  let totalCount = data.length;
 
   const tabulations = data.map((tabulation: Tabulation) => {
     return {
