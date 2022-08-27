@@ -22,12 +22,28 @@ export async function getTabulations(
 
   let totalCount = data.length;
 
-  const tabulations = data.map((tabulation: Tabulation) => {
+  const allTabulations = data.map((tabulation: Tabulation) => {
     return {
       fileName: tabulation.fileName,
       publicUrl: tabulation.publicUrl
     };
   });
+
+  const tabulations = [];
+  const start = (page * 10) - 10;
+  const end = (page * 10);
+
+  for (let i = start; i < end; i++) {
+    if (allTabulations[i]) {
+      tabulations.push(allTabulations[i]);
+    } else {
+      break;
+    }
+
+    if (tabulations.length === 10) {
+      break;
+    }
+  }
 
   return {
     tabulations,

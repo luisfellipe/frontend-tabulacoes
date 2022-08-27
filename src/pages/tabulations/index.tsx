@@ -30,6 +30,8 @@ import { queryClient } from "../../services/queryClient";
 import { useStyle } from "../../hooks/useStyle";
 import { ToastContainer } from "react-toastify";
 
+import "react-toastify/dist/ReactToastify.css";
+
 export default function Tabulations() {
   const theme = useStyle();
   const [page, setPage] = useState(1);
@@ -44,7 +46,7 @@ export default function Tabulations() {
 
   async function handlePrefetchTabulation() {
     await queryClient.prefetchQuery(
-      ["tabulations"],
+      ["tabulations", page],
       async () => {
         const response = await api.get(`/listTabulation`, {
           params: {
@@ -112,13 +114,6 @@ export default function Tabulations() {
                 <Table colorScheme="whiteAlpha">
                   <Thead>
                     <Tr>
-                      {/* <Th
-                        px={["4", "4", "6"]}
-                        color="gray.300"
-                        width="8"
-                      >
-                        <Checkbox colorScheme="pink" />
-                      </Th> */}
                       <Th>
                         (Dados Fictícios) Tabulações - Falha ao obter os dados
                         das tabulações
@@ -131,9 +126,6 @@ export default function Tabulations() {
                   </Thead>
                   <Tbody>
                     <Tr>
-                      {/* <Td px={["4", "4", "6"]}>
-                        <Checkbox colorScheme="pink" />
-                      </Td> */}
                       <Td>
                         <Box>
                           <Link color="purple.400">
@@ -185,9 +177,6 @@ export default function Tabulations() {
                     {data?.tabulations.map((tabulation, i) => {
                       return (
                         <Tr key={tabulation.fileName}>
-                          {/* <Td px={["4", "4", "6"]}>
-                            <Checkbox colorScheme="pink" />
-                          </Td> */}
                           <Td>
                             <Box>
                               <Link

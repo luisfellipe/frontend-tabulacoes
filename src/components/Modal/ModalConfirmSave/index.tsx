@@ -16,8 +16,6 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { api } from "../../../services/api";
 
-import "react-toastify/dist/ReactToastify.css";
-
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
