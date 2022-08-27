@@ -4,11 +4,9 @@ import { SidebarDrawerProvider } from "../contexts/SidebarDrawerContext";
 import { DarkmodeProvider } from "../contexts/DarkmodeContext";
 import { dark } from "../styles";
 import { QueryClientProvider } from "react-query";
-// import { ReactQueryDevtools } from 'react-query/devtools';
 import { queryClient } from "../services/queryClient";
 import { ImportProvider } from "../contexts/ImportContext";
 import { EditJSONProvider } from "../contexts/EditJSONContext";
-// import { AuthProvider } from '../contexts/AuthContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

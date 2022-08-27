@@ -767,11 +767,6 @@
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@miragejs/pretender-node-polyfill@^0.1.0":
-  version "0.1.2"
-  resolved "https://registry.npmjs.org/@miragejs/pretender-node-polyfill/-/pretender-node-polyfill-0.1.2.tgz"
-  integrity sha512-M/BexG/p05C5lFfMunxo/QcgIJnMT2vDVCd00wNqK2ImZONIlEETZwWJu1QtLxtmYlSHlCFl3JNzp0tLe7OJ5g==
-
 "@next/env@12.1.6":
   version "12.1.6"
   resolved "https://registry.npmjs.org/@next/env/-/env-12.1.6.tgz"
@@ -1249,6 +1244,11 @@ chalk@^4.0.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
+clsx@^1.1.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.2.1.tgz#0ddc4a20a549b59c93a4116bb26f5294ca17dc12"
+  integrity sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==
+
 color-convert@^1.9.0:
   version "1.9.3"
   resolved "https://registry.npmjs.org/color-convert/-/color-convert-1.9.3.tgz"
@@ -1694,16 +1694,6 @@ esutils@^2.0.2:
   resolved "https://registry.npmjs.org/esutils/-/esutils-2.0.3.tgz"
   integrity sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==
 
-fake-xml-http-request@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.npmjs.org/fake-xml-http-request/-/fake-xml-http-request-2.1.2.tgz"
-  integrity sha512-HaFMBi7r+oEC9iJNpc3bvcW7Z7iLmM26hPDmlb0mFwyANSsOQAtJxbdWsXITKOzZUyMYK0zYCv3h5yDj9TsiXg==
-
-faker@5.5.3:
-  version "5.5.3"
-  resolved "https://registry.npmjs.org/faker/-/faker-5.5.3.tgz"
-  integrity sha512-wLTv2a28wjUyWkbnX7u/ABZBkUkIF2fCd73V6P2oFqEGEktDfzWx4UxrSqtPRw0xPRAcjeAOIiJWqZm3pP4u3g==
-
 fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   version "3.1.3"
   resolved "https://registry.npmjs.org/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz"
@@ -2011,11 +2001,6 @@ imurmurhash@^0.1.4:
   resolved "https://registry.npmjs.org/imurmurhash/-/imurmurhash-0.1.4.tgz"
   integrity sha1-khi5srkoojixPcT7a21XbyMUU+o=
 
-inflected@^2.0.4:
-  version "2.1.0"
-  resolved "https://registry.npmjs.org/inflected/-/inflected-2.1.0.tgz"
-  integrity sha512-hAEKNxvHf2Iq3H60oMBHkB4wl5jn3TPF3+fXek/sRwAB5gP9xWs4r7aweSF95f99HFoz69pnZTcu8f0SIHV18w==
-
 inflight@^1.0.4:
   version "1.0.6"
   resolved "https://registry.npmjs.org/inflight/-/inflight-1.0.6.tgz"
@@ -2244,96 +2229,6 @@ lodash-es@^4.17.21:
   resolved "https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.21.tgz"
   integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
 
-lodash.assign@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.npmjs.org/lodash.assign/-/lodash.assign-4.2.0.tgz"
-  integrity sha1-DZnzzNem0mHRm9rrkkUAXShYCOc=
-
-lodash.camelcase@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.npmjs.org/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz"
-  integrity sha1-soqmKIorn8ZRA1x3EfZathkDMaY=
-
-lodash.clonedeep@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.npmjs.org/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz"
-  integrity sha1-4j8/nE+Pvd6HJSnBBxhXoIblzO8=
-
-lodash.compact@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.npmjs.org/lodash.compact/-/lodash.compact-3.0.1.tgz"
-  integrity sha1-VAzjg3dFl1gHRx4WtKK6IeclbKU=
-
-lodash.find@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.npmjs.org/lodash.find/-/lodash.find-4.6.0.tgz"
-  integrity sha1-ywcE1Hq3F4n/oN6Ll92Sb7iLE7E=
-
-lodash.flatten@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.npmjs.org/lodash.flatten/-/lodash.flatten-4.4.0.tgz"
-  integrity sha1-8xwiIlqWMtK7+OSt2+8kCqdlph8=
-
-lodash.forin@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.npmjs.org/lodash.forin/-/lodash.forin-4.4.0.tgz"
-  integrity sha1-XT8grlZAEfvog4H32YlJyclRlzE=
-
-lodash.get@^4.4.2:
-  version "4.4.2"
-  resolved "https://registry.npmjs.org/lodash.get/-/lodash.get-4.4.2.tgz"
-  integrity sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=
-
-lodash.has@^4.5.2:
-  version "4.5.2"
-  resolved "https://registry.npmjs.org/lodash.has/-/lodash.has-4.5.2.tgz"
-  integrity sha1-0Z9NwQlQWMzL4rDN9O4P5Ko3yGI=
-
-lodash.invokemap@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.npmjs.org/lodash.invokemap/-/lodash.invokemap-4.6.0.tgz"
-  integrity sha1-F0jNpdiw74NpxOs+xUwh/rofLWI=
-
-lodash.isempty@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.npmjs.org/lodash.isempty/-/lodash.isempty-4.4.0.tgz"
-  integrity sha1-b4bL7di+TsmHvpqvM8loTbGzHn4=
-
-lodash.isequal@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.npmjs.org/lodash.isequal/-/lodash.isequal-4.5.0.tgz"
-  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
-
-lodash.isfunction@^3.0.9:
-  version "3.0.9"
-  resolved "https://registry.npmjs.org/lodash.isfunction/-/lodash.isfunction-3.0.9.tgz"
-  integrity sha512-AirXNj15uRIMMPihnkInB4i3NHeb4iBtNg9WRWuK2o31S+ePwwNmDPaTL3o7dTJ+VXNZim7rFs4rxN4YU1oUJw==
-
-lodash.isinteger@^4.0.4:
-  version "4.0.4"
-  resolved "https://registry.npmjs.org/lodash.isinteger/-/lodash.isinteger-4.0.4.tgz"
-  integrity sha1-YZwK89A/iwTDH1iChAt3sRzWg0M=
-
-lodash.isplainobject@^4.0.6:
-  version "4.0.6"
-  resolved "https://registry.npmjs.org/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz"
-  integrity sha1-fFJqUtibRcRcxpC4gWO+BJf1UMs=
-
-lodash.lowerfirst@^4.3.1:
-  version "4.3.1"
-  resolved "https://registry.npmjs.org/lodash.lowerfirst/-/lodash.lowerfirst-4.3.1.tgz"
-  integrity sha1-3jx7EuAsZSSgBZwvbLfFxSZVoT0=
-
-lodash.map@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.npmjs.org/lodash.map/-/lodash.map-4.6.0.tgz"
-  integrity sha1-dx7Hg540c9nEzeKLGTlMNWL09tM=
-
-lodash.mapvalues@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.npmjs.org/lodash.mapvalues/-/lodash.mapvalues-4.6.0.tgz"
-  integrity sha1-G6+lAF3p3W9PJmaMMMo3IwzJaJw=
-
 lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz"
@@ -2343,31 +2238,6 @@ lodash.mergewith@4.6.2:
   version "4.6.2"
   resolved "https://registry.npmjs.org/lodash.mergewith/-/lodash.mergewith-4.6.2.tgz"
   integrity sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==
-
-lodash.pick@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.npmjs.org/lodash.pick/-/lodash.pick-4.4.0.tgz"
-  integrity sha1-UvBWEP/53tQiYRRB7R/BI6AwAbM=
-
-lodash.snakecase@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.npmjs.org/lodash.snakecase/-/lodash.snakecase-4.1.1.tgz"
-  integrity sha1-OdcUo1NXFHg3rv1ktdy7Fr7Nj40=
-
-lodash.uniq@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.npmjs.org/lodash.uniq/-/lodash.uniq-4.5.0.tgz"
-  integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
-
-lodash.uniqby@^4.7.0:
-  version "4.7.0"
-  resolved "https://registry.npmjs.org/lodash.uniqby/-/lodash.uniqby-4.7.0.tgz"
-  integrity sha1-2ZwHpmnp5tJOE2Lf4mbGdhavEwI=
-
-lodash.values@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.npmjs.org/lodash.values/-/lodash.values-4.3.0.tgz"
-  integrity sha1-o6bCsOvsxcLLocF+bmIP6BtT00c=
 
 lodash@^4.17.21:
   version "4.17.21"
@@ -2437,38 +2307,6 @@ minimist@^1.2.0, minimist@^1.2.6:
   version "1.2.6"
   resolved "https://registry.npmjs.org/minimist/-/minimist-1.2.6.tgz"
   integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
-
-miragejs@^0.1.44:
-  version "0.1.45"
-  resolved "https://registry.npmjs.org/miragejs/-/miragejs-0.1.45.tgz"
-  integrity sha512-NFdpFVXmBuQfErQh70yL44h4NhSZYHZVbg0qzrIxB5gRZYNZGH1sriduejbxpmKVdqCbmjPypaXvEgBgohqydQ==
-  dependencies:
-    "@miragejs/pretender-node-polyfill" "^0.1.0"
-    inflected "^2.0.4"
-    lodash.assign "^4.2.0"
-    lodash.camelcase "^4.3.0"
-    lodash.clonedeep "^4.5.0"
-    lodash.compact "^3.0.1"
-    lodash.find "^4.6.0"
-    lodash.flatten "^4.4.0"
-    lodash.forin "^4.4.0"
-    lodash.get "^4.4.2"
-    lodash.has "^4.5.2"
-    lodash.invokemap "^4.6.0"
-    lodash.isempty "^4.4.0"
-    lodash.isequal "^4.5.0"
-    lodash.isfunction "^3.0.9"
-    lodash.isinteger "^4.0.4"
-    lodash.isplainobject "^4.0.6"
-    lodash.lowerfirst "^4.3.1"
-    lodash.map "^4.6.0"
-    lodash.mapvalues "^4.6.0"
-    lodash.pick "^4.4.0"
-    lodash.snakecase "^4.1.1"
-    lodash.uniq "^4.5.0"
-    lodash.uniqby "^4.7.0"
-    lodash.values "^4.3.0"
-    pretender "^3.4.7"
 
 ms@2.0.0:
   version "2.0.0"
@@ -2704,14 +2542,6 @@ prelude-ls@^1.2.1:
   resolved "https://registry.npmjs.org/prelude-ls/-/prelude-ls-1.2.1.tgz"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
-pretender@^3.4.7:
-  version "3.4.7"
-  resolved "https://registry.npmjs.org/pretender/-/pretender-3.4.7.tgz"
-  integrity sha512-jkPAvt1BfRi0RKamweJdEcnjkeu7Es8yix3bJ+KgBC5VpG/Ln4JE3hYN6vJym4qprm8Xo5adhWpm3HCoft1dOw==
-  dependencies:
-    fake-xml-http-request "^2.1.2"
-    route-recognizer "^0.3.3"
-
 prop-types@^15.5.7, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
@@ -2837,6 +2667,13 @@ react-style-singleton@^2.1.0, react-style-singleton@^2.2.1:
     invariant "^2.2.4"
     tslib "^2.0.0"
 
+react-toastify@^9.0.8:
+  version "9.0.8"
+  resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-9.0.8.tgz#3876c89fc6211a29027b3075010b5ec39ebe4f7e"
+  integrity sha512-EwM+teWt49HSHx+67qI08yLAW1zAsBxCXLCsUfxHYv1W7/R3ZLhrqKalh7j+kjgPna1h5LQMSMwns4tB4ww2yQ==
+  dependencies:
+    clsx "^1.1.1"
+
 react@^17.0.2:
   version "17.0.2"
   resolved "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
@@ -2902,11 +2739,6 @@ rimraf@3.0.2, rimraf@^3.0.2:
   integrity sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==
   dependencies:
     glob "^7.1.3"
-
-route-recognizer@^0.3.3:
-  version "0.3.4"
-  resolved "https://registry.npmjs.org/route-recognizer/-/route-recognizer-0.3.4.tgz"
-  integrity sha512-2+MhsfPhvauN1O8KaXpXAOfR/fwe8dnUXVM+xw7yt40lJRfPVQxV6yryZm0cgRvAj5fMF/mdRZbL2ptwbs5i2g==
 
 run-parallel@^1.1.9:
   version "1.2.0"

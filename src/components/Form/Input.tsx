@@ -4,7 +4,7 @@ import {
   FormErrorMessage,
   FormLabel,
   Input as ChakraInput,
-  InputProps as ChakraInputProps,
+  InputProps as ChakraInputProps
 } from "@chakra-ui/react";
 import { forwardRef, ForwardRefRenderFunction } from "react";
 
@@ -30,11 +30,11 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
         variant="filled"
         size="lg"
         _hover={{
-          bgColor: "colorBackground.inputHover",
+          bgColor: "colorBackground.inputHover"
         }}
         _focus={{
           bgColor: "colorFocus.inputFocus",
-          color: "colorFocus.inputText",
+          color: "colorFocus.inputText"
         }}
         transition="0.2s"
         ref={ref}

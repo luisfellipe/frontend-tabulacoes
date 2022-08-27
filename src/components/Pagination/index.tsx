@@ -35,9 +35,9 @@ export function Pagination({
   const nextPages =
     currentPage < lastPage
       ? generatePagesArray(
-          currentPage,
-          Math.min(currentPage + siblingsCount, lastPage)
-        )
+        currentPage,
+        Math.min(currentPage + siblingsCount, lastPage)
+      )
       : [];
 
   return (
@@ -50,7 +50,7 @@ export function Pagination({
     >
       <Box color="colorText.textTable">
         <strong>0</strong> - <strong>10</strong> de
-        <strong>{totalCountOfRegisters}</strong>
+        <strong> {totalCountOfRegisters}</strong>
       </Box>
       <Stack direction="row" spacing="2">
         {currentPage > 1 + siblingsCount && (

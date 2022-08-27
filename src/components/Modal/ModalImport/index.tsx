@@ -11,8 +11,8 @@ import {
 
 import Dropzone from "./dropzone";
 
-import { useStyle } from "../../hooks/useStyle";
-import { useImportContext } from "../../contexts/ImportContext";
+import { useStyle } from "../../../hooks/useStyle";
+import { useImportContext } from "../../../contexts/ImportContext";
 
 interface ModalProps {
   isOpen: boolean;

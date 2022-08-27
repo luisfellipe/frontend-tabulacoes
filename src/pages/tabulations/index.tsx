@@ -28,6 +28,7 @@ import { api } from "../../services/api";
 import { useTabulations } from "../../hooks/useTabulations";
 import { queryClient } from "../../services/queryClient";
 import { useStyle } from "../../hooks/useStyle";
+import { ToastContainer } from "react-toastify";
 
 export default function Tabulations() {
   const theme = useStyle();
@@ -47,8 +48,8 @@ export default function Tabulations() {
       async () => {
         const response = await api.get(`/listTabulation`, {
           params: {
-            clientName: 'ailos',
-          },
+            clientName: "ailos"
+          }
         });
 
         return response.data;
@@ -191,11 +192,13 @@ export default function Tabulations() {
                             <Box>
                               <Link
                                 color="colorText.tabulationTitle"
-                                onMouseEnter={() =>
-                                  handlePrefetchTabulation()
-                                }
+                                onMouseEnter={() => handlePrefetchTabulation()}
+                                key={tabulation.publicUrl}
+                                href={`tabulations/${tabulation.fileName}`}
                               >
-                                <Text fontWeight="bold">{tabulation.fileName}</Text>
+                                <Text fontWeight="bold">
+                                  {tabulation.fileName}
+                                </Text>
                               </Link>
                               <Text
                                 fontSize="sm"
@@ -221,6 +224,7 @@ export default function Tabulations() {
           </Box>
         </Flex>
       </Box>
+      <ToastContainer />
     </ChakraProvider>
   );
 }

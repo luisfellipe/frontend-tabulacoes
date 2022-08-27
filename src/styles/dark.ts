@@ -25,6 +25,7 @@ export const dark = extendTheme({
       section: "#797D9A",
       option: "#171f35",
       textModal: "#E1E1E6",
+      textButton: "#171f35",
       textSearchModal: "#171f35",
       closeModal: "#E1E1E6",
       selectInstance: "#171f35",

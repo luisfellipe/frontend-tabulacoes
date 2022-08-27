@@ -16,7 +16,6 @@ export default function Users() {
           <Sidebar />
 
           <h1>Usuários</h1>
-
         </Flex>
       </Flex>
     </ChakraProvider>
