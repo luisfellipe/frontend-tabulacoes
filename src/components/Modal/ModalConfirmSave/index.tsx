@@ -7,7 +7,8 @@ import {
   ModalCloseButton,
   Input,
   Button,
-  ChakraProvider
+  ChakraProvider,
+  Divider
 } from "@chakra-ui/react";
 
 import { useEditJSONContext } from "../../../contexts/EditJSONContext";
@@ -26,9 +27,9 @@ export function ModalConfirmSave({ isOpen, onClose }: ModalProps) {
   const router = useRouter();
   const { getJSONFile } = useEditJSONContext();
 
-  async function saveJSON(save: Boolean) {
+  async function saveJSON() {
     const jsonFile = getJSONFile();
-
+    console.log(jsonFile);
     const { data } = await api.post("/updateTabulation", {
       bucket: "altuclients/tabulacao/json/ailos",
       json: jsonFile
@@ -57,15 +58,15 @@ export function ModalConfirmSave({ isOpen, onClose }: ModalProps) {
         <ModalContent
           background="colorBackground.modal"
           height="200px"
-          width="360px"
+          width="320px"
         >
           <ModalHeader
-            textAlign="center"
             color="colorText.titleModal"
             fontSize={["12px", "14px", "18px", "20px"]}
           >
-            Deseja salvar o JSON?
+            Tem certeza que deseja salvar o JSON?
           </ModalHeader>
+          <Divider />
           <ModalCloseButton color="colorText.closeModal" />
           <ModalBody
             gap="16px"
@@ -73,10 +74,10 @@ export function ModalConfirmSave({ isOpen, onClose }: ModalProps) {
             justifyContent="center"
             alignItems="center"
           >
-            <Button onClick={onClose} color="colorText.textButton">
+            <Button onClick={onClose} color="colorText.textButton" w="50%">
               NÃO
             </Button>
-            <Button onClick={() => saveJSON(true)} color="colorText.textButton">
+            <Button onClick={saveJSON} color="colorText.textButton" w="50%">
               SIM
             </Button>
           </ModalBody>

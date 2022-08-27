@@ -129,10 +129,10 @@ export default function Tabulations() {
                       <Td>
                         <Box>
                           <Link color="purple.400">
-                            <Text fontWeight="bold">Ivan Oliveira</Text>
+                            <Text fontWeight="bold">JsonFicticio.json</Text>
                           </Link>
                           <Text fontSize="sm" color="gray.300">
-                            ivanoliver131@gmail.com
+                            https://www.ficticio.com.br/JSON/aws
                           </Text>
                         </Box>
                       </Td>
@@ -192,6 +192,10 @@ export default function Tabulations() {
                               <Text
                                 fontSize="sm"
                                 color="colorText.tabulationLink"
+                                width={["250px", "490", "500px", "100%"]}
+                                textOverflow="ellipsis"
+                                whiteSpace="nowrap"
+                                overflow="hidden"
                               >
                                 {tabulation.publicUrl}
                               </Text>
