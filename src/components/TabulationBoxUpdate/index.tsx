@@ -39,12 +39,15 @@ export function TabulationBoxUpdated({ publicUrl }: any) {
       };
     });
 
-    const tmpSkills = data[0].skills.map((skillName) => {
+    let tmpSkills = [];
+    if (!!data[0].skills) {
+     tmpSkills =  data[0].skills.map((skillName) => {
       return {
         id: String(uuidV4()),
         name: skillName
       } as Skill;
     });
+    }
 
     saveContents(tmpContents);
     saveSkills([...tmpSkills]);
