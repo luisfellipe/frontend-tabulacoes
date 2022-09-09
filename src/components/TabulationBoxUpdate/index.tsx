@@ -22,7 +22,9 @@ export function TabulationBoxUpdated({ publicUrl }: any) {
       setIsLoading(false);
     }
 
-    let tmpContents = data[0].content.map((content: Content, index: number) => {
+    let tmpContents = [];
+    if (!!data[0].content) {
+      tmpContents = data[0].content.map((content: Content, index: number) => {
       let subgroup = content.subgroup.map((item: Item, index: number) => {
         return {
           id: String(uuidV4()),
@@ -38,6 +40,7 @@ export function TabulationBoxUpdated({ publicUrl }: any) {
         subgroup
       };
     });
+    }
 
     let tmpSkills = [];
     if (!!data[0].skills) {
