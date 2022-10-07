@@ -16,7 +16,7 @@ interface ItemGroupProps {
 export function ItemGroup({ items, contentIndex }: ItemGroupProps) {
   const [itemArray, setItems] = useState<Item[]>(Array.from(items));
 
-  const { removeItemInContent, addItemInContent, saveAllItems, saveNewItems } =
+  const { removeItemInContent, addItemInContent, saveNewItems } =
     useEditJSONContext();
 
   function handleAddItem(index: number) {

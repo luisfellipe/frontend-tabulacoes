@@ -8,23 +8,32 @@ import { queryClient } from "../services/queryClient";
 import { ImportProvider } from "../contexts/ImportContext";
 import { EditJSONProvider } from "../contexts/EditJSONContext";
 
-function MyApp({ Component, pageProps }: AppProps) {
+import { SessionProvider } from "next-auth/react"
+import Head from "next/head";
+
+function MyApp({ Component, pageProps: {session, ...pageProps} }: AppProps) {
+  console.log(session)
   return (
-    // <AuthProvider>
-    <QueryClientProvider client={queryClient}>
-      <DarkmodeProvider>
-        <ImportProvider>
-          <EditJSONProvider>
-            <ChakraProvider theme={dark}>
-              <SidebarDrawerProvider>
-                <Component {...pageProps} />
-              </SidebarDrawerProvider>
-            </ChakraProvider>
-          </EditJSONProvider>
-        </ImportProvider>
-      </DarkmodeProvider>
-    </QueryClientProvider>
-    // </AuthProvider>
+    // Provider by Okta
+    <SessionProvider session={session}>
+      <QueryClientProvider client={queryClient}>
+        <DarkmodeProvider>
+          <ImportProvider>
+            <EditJSONProvider>
+              <ChakraProvider theme={dark}>
+                <SidebarDrawerProvider>
+                  <Head>
+                    <title> Tabulações </title>
+                  </Head>
+                  <Component {...pageProps} />
+                </SidebarDrawerProvider>
+              </ChakraProvider>
+            </EditJSONProvider>
+          </ImportProvider>
+        </DarkmodeProvider>
+      </QueryClientProvider>
+    </SessionProvider >
+
   );
 }
 
