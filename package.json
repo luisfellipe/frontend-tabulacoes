@@ -13,7 +13,7 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@hookform/resolvers": "^2.8.8",
-    "@okta/okta-auth-js": "^6.8.0",
+    "@okta/okta-auth-js": "^6.9.0",
     "@types/faker": "5.5.3",
     "@types/react-beautiful-dnd": "^13.1.2",
     "@types/uuid": "^8.3.4",

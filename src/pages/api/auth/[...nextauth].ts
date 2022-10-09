@@ -1,20 +1,24 @@
-import {
-  OktaAuth,
-  OktaAuthOptions,
-  TokenManager,
-  AccessToken,
-  IDToken,
-  UserClaims,
-  TokenParams
-} from '@okta/okta-auth-js'
+import { NextApiRequest, NextApiResponse } from 'next';
+import NextAuth, { NextAuthOptions } from 'next-auth';
+import OktaProviders from 'next-auth/providers/okta';
 
-const config: OktaAuthOptions = {
-  issuer: process.env.OKTA_DOMAIN,
-  clientId: process.env.OKTA_CLIENT_ID,
-  clientSecret: process.env.OKTA_CLIENT_SECRET,
-  redirectUri:  window.location.origin + 'login/callback',
-  responseType: 'code',
-  pkce: false
-}
+console.log("OKTA_OIDC_CLIENTID", process.env.OKTA_CLIENTID)
+console.log("OKTA_DOMAIN", process.env.OKTA_DOMAIN)
+const authOptions = {
+  // Configure one or more authentication providers
+  providers: [
+    OktaProviders({
+      clientId: process.env.OKTA_CLIENTID,
+      clientSecret: process.env.OKTA_CLIENTSECRET,
+      issuer: process.env.OKTA_DOMAIN,
+    })
+    // ...add more providers here
+  ],
+  
+} as NextAuthOptions;
 
-var authClient = new OktaAuth(config);
+// eslint-disable-next-line import/no-anonymous-default-export
+export default async function auth(req: NextApiRequest, res: NextApiResponse<any>) {
+
+  return NextAuth(req, res, authOptions);
+};

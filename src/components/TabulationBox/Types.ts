@@ -19,7 +19,7 @@ export type Skill = {
 export type JSONFile = {
   name: string;
   skills: string[];
-  contents: [{
+  content: [{
     item: string,
     subgroup: string[]
   }]
