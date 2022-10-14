@@ -1,5 +1,6 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Flex, Button, Stack, Box, ChakraProvider } from "@chakra-ui/react";
+import { Flex, Button, Stack, Box } from "@chakra-ui/react";
+import { useSession, signIn } from "next-auth/react"
 import { useRouter } from "next/router";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -18,9 +19,9 @@ const signInFormSchema = yup.object().shape({
 });
 
 export function Login(props: any) {
-
-   const router = useRouter();
-
+  const router = useRouter();
+  const { data: session, status } = useSession();
+console.log("session", {session})
   const { register, handleSubmit, formState } = useForm<SignInFormData>({
     resolver: yupResolver(signInFormSchema)
   });
@@ -30,13 +31,11 @@ export function Login(props: any) {
   const { errors } = formState;
 
   const handleSignIn: SubmitHandler<SignInFormData> = async (values) => {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
     const {email, password } = values;
-    // console.log(values.email, values.password);
-
-    // await signIn(values);
-
-    router.push("/tabulations");
+    if (status === "authenticated") {
+      router.push("/tabulations");
+    }
+    signIn("okta");
   };
   return (
     <Box>

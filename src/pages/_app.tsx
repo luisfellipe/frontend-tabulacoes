@@ -7,8 +7,8 @@ import { QueryClientProvider } from "react-query";
 import { queryClient } from "../services/queryClient";
 import { ImportProvider } from "../contexts/ImportContext";
 import { EditJSONProvider } from "../contexts/EditJSONContext";
-
 import { SessionProvider } from 'next-auth/react'
+
 import Head from "next/head";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {

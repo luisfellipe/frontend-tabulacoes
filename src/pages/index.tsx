@@ -1,5 +1,5 @@
 import {  ChakraProvider } from "@chakra-ui/react";
-import { Login } from "../components/Login/Login";
+import { Login } from "../components/Login";
 import { useStyle } from "../hooks/useStyle";
 
 
