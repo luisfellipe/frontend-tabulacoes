@@ -6,19 +6,31 @@ const authOptions = {
   // Configure one or more authentication providers
   providers: [
     OktaProviders({
-      clientId: process.env.OKTA_CLIENTID,
-      clientSecret: process.env.OKTA_CLIENTSECRET,
-      issuer: process.env.OKTA_DOMAIN,
-      redirectUri: 'http://localhost:3000/tabulations',
+      clientId: process.env.OKTA_CLIENT_ID,
+      clientSecret: process.env.OKTA_CLIENT_SECRET,
+      issuer: process.env.OKTA_ISSUER,
+      redirectUri: "http://localhost:3000/",
     })
     // ...add more providers here
   ],
   secret: process.env.SESSION_SECRET,
+  debug: true,
+  callbacks: {
+    redirect(params) {
+        console.log(params)
+    },
+
+  },
+  events: {
+    signIn(params) {
+      console.log(params)
+    }
+  },
+  
 } as NextAuthOptions;
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async function auth(req: NextApiRequest, res: NextApiResponse<any>) {
-  console.log({res})
-  
+  console.log(process.env.NEXTAUTH_URL)
   return NextAuth(req, res, authOptions);
 };

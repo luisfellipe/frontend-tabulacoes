@@ -35,7 +35,7 @@ console.log("session", {session})
     if (status === "authenticated") {
       router.push("/tabulations");
     }
-    signIn("okta");
+    signIn("okta", {callbackUrl: "http://localhost:3000"});
   };
   return (
     <Box>
@@ -80,7 +80,7 @@ console.log("session", {session})
             }}
             isLoading={formState.isSubmitting}
           >
-            Entrar
+            Entrar com Okta
           </Button>
         </Flex>
       </Flex>
