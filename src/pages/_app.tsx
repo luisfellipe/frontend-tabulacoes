@@ -10,8 +10,16 @@ import { EditJSONProvider } from "../contexts/EditJSONContext";
 import { SessionProvider } from 'next-auth/react'
 
 import Head from "next/head";
-
-function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+import { Session } from "next-auth";
+import { NextComponentType, NextPageContext } from "next";
+interface CustomAppProps extends AppProps {
+  Component: NextComponentType<NextPageContext, any, any>;
+  pageProps: {
+    session: Session,
+    auth?: boolean
+  }
+}
+function MyApp({ Component, pageProps: { session, ...pageProps } }: CustomAppProps) {
   return (
     // Provider by Okta
     <SessionProvider session={session} basePath="/api/auth">
