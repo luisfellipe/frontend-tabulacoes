@@ -12,7 +12,8 @@ interface ImportContextProviderProps {
 }
 
 type EditJsonContextData = {
-  contents: Array<any>;
+  contents: Array<Content>;
+  skills: Array<Skill>;
   saveName: (name: string) => void;
   getName: () => string;
   saveContents: (contents: Content[]) => void;
@@ -89,6 +90,7 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
       contents[0] = content;
     }
     contents[content.index] = content;
+    setContents([...contents]);
   }
 
   function addItemInContent(
@@ -97,10 +99,12 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
     indexItem: number
   ) {
     contents[contentIndex].subgroup.splice(indexItem, 0, item);
+    setContents([...contents]);
   }
 
   function removeItemInContent(contentIndex: number, itemIndex: number) {
     contents[contentIndex].subgroup.splice(itemIndex, 1);
+    setContents([...contents]);
   }
 
   function saveSkills(skills: Skill[]) {
@@ -137,7 +141,7 @@ export function EditJSONProvider({ children }: ImportContextProviderProps) {
       } as JSONFile
     ];
   }
-
+  
   function normalizeName(name: string, size: number) {
     if (name.length > size) {
       name = name.slice(0, size).concat("...");

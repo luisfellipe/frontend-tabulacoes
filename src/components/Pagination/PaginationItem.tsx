@@ -19,11 +19,8 @@ export function PaginationItem({
         width="4"
         disabled
         _disabled={{
-          bgColor: "colorBackground.paginationItem",
-          cursor: "pointer"
-        }}
-        _hover={{
-          bgColor: "colorBackground.paginationItemHover"
+         bgColor: "pink.500",
+         cursor: "default"
         }}
       >
         {number}

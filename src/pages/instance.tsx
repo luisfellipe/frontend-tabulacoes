@@ -2,9 +2,7 @@ import { ChakraProvider, Flex } from "@chakra-ui/react";
 
 import { Header } from "../components/Header";
 import { Sidebar } from "../components/Sidebar";
-
 import { useStyle } from "../hooks/useStyle";
-
 export default function Instance() {
   const theme = useStyle();
 
