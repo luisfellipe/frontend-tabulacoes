@@ -1,0 +1,51 @@
+{
+  "content": [
+    {
+      "item": "Bens à Venda",
+      "subgroup": [
+        {
+          "id": "7987",
+          "item": "Bens à Venda"
+        }
+      ]
+    },
+    {
+      "item": "Câmbio",
+      "subgroup": [
+        {
+          "id": "8007",
+          "item": "Moeda Estrangeira"
+        }
+      ]
+    },
+    {
+      "item": "Canais de Relacionamento",
+      "subgroup": [
+        {
+          "id": "7994",
+          "item": "Conta On-line"
+        },
+        {
+          "id": "1687",
+          "item": "Presencial"
+        },
+        {
+          "id": "9637",
+          "item": "SAC"
+        },
+        {
+          "id": "4954",
+          "item": "Site Cooperativa"
+        },
+        {
+          "id": "1382",
+          "item": "Caixa Eletrônico"
+        },
+        {
+          "id": "7220",
+          "item": "Senhas Online"
+        }
+      ]
+    }
+  ]
+}

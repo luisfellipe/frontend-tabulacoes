@@ -21,7 +21,7 @@ const signInFormSchema = yup.object().shape({
 export function Login(props: any) {
   const router = useRouter();
   const { data: session, status } = useSession();
-console.log("session", {session})
+  console.log({ session, status });
   const { register, handleSubmit, formState } = useForm<SignInFormData>({
     resolver: yupResolver(signInFormSchema)
   });
@@ -31,12 +31,31 @@ console.log("session", {session})
   const { errors } = formState;
 
   const handleSignIn: SubmitHandler<SignInFormData> = async (values) => {
-    const {email, password } = values;
-    if (status === "authenticated") {
+    const { email, password } = values;
+    console.log("sdfsdf")
+    if (status != "authenticated") {
       router.push("/tabulations");
     }
-    signIn("okta", {callbackUrl: "http://localhost:3000"});
+    signIn("okta", { callbackUrl: '/tabulations' }); // redirect rigth to okta widget for authentication
   };
+/**
+ *  <Stack spacing="4">
+            <Input
+              type="email"
+              label="E-mail"
+              error={errors.email}
+              {...register("email")}
+            ></Input>
+
+            <Input
+              type="password"
+              label="Senha"
+              error={errors.password}
+              {...register("password")}
+            ></Input>
+          </Stack>
+ */
+
   return (
     <Box>
        <Flex w="100vw" h="100vh" align="center" justify="center">
@@ -53,25 +72,8 @@ console.log("session", {session})
           <Box mb="3" textAlign={"center"}>
             <Logo />
           </Box>
-
-          <Stack spacing="4">
-            <Input
-              type="email"
-              label="E-mail"
-              error={errors.email}
-              {...register("email")}
-            ></Input>
-
-            <Input
-              type="password"
-              label="Senha"
-              error={errors.password}
-              {...register("password")}
-            ></Input>
-          </Stack>
-
           <Button
-            type="submit"
+            type="button"
             mt="6"
             size="lg"
             bg="colorBackground.signInButton"
@@ -79,6 +81,7 @@ console.log("session", {session})
               background: "colorBackground.signInButtonHover"
             }}
             isLoading={formState.isSubmitting}
+            onClick={() => signIn('okta')}
           >
             Entrar com Okta
           </Button>

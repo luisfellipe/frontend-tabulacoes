@@ -14,7 +14,7 @@ import Head from "next/head";
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     // Provider by Okta
-    <SessionProvider session={session}>
+    <SessionProvider session={session} basePath="/api/auth">
       <QueryClientProvider client={queryClient}>
         <DarkmodeProvider>
           <ImportProvider>
