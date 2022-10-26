@@ -12,7 +12,7 @@ export const authOptions = {
     })
     // ...add more providers here
   ],
-  secret: process.env.SECRET as string,
+  secret: process.env.SESSION_SECRET as string,
   debug: true,
   callbacks: {
      async redirect({ url, baseUrl }) {
@@ -21,6 +21,10 @@ export const authOptions = {
         // Allows callback URLs on the same origin
         else if (new URL(url).origin === baseUrl) return url
         return baseUrl
+    },
+    signIn(params) {
+      console.log(params)
+      return "params";
     },
     okta: function (params) {
       console.log({params})
